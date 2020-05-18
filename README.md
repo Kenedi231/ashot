@@ -2,6 +2,11 @@
 
 The best delivery application.
 
+<p align="center">
+  <img src="./screenshots/home_screen.png" alt="Home page"
+       width="40%">
+</p>
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
