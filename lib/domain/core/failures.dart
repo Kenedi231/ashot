@@ -14,6 +14,9 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.multiline({
     @required T failedValue,
   }) = Multiline<T>;
+  const factory ValueFailure.numberMustBePositive({
+    @required T failedValue,
+  }) = NumberMustBePositive<T>;
   const factory ValueFailure.numberTooLarge({
     @required T failedValue,
     @required num max,

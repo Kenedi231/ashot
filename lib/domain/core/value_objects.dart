@@ -81,3 +81,31 @@ class StringSingleLine extends ValueObject<String> {
 
   const StringSingleLine._(this.value);
 }
+
+class StringMultLine extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory StringMultLine(String input) {
+    assert(input != null);
+    return StringMultLine._(
+      validateStringNotEmpty(input),
+    );
+  }
+
+  const StringMultLine._(this.value);
+}
+
+class Price extends ValueObject<int> {
+  @override
+  final Either<ValueFailure<int>, int> value;
+
+  factory Price(int input) {
+    assert(input != null);
+    return Price._(
+      validatePrice(input),
+    );
+  }
+
+  const Price._(this.value);
+}

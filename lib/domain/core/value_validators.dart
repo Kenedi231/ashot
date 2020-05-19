@@ -51,3 +51,11 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
     return left(ValueFailure.shortPassword(failedValue: input));
   }
 }
+
+Either<ValueFailure<int>, int> validatePrice(int input) {
+  if (input >= 0) {
+    return right(input);
+  } else {
+    return left(ValueFailure.numberMustBePositive(failedValue: input));
+  }
+}
