@@ -27,6 +27,7 @@ dependencies:
   kt_dart: ^0.7.0
   styled_widget: ^0.2.1
   uuid: ^2.0.4
+  sliding_up_panel: ^1.0.2
 
 dev_dependencies:
   flutter_test:
