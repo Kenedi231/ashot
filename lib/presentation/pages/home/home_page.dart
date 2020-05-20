@@ -3,7 +3,7 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../../shared/common_styles.dart';
 import 'widgets/cart_widget.dart';
-import 'widgets/catalog_widget.dart';
+import 'widgets/catalog_page_widget.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -11,10 +11,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SizedBox.expand(
         child: SlidingUpPanel(
-          minHeight: 60,
+          minHeight: 50,
           backdropEnabled: true,
           borderRadius: CommonStyles.slidePanelRadius,
-          body: CatalogWidget(),
+          body: CatalogPageWidget(),
           panel: CartWidget(),
         ),
       ),
