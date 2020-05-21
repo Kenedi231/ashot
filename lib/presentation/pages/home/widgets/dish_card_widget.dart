@@ -1,13 +1,18 @@
 
 
+import 'package:ashot/domain/catalog/product.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/stars_widget.dart';
 
 class DishCardWidget extends StatelessWidget {
-  final String dish;
+  final Product _dish;
 
-  const DishCardWidget({this.dish});
+  const DishCardWidget({
+    Key key,
+    Product dish,
+  }) : _dish = dish,
+       super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +36,14 @@ class DishCardWidget extends StatelessWidget {
               Container(
                 height: 160,
                 child: Image.network(
-                  dish,
+                  _dish.imageURL.getOrCrash(),
                   fit: BoxFit.cover,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Dishes',
+                  _dish.name.getOrCrash(),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: TextStyle(
@@ -65,7 +70,7 @@ class DishCardWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       Text(
-                        '455 руб',
+                        '${_dish.price.getOrCrash()} руб',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

@@ -9,22 +9,33 @@ final List<String> fakeDishes = [
 class CatalogItemsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Category(
-      title: 'Блюда',      
-      carousel: CarouselWidget(dishes: fakeDishes),
-      child: GridView.builder(
-        padding: const EdgeInsets.only(bottom: 100),
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: fakeDishes.length,
-        itemBuilder: (BuildContext context, int index) {
-          return DishCardWidget(dish: fakeDishes[index]);
-        },
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.69,
-        ),
-      ),
+    return BlocBuilder<CatalogWatcherBloc, CatalogWatcherState>(
+      builder: (BuildContext context, CatalogWatcherState state) {
+        return state.map(
+          initial: (_) => Container(),
+          loadInProgress: (_) => Container(),
+          loadFailure: (_) => Container(),
+          loadSuccess: (state) {
+            return Category(
+              title: 'Блюда',      
+              carousel: CarouselWidget(dishes: fakeDishes),
+              child: GridView.builder(
+                padding: const EdgeInsets.only(bottom: 100),
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: state.products.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return DishCardWidget(dish: state.products[index]);
+                },
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.69,
+                ),
+              ),
+            );
+          }
+        );
+      },
     );
   }
 }

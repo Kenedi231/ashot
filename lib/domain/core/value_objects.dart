@@ -66,6 +66,13 @@ class UniqueId extends ValueObject<String> {
   }
 
   const UniqueId._(this.value);
+
+  factory UniqueId.fromFirebaseId(String firebaseId) {
+    assert(firebaseId != null);
+    return UniqueId._(
+      right(firebaseId),
+    );
+  }
 }
 
 class StringSingleLine extends ValueObject<String> {

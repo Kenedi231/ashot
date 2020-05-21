@@ -1,4 +1,5 @@
 import 'package:ashot/application/auth/auth_bloc.dart';
+import 'package:ashot/application/catalog/catalog_watcher/catalog_watcher_bloc.dart';
 import 'package:ashot/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
