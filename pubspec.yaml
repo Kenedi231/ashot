@@ -26,6 +26,8 @@ dependencies:
   injectable: ^0.4.0
   kt_dart: ^0.7.0
   styled_widget: ^0.2.1
+  flutter_hooks: ^0.9.0
+  rxdart: ^0.24.1
   uuid: ^2.0.4
 
 dev_dependencies:

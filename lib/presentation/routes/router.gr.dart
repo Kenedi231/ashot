@@ -31,7 +31,7 @@ class Router {
         );
       case Router.homePage:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => HomePage(),
+          builder: (_) => HomePage().wrappedRoute,
           settings: settings,
           fullscreenDialog: true,
         );

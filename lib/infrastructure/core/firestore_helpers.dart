@@ -16,9 +16,12 @@ extension FirestoreX on Firestore {
         .collection('users')
         .document(user.id.getOrCrash());
   }
+
+  Future<CollectionReference> products() async {
+    return Firestore.instance.collection('products');
+  }
 }
 
 extension DocumentReferenceX on DocumentReference {
-  // TODO: Implement getting items from firebase
-  CollectionReference get itemsCollection => collection('items');
+  CollectionReference get productsCollection => collection('products');
 }

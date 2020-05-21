@@ -1,5 +1,7 @@
+import 'package:ashot/application/catalog/catalog_watcher/catalog_watcher_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kt_dart/collection.dart';
 
 import 'category_widget.dart';
@@ -13,33 +15,43 @@ final List<String> fakeDishes = [
 class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        Category(
-          title: 'Блюда',
-          child: CarouselSlider(
-            options: CarouselOptions(
-              height: 200.0,
-              enableInfiniteScroll: false,
-              reverse: false,
-            ),
-            items: fakeDishes.map<Widget>((image) {
-              return Container(
-                padding: EdgeInsets.all(8.0),
-                height: MediaQuery.of(context).size.height / 3.2,
-                width: MediaQuery.of(context).size.width,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    image,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+    return BlocBuilder<CatalogWatcherBloc, CatalogWatcherState>(
+      builder: (context, state) {
+        return state.map(
+            initial: (_) => Container(),
+            loadInProgress: (_) => Container(),
+            loadFailure: (_) => Container(),
+            loadSuccess: (state) {
+              return ListView(
+                children: <Widget>[
+                  Category(
+                    title: 'Блюда',
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                        height: 200.0,
+                        enableInfiniteScroll: false,
+                        reverse: false,
+                      ),
+                      items: state.products.map<Widget>((product) {
+                        return Container(
+                          padding: EdgeInsets.all(8.0),
+                          height: MediaQuery.of(context).size.height / 3.2,
+                          width: MediaQuery.of(context).size.width,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              product.imageURL.getOrCrash(),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  )
+                ],
               );
-            }).toList(),
-          ),
-        )
-      ],
+            });
+      },
     );
   }
 }
