@@ -17,7 +17,6 @@ class CartItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Expanded(
-                flex: 1,
                 child: CircleAvatar(
                   radius: 30,
                   backgroundImage: NetworkImage(item),
@@ -56,7 +55,7 @@ class CartItemWidget extends StatelessWidget {
                 children: <Widget>[
                   Text('455 руб'),
                   IconButton(
-                    icon: Icon(Icons.delete),
+                    icon: Icon(Icons.delete_sweep, color: Colors.red),
                     onPressed: () {}
                   ),
                 ],

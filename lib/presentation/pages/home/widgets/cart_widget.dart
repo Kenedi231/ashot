@@ -46,7 +46,7 @@ class CartWidget extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {},
-                  child: Icon(Icons.delete, size: 24)
+                  child: Icon(Icons.delete_outline, size: 24)
                 ),
               ],
             ),

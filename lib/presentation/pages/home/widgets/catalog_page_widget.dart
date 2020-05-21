@@ -1,9 +1,10 @@
 import 'package:ashot/application/auth/auth_bloc.dart';
 import 'package:ashot/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'carousel_widget.dart';
 import 'category_widget.dart';
+import 'dish_card_widget.dart';
 
 part 'catalog_items_widget.dart';
 
@@ -35,6 +36,7 @@ class CatalogPageWidget extends StatelessWidget {
           ),
           elevation: 0,
         ),
+        backgroundColor: Colors.white,
         body: CatalogItemsWidget(),
       ),
     );
