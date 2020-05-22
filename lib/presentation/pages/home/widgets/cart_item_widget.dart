@@ -1,7 +1,8 @@
+import 'package:ashot/domain/cart/cart_item.dart';
 import 'package:flutter/material.dart';
 
 class CartItemWidget extends StatelessWidget {
-  final String item;
+  final CartItem item;
 
   const CartItemWidget({this.item});
 
@@ -19,7 +20,7 @@ class CartItemWidget extends StatelessWidget {
               Expanded(
                 child: CircleAvatar(
                   radius: 30,
-                  backgroundImage: NetworkImage(item),
+                  backgroundImage: NetworkImage(item.dish.imageURL.getOrCrash()),
                 ),
               ),
               Expanded(
@@ -30,15 +31,15 @@ class CartItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('Dishes Dishes Dishes Dishes Dishes'),
-                      SizedBox(height: 5),
+                      Text(item.dish.name.getOrCrash()),
+                      const SizedBox(height: 5),
                       Row(
                         children: <Widget>[
                           IconButton(
                             icon: Icon(Icons.remove_circle),
                             onPressed: () {},
                           ),
-                          Text('1'),
+                          Text('${item.count}'),
                           IconButton(
                             icon: Icon(Icons.add_circle),
                             onPressed: () {},
@@ -53,7 +54,7 @@ class CartItemWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('455 руб'),
+                  Text('${item.dish.price.getOrCrash() * item.count} руб'),
                   IconButton(
                     icon: Icon(Icons.delete_sweep, color: Colors.red),
                     onPressed: () {}

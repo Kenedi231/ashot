@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
+import '../../../application/catalog/cart/cart_bloc.dart';
 import '../../../application/catalog/catalog_watcher/catalog_watcher_bloc.dart';
 import '../../../injection.dart';
 import '../../shared/common_styles.dart';
@@ -17,6 +18,10 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
         create: (context) => getIt<CatalogWatcherBloc>()
           ..add(const CatalogWatcherEvent.watchAll()),
       ),
+      BlocProvider<CartBloc>(
+        create: (context) => getIt<CartBloc>()
+          ..add(const CartEvent.cartReceived())
+      )
     ],
     child: this,
   );
