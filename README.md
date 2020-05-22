@@ -16,4 +16,7 @@ This project is a starting point for a Flutter application.
 ```bash
 # Generate data classes
 $ flutter pub run build_runner watch --delete-conflicting-outputs
+
+# Run on device
+$ flutter run
 ```
