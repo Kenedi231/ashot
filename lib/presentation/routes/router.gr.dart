@@ -10,11 +10,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:ashot/presentation/pages/splash/splash_page.dart';
 import 'package:ashot/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:ashot/presentation/pages/home/home_page.dart';
+import 'package:ashot/presentation/pages/profile/profile_page.dart';
 
 class Router {
   static const splashPage = '/';
   static const signInPage = '/sign-in-page';
   static const homePage = '/home-page';
+  static const profilePage = '/profile-page';
   static final navigator = ExtendedNavigator();
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -34,6 +36,11 @@ class Router {
           builder: (_) => HomePage().wrappedRoute,
           settings: settings,
           fullscreenDialog: true,
+        );
+      case Router.profilePage:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => ProfilePage(),
+          settings: settings,
         );
       default:
         return unknownRoutePage(settings.name);

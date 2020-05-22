@@ -1,4 +1,5 @@
 import 'package:ashot/presentation/pages/home/home_page.dart';
+import 'package:ashot/presentation/pages/profile/profile_page.dart';
 import 'package:auto_route/auto_route_annotations.dart';
 
 import '../pages/sign_in/sign_in_page.dart';
@@ -12,4 +13,6 @@ class $Router {
 
   @MaterialRoute(fullscreenDialog: true)
   HomePage homePage;
+
+  ProfilePage profilePage;
 }

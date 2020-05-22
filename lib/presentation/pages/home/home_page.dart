@@ -22,33 +22,22 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<AuthBloc, AuthState>(
-          listener: (context, state) {
-            state.maybeMap(
-              unauthenticated: (_) =>
-                  Router.navigator.pushReplacementNamed(Router.signInPage),
-              orElse: () {},
-            );
-          },
-        ),
-      ],
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          title: const Text('Ашот'),
-          leading: IconButton(
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const Text('Ашот'),
+        actions: <Widget>[
+          IconButton(
             icon: Icon(
-              Icons.exit_to_app,
+              Icons.account_circle,
             ),
             onPressed: () {
-              context.bloc<AuthBloc>().add(const AuthEvent.signedOut());
+              Router.navigator.pushNamed(Router.profilePage);
             },
           ),
-        ),
-        body: HomeBody(),
+        ],
       ),
+      body: HomeBody(),
     );
   }
 }
