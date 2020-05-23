@@ -89,6 +89,34 @@ class StringSingleLine extends ValueObject<String> {
   const StringSingleLine._(this.value);
 }
 
+class Adress extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Adress(String input) {
+    assert(input != null);
+    return Adress._(
+      validateSingleLine(input),
+    );
+  }
+
+  const Adress._(this.value);
+}
+
+class Phone extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Phone(String input) {
+    assert(input != null);
+    return Phone._(
+      validatePhone(input),
+    );
+  }
+
+  const Phone._(this.value);
+}
+
 class StringMultLine extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;

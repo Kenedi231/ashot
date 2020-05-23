@@ -59,3 +59,12 @@ Either<ValueFailure<int>, int> validatePrice(int input) {
     return left(ValueFailure.numberMustBePositive(failedValue: input));
   }
 }
+
+Either<ValueFailure<String>, String> validatePhone(String input) {
+  const phoneRegex = r"""^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$""";
+  if (RegExp(phoneRegex).hasMatch(input)) {
+    return right(input);
+  } else {
+    return left(ValueFailure.invalidEmail(failedValue: input));
+  }
+}

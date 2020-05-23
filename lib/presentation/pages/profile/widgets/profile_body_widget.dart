@@ -1,3 +1,4 @@
+import 'package:ashot/presentation/pages/profile/widgets/profile_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,6 +27,7 @@ class ProfileBody extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ProfileHeader(),
           ),
+          ProfileInfo(),
           InkWell(
             onTap: () {
               context.bloc<AuthBloc>().add(const AuthEvent.signedOut());

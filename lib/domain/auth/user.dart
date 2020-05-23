@@ -16,6 +16,8 @@ abstract class User with _$User implements IEntity {
     @required UniqueId id,
     @required StringSingleLine name,
     @required EmailAddress emailAddress,
+    Adress adress,
+    Phone phone,
   }) = _User;
 }
 
