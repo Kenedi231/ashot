@@ -26,19 +26,6 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          title: const Text('Ашот'),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.account_circle,
-              ),
-              onPressed: () {
-                Router.navigator.pushNamed(Router.profilePage);
-              },
-            ),
-          ],
-        ),
         body: SizedBox.expand(
           child: SlidingUpPanel(
             minHeight: 50,

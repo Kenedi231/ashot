@@ -52,6 +52,18 @@ class _$ValueFailureTearOff {
     );
   }
 
+  InvalidPhoneNumber<T> invalidPhoneNumber<T>({@required T failedValue}) {
+    return InvalidPhoneNumber<T>(
+      failedValue: failedValue,
+    );
+  }
+
+  InvalidURL<T> invalidURL<T>({@required T failedValue}) {
+    return InvalidURL<T>(
+      failedValue: failedValue,
+    );
+  }
+
   ShortPassword<T> shortPassword<T>({@required T failedValue}) {
     return ShortPassword<T>(
       failedValue: failedValue,
@@ -73,6 +85,8 @@ mixin _$ValueFailure<T> {
     @required Result numberMustBePositive(T failedValue),
     @required Result numberTooLarge(T failedValue, num max),
     @required Result invalidEmail(T failedValue),
+    @required Result invalidPhoneNumber(T failedValue),
+    @required Result invalidURL(T failedValue),
     @required Result shortPassword(T failedValue),
   });
   @optionalTypeArgs
@@ -83,6 +97,8 @@ mixin _$ValueFailure<T> {
     Result numberMustBePositive(T failedValue),
     Result numberTooLarge(T failedValue, num max),
     Result invalidEmail(T failedValue),
+    Result invalidPhoneNumber(T failedValue),
+    Result invalidURL(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
   });
@@ -94,6 +110,8 @@ mixin _$ValueFailure<T> {
     @required Result numberMustBePositive(NumberMustBePositive<T> value),
     @required Result numberTooLarge(NumberTooLarge<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
+    @required Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    @required Result invalidURL(InvalidURL<T> value),
     @required Result shortPassword(ShortPassword<T> value),
   });
   @optionalTypeArgs
@@ -104,6 +122,8 @@ mixin _$ValueFailure<T> {
     Result numberMustBePositive(NumberMustBePositive<T> value),
     Result numberTooLarge(NumberTooLarge<T> value),
     Result invalidEmail(InvalidEmail<T> value),
+    Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    Result invalidURL(InvalidURL<T> value),
     Result shortPassword(ShortPassword<T> value),
     @required Result orElse(),
   });
@@ -214,6 +234,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     @required Result numberMustBePositive(T failedValue),
     @required Result numberTooLarge(T failedValue, num max),
     @required Result invalidEmail(T failedValue),
+    @required Result invalidPhoneNumber(T failedValue),
+    @required Result invalidURL(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
     assert(exceedingLength != null);
@@ -222,6 +244,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return exceedingLength(failedValue, max);
   }
@@ -235,6 +259,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     Result numberMustBePositive(T failedValue),
     Result numberTooLarge(T failedValue, num max),
     Result invalidEmail(T failedValue),
+    Result invalidPhoneNumber(T failedValue),
+    Result invalidURL(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
   }) {
@@ -254,6 +280,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     @required Result numberMustBePositive(NumberMustBePositive<T> value),
     @required Result numberTooLarge(NumberTooLarge<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
+    @required Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    @required Result invalidURL(InvalidURL<T> value),
     @required Result shortPassword(ShortPassword<T> value),
   }) {
     assert(exceedingLength != null);
@@ -262,6 +290,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return exceedingLength(this);
   }
@@ -275,6 +305,8 @@ class _$ExceedingLength<T> implements ExceedingLength<T> {
     Result numberMustBePositive(NumberMustBePositive<T> value),
     Result numberTooLarge(NumberTooLarge<T> value),
     Result invalidEmail(InvalidEmail<T> value),
+    Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    Result invalidURL(InvalidURL<T> value),
     Result shortPassword(ShortPassword<T> value),
     @required Result orElse(),
   }) {
@@ -361,6 +393,8 @@ class _$Empty<T> implements Empty<T> {
     @required Result numberMustBePositive(T failedValue),
     @required Result numberTooLarge(T failedValue, num max),
     @required Result invalidEmail(T failedValue),
+    @required Result invalidPhoneNumber(T failedValue),
+    @required Result invalidURL(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
     assert(exceedingLength != null);
@@ -369,6 +403,8 @@ class _$Empty<T> implements Empty<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return empty(failedValue);
   }
@@ -382,6 +418,8 @@ class _$Empty<T> implements Empty<T> {
     Result numberMustBePositive(T failedValue),
     Result numberTooLarge(T failedValue, num max),
     Result invalidEmail(T failedValue),
+    Result invalidPhoneNumber(T failedValue),
+    Result invalidURL(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
   }) {
@@ -401,6 +439,8 @@ class _$Empty<T> implements Empty<T> {
     @required Result numberMustBePositive(NumberMustBePositive<T> value),
     @required Result numberTooLarge(NumberTooLarge<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
+    @required Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    @required Result invalidURL(InvalidURL<T> value),
     @required Result shortPassword(ShortPassword<T> value),
   }) {
     assert(exceedingLength != null);
@@ -409,6 +449,8 @@ class _$Empty<T> implements Empty<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return empty(this);
   }
@@ -422,6 +464,8 @@ class _$Empty<T> implements Empty<T> {
     Result numberMustBePositive(NumberMustBePositive<T> value),
     Result numberTooLarge(NumberTooLarge<T> value),
     Result invalidEmail(InvalidEmail<T> value),
+    Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    Result invalidURL(InvalidURL<T> value),
     Result shortPassword(ShortPassword<T> value),
     @required Result orElse(),
   }) {
@@ -509,6 +553,8 @@ class _$Multiline<T> implements Multiline<T> {
     @required Result numberMustBePositive(T failedValue),
     @required Result numberTooLarge(T failedValue, num max),
     @required Result invalidEmail(T failedValue),
+    @required Result invalidPhoneNumber(T failedValue),
+    @required Result invalidURL(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
     assert(exceedingLength != null);
@@ -517,6 +563,8 @@ class _$Multiline<T> implements Multiline<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return multiline(failedValue);
   }
@@ -530,6 +578,8 @@ class _$Multiline<T> implements Multiline<T> {
     Result numberMustBePositive(T failedValue),
     Result numberTooLarge(T failedValue, num max),
     Result invalidEmail(T failedValue),
+    Result invalidPhoneNumber(T failedValue),
+    Result invalidURL(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
   }) {
@@ -549,6 +599,8 @@ class _$Multiline<T> implements Multiline<T> {
     @required Result numberMustBePositive(NumberMustBePositive<T> value),
     @required Result numberTooLarge(NumberTooLarge<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
+    @required Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    @required Result invalidURL(InvalidURL<T> value),
     @required Result shortPassword(ShortPassword<T> value),
   }) {
     assert(exceedingLength != null);
@@ -557,6 +609,8 @@ class _$Multiline<T> implements Multiline<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return multiline(this);
   }
@@ -570,6 +624,8 @@ class _$Multiline<T> implements Multiline<T> {
     Result numberMustBePositive(NumberMustBePositive<T> value),
     Result numberTooLarge(NumberTooLarge<T> value),
     Result invalidEmail(InvalidEmail<T> value),
+    Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    Result invalidURL(InvalidURL<T> value),
     Result shortPassword(ShortPassword<T> value),
     @required Result orElse(),
   }) {
@@ -659,6 +715,8 @@ class _$NumberMustBePositive<T> implements NumberMustBePositive<T> {
     @required Result numberMustBePositive(T failedValue),
     @required Result numberTooLarge(T failedValue, num max),
     @required Result invalidEmail(T failedValue),
+    @required Result invalidPhoneNumber(T failedValue),
+    @required Result invalidURL(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
     assert(exceedingLength != null);
@@ -667,6 +725,8 @@ class _$NumberMustBePositive<T> implements NumberMustBePositive<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return numberMustBePositive(failedValue);
   }
@@ -680,6 +740,8 @@ class _$NumberMustBePositive<T> implements NumberMustBePositive<T> {
     Result numberMustBePositive(T failedValue),
     Result numberTooLarge(T failedValue, num max),
     Result invalidEmail(T failedValue),
+    Result invalidPhoneNumber(T failedValue),
+    Result invalidURL(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
   }) {
@@ -699,6 +761,8 @@ class _$NumberMustBePositive<T> implements NumberMustBePositive<T> {
     @required Result numberMustBePositive(NumberMustBePositive<T> value),
     @required Result numberTooLarge(NumberTooLarge<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
+    @required Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    @required Result invalidURL(InvalidURL<T> value),
     @required Result shortPassword(ShortPassword<T> value),
   }) {
     assert(exceedingLength != null);
@@ -707,6 +771,8 @@ class _$NumberMustBePositive<T> implements NumberMustBePositive<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return numberMustBePositive(this);
   }
@@ -720,6 +786,8 @@ class _$NumberMustBePositive<T> implements NumberMustBePositive<T> {
     Result numberMustBePositive(NumberMustBePositive<T> value),
     Result numberTooLarge(NumberTooLarge<T> value),
     Result invalidEmail(InvalidEmail<T> value),
+    Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    Result invalidURL(InvalidURL<T> value),
     Result shortPassword(ShortPassword<T> value),
     @required Result orElse(),
   }) {
@@ -818,6 +886,8 @@ class _$NumberTooLarge<T> implements NumberTooLarge<T> {
     @required Result numberMustBePositive(T failedValue),
     @required Result numberTooLarge(T failedValue, num max),
     @required Result invalidEmail(T failedValue),
+    @required Result invalidPhoneNumber(T failedValue),
+    @required Result invalidURL(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
     assert(exceedingLength != null);
@@ -826,6 +896,8 @@ class _$NumberTooLarge<T> implements NumberTooLarge<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return numberTooLarge(failedValue, max);
   }
@@ -839,6 +911,8 @@ class _$NumberTooLarge<T> implements NumberTooLarge<T> {
     Result numberMustBePositive(T failedValue),
     Result numberTooLarge(T failedValue, num max),
     Result invalidEmail(T failedValue),
+    Result invalidPhoneNumber(T failedValue),
+    Result invalidURL(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
   }) {
@@ -858,6 +932,8 @@ class _$NumberTooLarge<T> implements NumberTooLarge<T> {
     @required Result numberMustBePositive(NumberMustBePositive<T> value),
     @required Result numberTooLarge(NumberTooLarge<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
+    @required Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    @required Result invalidURL(InvalidURL<T> value),
     @required Result shortPassword(ShortPassword<T> value),
   }) {
     assert(exceedingLength != null);
@@ -866,6 +942,8 @@ class _$NumberTooLarge<T> implements NumberTooLarge<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return numberTooLarge(this);
   }
@@ -879,6 +957,8 @@ class _$NumberTooLarge<T> implements NumberTooLarge<T> {
     Result numberMustBePositive(NumberMustBePositive<T> value),
     Result numberTooLarge(NumberTooLarge<T> value),
     Result invalidEmail(InvalidEmail<T> value),
+    Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    Result invalidURL(InvalidURL<T> value),
     Result shortPassword(ShortPassword<T> value),
     @required Result orElse(),
   }) {
@@ -969,6 +1049,8 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     @required Result numberMustBePositive(T failedValue),
     @required Result numberTooLarge(T failedValue, num max),
     @required Result invalidEmail(T failedValue),
+    @required Result invalidPhoneNumber(T failedValue),
+    @required Result invalidURL(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
     assert(exceedingLength != null);
@@ -977,6 +1059,8 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return invalidEmail(failedValue);
   }
@@ -990,6 +1074,8 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     Result numberMustBePositive(T failedValue),
     Result numberTooLarge(T failedValue, num max),
     Result invalidEmail(T failedValue),
+    Result invalidPhoneNumber(T failedValue),
+    Result invalidURL(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
   }) {
@@ -1009,6 +1095,8 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     @required Result numberMustBePositive(NumberMustBePositive<T> value),
     @required Result numberTooLarge(NumberTooLarge<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
+    @required Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    @required Result invalidURL(InvalidURL<T> value),
     @required Result shortPassword(ShortPassword<T> value),
   }) {
     assert(exceedingLength != null);
@@ -1017,6 +1105,8 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return invalidEmail(this);
   }
@@ -1030,6 +1120,8 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     Result numberMustBePositive(NumberMustBePositive<T> value),
     Result numberTooLarge(NumberTooLarge<T> value),
     Result invalidEmail(InvalidEmail<T> value),
+    Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    Result invalidURL(InvalidURL<T> value),
     Result shortPassword(ShortPassword<T> value),
     @required Result orElse(),
   }) {
@@ -1048,6 +1140,330 @@ abstract class InvalidEmail<T> implements ValueFailure<T> {
   T get failedValue;
   @override
   $InvalidEmailCopyWith<T, InvalidEmail<T>> get copyWith;
+}
+
+abstract class $InvalidPhoneNumberCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $InvalidPhoneNumberCopyWith(InvalidPhoneNumber<T> value,
+          $Res Function(InvalidPhoneNumber<T>) then) =
+      _$InvalidPhoneNumberCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+class _$InvalidPhoneNumberCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $InvalidPhoneNumberCopyWith<T, $Res> {
+  _$InvalidPhoneNumberCopyWithImpl(
+      InvalidPhoneNumber<T> _value, $Res Function(InvalidPhoneNumber<T>) _then)
+      : super(_value, (v) => _then(v as InvalidPhoneNumber<T>));
+
+  @override
+  InvalidPhoneNumber<T> get _value => super._value as InvalidPhoneNumber<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(InvalidPhoneNumber<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as T,
+    ));
+  }
+}
+
+class _$InvalidPhoneNumber<T> implements InvalidPhoneNumber<T> {
+  const _$InvalidPhoneNumber({@required this.failedValue})
+      : assert(failedValue != null);
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.invalidPhoneNumber(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is InvalidPhoneNumber<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @override
+  $InvalidPhoneNumberCopyWith<T, InvalidPhoneNumber<T>> get copyWith =>
+      _$InvalidPhoneNumberCopyWithImpl<T, InvalidPhoneNumber<T>>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result exceedingLength(T failedValue, int max),
+    @required Result empty(T failedValue),
+    @required Result multiline(T failedValue),
+    @required Result numberMustBePositive(T failedValue),
+    @required Result numberTooLarge(T failedValue, num max),
+    @required Result invalidEmail(T failedValue),
+    @required Result invalidPhoneNumber(T failedValue),
+    @required Result invalidURL(T failedValue),
+    @required Result shortPassword(T failedValue),
+  }) {
+    assert(exceedingLength != null);
+    assert(empty != null);
+    assert(multiline != null);
+    assert(numberMustBePositive != null);
+    assert(numberTooLarge != null);
+    assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
+    assert(shortPassword != null);
+    return invalidPhoneNumber(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result exceedingLength(T failedValue, int max),
+    Result empty(T failedValue),
+    Result multiline(T failedValue),
+    Result numberMustBePositive(T failedValue),
+    Result numberTooLarge(T failedValue, num max),
+    Result invalidEmail(T failedValue),
+    Result invalidPhoneNumber(T failedValue),
+    Result invalidURL(T failedValue),
+    Result shortPassword(T failedValue),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidPhoneNumber != null) {
+      return invalidPhoneNumber(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result exceedingLength(ExceedingLength<T> value),
+    @required Result empty(Empty<T> value),
+    @required Result multiline(Multiline<T> value),
+    @required Result numberMustBePositive(NumberMustBePositive<T> value),
+    @required Result numberTooLarge(NumberTooLarge<T> value),
+    @required Result invalidEmail(InvalidEmail<T> value),
+    @required Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    @required Result invalidURL(InvalidURL<T> value),
+    @required Result shortPassword(ShortPassword<T> value),
+  }) {
+    assert(exceedingLength != null);
+    assert(empty != null);
+    assert(multiline != null);
+    assert(numberMustBePositive != null);
+    assert(numberTooLarge != null);
+    assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
+    assert(shortPassword != null);
+    return invalidPhoneNumber(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result exceedingLength(ExceedingLength<T> value),
+    Result empty(Empty<T> value),
+    Result multiline(Multiline<T> value),
+    Result numberMustBePositive(NumberMustBePositive<T> value),
+    Result numberTooLarge(NumberTooLarge<T> value),
+    Result invalidEmail(InvalidEmail<T> value),
+    Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    Result invalidURL(InvalidURL<T> value),
+    Result shortPassword(ShortPassword<T> value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidPhoneNumber != null) {
+      return invalidPhoneNumber(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidPhoneNumber<T> implements ValueFailure<T> {
+  const factory InvalidPhoneNumber({@required T failedValue}) =
+      _$InvalidPhoneNumber<T>;
+
+  @override
+  T get failedValue;
+  @override
+  $InvalidPhoneNumberCopyWith<T, InvalidPhoneNumber<T>> get copyWith;
+}
+
+abstract class $InvalidURLCopyWith<T, $Res>
+    implements $ValueFailureCopyWith<T, $Res> {
+  factory $InvalidURLCopyWith(
+          InvalidURL<T> value, $Res Function(InvalidURL<T>) then) =
+      _$InvalidURLCopyWithImpl<T, $Res>;
+  @override
+  $Res call({T failedValue});
+}
+
+class _$InvalidURLCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res>
+    implements $InvalidURLCopyWith<T, $Res> {
+  _$InvalidURLCopyWithImpl(
+      InvalidURL<T> _value, $Res Function(InvalidURL<T>) _then)
+      : super(_value, (v) => _then(v as InvalidURL<T>));
+
+  @override
+  InvalidURL<T> get _value => super._value as InvalidURL<T>;
+
+  @override
+  $Res call({
+    Object failedValue = freezed,
+  }) {
+    return _then(InvalidURL<T>(
+      failedValue:
+          failedValue == freezed ? _value.failedValue : failedValue as T,
+    ));
+  }
+}
+
+class _$InvalidURL<T> implements InvalidURL<T> {
+  const _$InvalidURL({@required this.failedValue})
+      : assert(failedValue != null);
+
+  @override
+  final T failedValue;
+
+  @override
+  String toString() {
+    return 'ValueFailure<$T>.invalidURL(failedValue: $failedValue)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is InvalidURL<T> &&
+            (identical(other.failedValue, failedValue) ||
+                const DeepCollectionEquality()
+                    .equals(other.failedValue, failedValue)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+
+  @override
+  $InvalidURLCopyWith<T, InvalidURL<T>> get copyWith =>
+      _$InvalidURLCopyWithImpl<T, InvalidURL<T>>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result exceedingLength(T failedValue, int max),
+    @required Result empty(T failedValue),
+    @required Result multiline(T failedValue),
+    @required Result numberMustBePositive(T failedValue),
+    @required Result numberTooLarge(T failedValue, num max),
+    @required Result invalidEmail(T failedValue),
+    @required Result invalidPhoneNumber(T failedValue),
+    @required Result invalidURL(T failedValue),
+    @required Result shortPassword(T failedValue),
+  }) {
+    assert(exceedingLength != null);
+    assert(empty != null);
+    assert(multiline != null);
+    assert(numberMustBePositive != null);
+    assert(numberTooLarge != null);
+    assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
+    assert(shortPassword != null);
+    return invalidURL(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result exceedingLength(T failedValue, int max),
+    Result empty(T failedValue),
+    Result multiline(T failedValue),
+    Result numberMustBePositive(T failedValue),
+    Result numberTooLarge(T failedValue, num max),
+    Result invalidEmail(T failedValue),
+    Result invalidPhoneNumber(T failedValue),
+    Result invalidURL(T failedValue),
+    Result shortPassword(T failedValue),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidURL != null) {
+      return invalidURL(failedValue);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result exceedingLength(ExceedingLength<T> value),
+    @required Result empty(Empty<T> value),
+    @required Result multiline(Multiline<T> value),
+    @required Result numberMustBePositive(NumberMustBePositive<T> value),
+    @required Result numberTooLarge(NumberTooLarge<T> value),
+    @required Result invalidEmail(InvalidEmail<T> value),
+    @required Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    @required Result invalidURL(InvalidURL<T> value),
+    @required Result shortPassword(ShortPassword<T> value),
+  }) {
+    assert(exceedingLength != null);
+    assert(empty != null);
+    assert(multiline != null);
+    assert(numberMustBePositive != null);
+    assert(numberTooLarge != null);
+    assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
+    assert(shortPassword != null);
+    return invalidURL(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result exceedingLength(ExceedingLength<T> value),
+    Result empty(Empty<T> value),
+    Result multiline(Multiline<T> value),
+    Result numberMustBePositive(NumberMustBePositive<T> value),
+    Result numberTooLarge(NumberTooLarge<T> value),
+    Result invalidEmail(InvalidEmail<T> value),
+    Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    Result invalidURL(InvalidURL<T> value),
+    Result shortPassword(ShortPassword<T> value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (invalidURL != null) {
+      return invalidURL(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidURL<T> implements ValueFailure<T> {
+  const factory InvalidURL({@required T failedValue}) = _$InvalidURL<T>;
+
+  @override
+  T get failedValue;
+  @override
+  $InvalidURLCopyWith<T, InvalidURL<T>> get copyWith;
 }
 
 abstract class $ShortPasswordCopyWith<T, $Res>
@@ -1118,6 +1534,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     @required Result numberMustBePositive(T failedValue),
     @required Result numberTooLarge(T failedValue, num max),
     @required Result invalidEmail(T failedValue),
+    @required Result invalidPhoneNumber(T failedValue),
+    @required Result invalidURL(T failedValue),
     @required Result shortPassword(T failedValue),
   }) {
     assert(exceedingLength != null);
@@ -1126,6 +1544,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return shortPassword(failedValue);
   }
@@ -1139,6 +1559,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     Result numberMustBePositive(T failedValue),
     Result numberTooLarge(T failedValue, num max),
     Result invalidEmail(T failedValue),
+    Result invalidPhoneNumber(T failedValue),
+    Result invalidURL(T failedValue),
     Result shortPassword(T failedValue),
     @required Result orElse(),
   }) {
@@ -1158,6 +1580,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     @required Result numberMustBePositive(NumberMustBePositive<T> value),
     @required Result numberTooLarge(NumberTooLarge<T> value),
     @required Result invalidEmail(InvalidEmail<T> value),
+    @required Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    @required Result invalidURL(InvalidURL<T> value),
     @required Result shortPassword(ShortPassword<T> value),
   }) {
     assert(exceedingLength != null);
@@ -1166,6 +1590,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     assert(numberMustBePositive != null);
     assert(numberTooLarge != null);
     assert(invalidEmail != null);
+    assert(invalidPhoneNumber != null);
+    assert(invalidURL != null);
     assert(shortPassword != null);
     return shortPassword(this);
   }
@@ -1179,6 +1605,8 @@ class _$ShortPassword<T> implements ShortPassword<T> {
     Result numberMustBePositive(NumberMustBePositive<T> value),
     Result numberTooLarge(NumberTooLarge<T> value),
     Result invalidEmail(InvalidEmail<T> value),
+    Result invalidPhoneNumber(InvalidPhoneNumber<T> value),
+    Result invalidURL(InvalidURL<T> value),
     Result shortPassword(ShortPassword<T> value),
     @required Result orElse(),
   }) {

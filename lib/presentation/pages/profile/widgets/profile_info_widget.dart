@@ -1,6 +1,7 @@
-import 'package:ashot/application/auth/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../application/profile/profile_bloc.dart';
 
 class Tile extends StatelessWidget {
   final String _title, _subtitle;
@@ -41,21 +42,22 @@ class ProfileInfo extends StatelessWidget {
   Widget build(_) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: BlocBuilder<AuthBloc, AuthState>(builder: (_, state) {
+      child: BlocBuilder<ProfileBloc, ProfileState>(builder: (_, state) {
         return state.map(
           initial: (_) => Container(),
-          unauthenticated: (_) => Container(),
-          authenticated: (auth) => Column(
+          loadFailure: (_) => Container(),
+          loadInProgress: (_) => Container(),
+          loadSuccess: (event) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Tile(
                 title: "Адрес",
-                subtitle: auth.user.adress.getOrElse("Не указан"),
+                subtitle: event.profile.adress.getOrElse("Не указан"),
               ),
               const SizedBox(height: 8),
               Tile(
                 title: "Номер телефона",
-                subtitle: auth.user.phone.getOrElse("+79000000000"),
+                subtitle: event.profile.phone.getOrElse("Не указан"),
               ),
             ],
           ),

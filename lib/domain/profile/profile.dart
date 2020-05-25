@@ -7,19 +7,21 @@ import '../core/entity.dart';
 import '../core/failures.dart';
 import '../core/value_objects.dart';
 
-part 'user.freezed.dart';
+part 'profile.freezed.dart';
 
 @freezed
-abstract class User with _$User implements IEntity {
-  const factory User({
+abstract class Profile with _$Profile implements IEntity {
+  const factory Profile({
     @required UniqueId id,
     @required StringSingleLine name,
     @required EmailAddress emailAddress,
+    Adress adress,
     Phone phone,
-  }) = _User;
+    URL avatar,
+  }) = _Profile;
 }
 
-extension UserX on User {
+extension ProfileX on Profile {
   Option<ValueFailure<dynamic>> get failureOption {
     return name.failureOrUnit
         .andThen(emailAddress.failureOrUnit)

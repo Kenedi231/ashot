@@ -1,8 +1,9 @@
-import 'package:ashot/application/auth/auth_bloc.dart';
-import 'package:ashot/application/catalog/catalog_watcher/catalog_watcher_bloc.dart';
-import 'package:ashot/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../application/auth/auth_bloc.dart';
+import '../../../../application/catalog/catalog_watcher/catalog_watcher_bloc.dart';
+import '../../../routes/router.gr.dart';
 import 'carousel_widget.dart';
 import 'category_widget.dart';
 import 'dish_card_widget.dart';
@@ -18,7 +19,7 @@ class CatalogPageWidget extends StatelessWidget {
           listener: (context, state) {
             state.maybeMap(
               unauthenticated: (_) =>
-                Router.navigator.pushReplacementNamed(Router.signInPage),
+                  Router.navigator.pushReplacementNamed(Router.signInPage),
               orElse: () {},
             );
           },
@@ -27,14 +28,16 @@ class CatalogPageWidget extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Ашот'),
-          leading: IconButton(
-            icon: Icon(
-              Icons.exit_to_app,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.account_circle,
+              ),
+              onPressed: () {
+                Router.navigator.pushNamed(Router.profilePage);
+              },
             ),
-            onPressed: () {
-              context.bloc<AuthBloc>().add(const AuthEvent.signedOut());
-            },
-          ),
+          ],
           elevation: 0,
         ),
         backgroundColor: Colors.white,

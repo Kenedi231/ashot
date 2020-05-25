@@ -65,6 +65,17 @@ Either<ValueFailure<String>, String> validatePhone(String input) {
   if (RegExp(phoneRegex).hasMatch(input)) {
     return right(input);
   } else {
-    return left(ValueFailure.invalidEmail(failedValue: input));
+    return left(ValueFailure.invalidPhoneNumber(failedValue: input));
+  }
+}
+
+Either<ValueFailure<String>, String> validateURL(String input) {
+  const urlPattern =
+      r"^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$";
+
+  if (RegExp(urlPattern).hasMatch(input)) {
+    return right(input);
+  } else {
+    return left(ValueFailure.invalidURL(failedValue: input));
   }
 }

@@ -75,6 +75,38 @@ class UniqueId extends ValueObject<String> {
   }
 }
 
+class EmailAddress extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory EmailAddress(String input) {
+    assert(input != null);
+    return EmailAddress._(
+      validateEmailAddress(input),
+    );
+  }
+
+  const EmailAddress._(
+    this.value,
+  ) : assert(value != null);
+}
+
+class Password extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Password(String input) {
+    assert(input != null);
+    return Password._(
+      validatePassword(input),
+    );
+  }
+
+  const Password._(
+    this.value,
+  ) : assert(value != null);
+}
+
 class StringSingleLine extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
@@ -96,7 +128,7 @@ class Adress extends ValueObject<String> {
   factory Adress(String input) {
     assert(input != null);
     return Adress._(
-      validateSingleLine(input),
+      validateStringNotEmpty(input),
     );
   }
 
@@ -143,4 +175,18 @@ class Price extends ValueObject<int> {
   }
 
   const Price._(this.value);
+}
+
+class URL extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory URL(String input) {
+    assert(input != null);
+    return URL._(
+      validateURL(input),
+    );
+  }
+
+  const URL._(this.value);
 }

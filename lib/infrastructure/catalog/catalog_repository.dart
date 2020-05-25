@@ -12,7 +12,7 @@ import 'catalog_dto.dart';
 
 @prod
 @lazySingleton
-@Injectable(as: ICatalogRepository)
+@RegisterAs(ICatalogRepository)
 class CatalogRepository implements ICatalogRepository {
   final Firestore _firestore;
 
@@ -25,7 +25,7 @@ class CatalogRepository implements ICatalogRepository {
     yield* productsCollection
         .snapshots()
         .map<Either<CatalogFailure, List<Product>>>((snapshot) {
-      print(snapshot);
+
       return right<CatalogFailure, List<Product>>(
         List.from(
           snapshot.documents

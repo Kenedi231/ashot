@@ -39,7 +39,7 @@ class Router {
         );
       case Router.profilePage:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => ProfilePage(),
+          builder: (_) => ProfilePage().wrappedRoute,
           settings: settings,
         );
       default:

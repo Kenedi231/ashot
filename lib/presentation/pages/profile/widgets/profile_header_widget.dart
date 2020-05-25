@@ -1,22 +1,23 @@
-import 'package:ashot/application/auth/auth_bloc.dart';
+import 'package:ashot/application/profile/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthBloc, AuthState>(builder: (_, state) {
+    return BlocBuilder<ProfileBloc, ProfileState>(builder: (_, state) {
       return state.map(
           initial: (_) => Container(),
-          unauthenticated: (_) => Container(),
-          authenticated: (auth) => Row(
+          loadFailure: (_) => Container(),
+          loadInProgress: (_) => Container(),
+          loadSuccess: (store) => Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: Image.network(
-                      'https://images.unsplash.com/photo-1567186937675-a5131c8a89ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=360&q=80',
+                      store.profile.avatar.getOrElse(''),
                       fit: BoxFit.cover,
                       height: 120,
                       width: 120,
@@ -29,7 +30,7 @@ class ProfileHeader extends StatelessWidget {
                       children: <Widget>[
                         Row(children: <Widget>[
                           Text(
-                            auth.user.name.getOrElse(''),
+                            store.profile.name.getOrElse(''),
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.bold),
@@ -38,7 +39,7 @@ class ProfileHeader extends StatelessWidget {
                         const SizedBox(height: 8.0),
                         Row(children: <Widget>[
                           Text(
-                            auth.user.emailAddress.getOrElse(''),
+                            store.profile.emailAddress.getOrElse(''),
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               color: Colors.black54,
