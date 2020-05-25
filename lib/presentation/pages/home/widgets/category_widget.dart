@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class Category extends StatelessWidget {
   final String _title;
   final Widget _child;
-
   const Category({
     Key key,
     @required String title,
@@ -15,7 +14,6 @@ class Category extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(8.0),

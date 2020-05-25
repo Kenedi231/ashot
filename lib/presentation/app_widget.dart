@@ -16,6 +16,9 @@ class AppWidget extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Colors.white,
+        ),
         title: 'Ашот',
         debugShowCheckedModeBanner: false,
         onGenerateRoute: Router.onGenerateRoute,
