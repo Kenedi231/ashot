@@ -22,13 +22,14 @@ class _$CartEventTearOff {
     );
   }
 
-  _UpdateCart updateCart(Product updatedProduct) {
+  _UpdateCart updateCart(CartItem item, int deltaCount) {
     return _UpdateCart(
-      updatedProduct,
+      item,
+      deltaCount,
     );
   }
 
-  _DeleteFromCart deleteFromCart(Product deletedProduct) {
+  _DeleteFromCart deleteFromCart(CartItem deletedProduct) {
     return _DeleteFromCart(
       deletedProduct,
     );
@@ -47,16 +48,16 @@ mixin _$CartEvent {
   Result when<Result extends Object>({
     @required Result cartReceived(),
     @required Result addToCart(Product addProduct),
-    @required Result updateCart(Product updatedProduct),
-    @required Result deleteFromCart(Product deletedProduct),
+    @required Result updateCart(CartItem item, int deltaCount),
+    @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result cartReceived(),
     Result addToCart(Product addProduct),
-    Result updateCart(Product updatedProduct),
-    Result deleteFromCart(Product deletedProduct),
+    Result updateCart(CartItem item, int deltaCount),
+    Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
     @required Result orElse(),
   });
@@ -129,8 +130,8 @@ class _$_CartReceived implements _CartReceived {
   Result when<Result extends Object>({
     @required Result cartReceived(),
     @required Result addToCart(Product addProduct),
-    @required Result updateCart(Product updatedProduct),
-    @required Result deleteFromCart(Product deletedProduct),
+    @required Result updateCart(CartItem item, int deltaCount),
+    @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
   }) {
     assert(cartReceived != null);
@@ -146,8 +147,8 @@ class _$_CartReceived implements _CartReceived {
   Result maybeWhen<Result extends Object>({
     Result cartReceived(),
     Result addToCart(Product addProduct),
-    Result updateCart(Product updatedProduct),
-    Result deleteFromCart(Product deletedProduct),
+    Result updateCart(CartItem item, int deltaCount),
+    Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
     @required Result orElse(),
   }) {
@@ -267,8 +268,8 @@ class _$_AddToCart implements _AddToCart {
   Result when<Result extends Object>({
     @required Result cartReceived(),
     @required Result addToCart(Product addProduct),
-    @required Result updateCart(Product updatedProduct),
-    @required Result deleteFromCart(Product deletedProduct),
+    @required Result updateCart(CartItem item, int deltaCount),
+    @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
   }) {
     assert(cartReceived != null);
@@ -284,8 +285,8 @@ class _$_AddToCart implements _AddToCart {
   Result maybeWhen<Result extends Object>({
     Result cartReceived(),
     Result addToCart(Product addProduct),
-    Result updateCart(Product updatedProduct),
-    Result deleteFromCart(Product deletedProduct),
+    Result updateCart(CartItem item, int deltaCount),
+    Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
     @required Result orElse(),
   }) {
@@ -342,9 +343,9 @@ abstract class _$UpdateCartCopyWith<$Res> {
   factory _$UpdateCartCopyWith(
           _UpdateCart value, $Res Function(_UpdateCart) then) =
       __$UpdateCartCopyWithImpl<$Res>;
-  $Res call({Product updatedProduct});
+  $Res call({CartItem item, int deltaCount});
 
-  $ProductCopyWith<$Res> get updatedProduct;
+  $CartItemCopyWith<$Res> get item;
 }
 
 class __$UpdateCartCopyWithImpl<$Res> extends _$CartEventCopyWithImpl<$Res>
@@ -358,50 +359,57 @@ class __$UpdateCartCopyWithImpl<$Res> extends _$CartEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object updatedProduct = freezed,
+    Object item = freezed,
+    Object deltaCount = freezed,
   }) {
     return _then(_UpdateCart(
-      updatedProduct == freezed
-          ? _value.updatedProduct
-          : updatedProduct as Product,
+      item == freezed ? _value.item : item as CartItem,
+      deltaCount == freezed ? _value.deltaCount : deltaCount as int,
     ));
   }
 
   @override
-  $ProductCopyWith<$Res> get updatedProduct {
-    if (_value.updatedProduct == null) {
+  $CartItemCopyWith<$Res> get item {
+    if (_value.item == null) {
       return null;
     }
-    return $ProductCopyWith<$Res>(_value.updatedProduct, (value) {
-      return _then(_value.copyWith(updatedProduct: value));
+    return $CartItemCopyWith<$Res>(_value.item, (value) {
+      return _then(_value.copyWith(item: value));
     });
   }
 }
 
 class _$_UpdateCart implements _UpdateCart {
-  const _$_UpdateCart(this.updatedProduct) : assert(updatedProduct != null);
+  const _$_UpdateCart(this.item, this.deltaCount)
+      : assert(item != null),
+        assert(deltaCount != null);
 
   @override
-  final Product updatedProduct;
+  final CartItem item;
+  @override
+  final int deltaCount;
 
   @override
   String toString() {
-    return 'CartEvent.updateCart(updatedProduct: $updatedProduct)';
+    return 'CartEvent.updateCart(item: $item, deltaCount: $deltaCount)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _UpdateCart &&
-            (identical(other.updatedProduct, updatedProduct) ||
+            (identical(other.item, item) ||
+                const DeepCollectionEquality().equals(other.item, item)) &&
+            (identical(other.deltaCount, deltaCount) ||
                 const DeepCollectionEquality()
-                    .equals(other.updatedProduct, updatedProduct)));
+                    .equals(other.deltaCount, deltaCount)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(updatedProduct);
+      const DeepCollectionEquality().hash(item) ^
+      const DeepCollectionEquality().hash(deltaCount);
 
   @override
   _$UpdateCartCopyWith<_UpdateCart> get copyWith =>
@@ -412,8 +420,8 @@ class _$_UpdateCart implements _UpdateCart {
   Result when<Result extends Object>({
     @required Result cartReceived(),
     @required Result addToCart(Product addProduct),
-    @required Result updateCart(Product updatedProduct),
-    @required Result deleteFromCart(Product deletedProduct),
+    @required Result updateCart(CartItem item, int deltaCount),
+    @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
   }) {
     assert(cartReceived != null);
@@ -421,7 +429,7 @@ class _$_UpdateCart implements _UpdateCart {
     assert(updateCart != null);
     assert(deleteFromCart != null);
     assert(clearCart != null);
-    return updateCart(updatedProduct);
+    return updateCart(item, deltaCount);
   }
 
   @override
@@ -429,14 +437,14 @@ class _$_UpdateCart implements _UpdateCart {
   Result maybeWhen<Result extends Object>({
     Result cartReceived(),
     Result addToCart(Product addProduct),
-    Result updateCart(Product updatedProduct),
-    Result deleteFromCart(Product deletedProduct),
+    Result updateCart(CartItem item, int deltaCount),
+    Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (updateCart != null) {
-      return updateCart(updatedProduct);
+      return updateCart(item, deltaCount);
     }
     return orElse();
   }
@@ -477,9 +485,10 @@ class _$_UpdateCart implements _UpdateCart {
 }
 
 abstract class _UpdateCart implements CartEvent {
-  const factory _UpdateCart(Product updatedProduct) = _$_UpdateCart;
+  const factory _UpdateCart(CartItem item, int deltaCount) = _$_UpdateCart;
 
-  Product get updatedProduct;
+  CartItem get item;
+  int get deltaCount;
   _$UpdateCartCopyWith<_UpdateCart> get copyWith;
 }
 
@@ -487,9 +496,9 @@ abstract class _$DeleteFromCartCopyWith<$Res> {
   factory _$DeleteFromCartCopyWith(
           _DeleteFromCart value, $Res Function(_DeleteFromCart) then) =
       __$DeleteFromCartCopyWithImpl<$Res>;
-  $Res call({Product deletedProduct});
+  $Res call({CartItem deletedProduct});
 
-  $ProductCopyWith<$Res> get deletedProduct;
+  $CartItemCopyWith<$Res> get deletedProduct;
 }
 
 class __$DeleteFromCartCopyWithImpl<$Res> extends _$CartEventCopyWithImpl<$Res>
@@ -508,16 +517,16 @@ class __$DeleteFromCartCopyWithImpl<$Res> extends _$CartEventCopyWithImpl<$Res>
     return _then(_DeleteFromCart(
       deletedProduct == freezed
           ? _value.deletedProduct
-          : deletedProduct as Product,
+          : deletedProduct as CartItem,
     ));
   }
 
   @override
-  $ProductCopyWith<$Res> get deletedProduct {
+  $CartItemCopyWith<$Res> get deletedProduct {
     if (_value.deletedProduct == null) {
       return null;
     }
-    return $ProductCopyWith<$Res>(_value.deletedProduct, (value) {
+    return $CartItemCopyWith<$Res>(_value.deletedProduct, (value) {
       return _then(_value.copyWith(deletedProduct: value));
     });
   }
@@ -527,7 +536,7 @@ class _$_DeleteFromCart implements _DeleteFromCart {
   const _$_DeleteFromCart(this.deletedProduct) : assert(deletedProduct != null);
 
   @override
-  final Product deletedProduct;
+  final CartItem deletedProduct;
 
   @override
   String toString() {
@@ -557,8 +566,8 @@ class _$_DeleteFromCart implements _DeleteFromCart {
   Result when<Result extends Object>({
     @required Result cartReceived(),
     @required Result addToCart(Product addProduct),
-    @required Result updateCart(Product updatedProduct),
-    @required Result deleteFromCart(Product deletedProduct),
+    @required Result updateCart(CartItem item, int deltaCount),
+    @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
   }) {
     assert(cartReceived != null);
@@ -574,8 +583,8 @@ class _$_DeleteFromCart implements _DeleteFromCart {
   Result maybeWhen<Result extends Object>({
     Result cartReceived(),
     Result addToCart(Product addProduct),
-    Result updateCart(Product updatedProduct),
-    Result deleteFromCart(Product deletedProduct),
+    Result updateCart(CartItem item, int deltaCount),
+    Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
     @required Result orElse(),
   }) {
@@ -622,9 +631,9 @@ class _$_DeleteFromCart implements _DeleteFromCart {
 }
 
 abstract class _DeleteFromCart implements CartEvent {
-  const factory _DeleteFromCart(Product deletedProduct) = _$_DeleteFromCart;
+  const factory _DeleteFromCart(CartItem deletedProduct) = _$_DeleteFromCart;
 
-  Product get deletedProduct;
+  CartItem get deletedProduct;
   _$DeleteFromCartCopyWith<_DeleteFromCart> get copyWith;
 }
 
@@ -664,8 +673,8 @@ class _$_ClearCart implements _ClearCart {
   Result when<Result extends Object>({
     @required Result cartReceived(),
     @required Result addToCart(Product addProduct),
-    @required Result updateCart(Product updatedProduct),
-    @required Result deleteFromCart(Product deletedProduct),
+    @required Result updateCart(CartItem item, int deltaCount),
+    @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
   }) {
     assert(cartReceived != null);
@@ -681,8 +690,8 @@ class _$_ClearCart implements _ClearCart {
   Result maybeWhen<Result extends Object>({
     Result cartReceived(),
     Result addToCart(Product addProduct),
-    Result updateCart(Product updatedProduct),
-    Result deleteFromCart(Product deletedProduct),
+    Result updateCart(CartItem item, int deltaCount),
+    Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
     @required Result orElse(),
   }) {

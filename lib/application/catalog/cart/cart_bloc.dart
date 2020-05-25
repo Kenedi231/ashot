@@ -1,3 +1,4 @@
+import 'package:ashot/domain/cart/cart_item.dart';
 import 'package:ashot/domain/cart/i_cart_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -23,27 +24,25 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   Stream<CartState> mapEventToState(
     CartEvent event,
   ) async* {
+    Cart cart;
     yield* event.map(
       cartReceived: (e) async* {
-        final cart = cartRepository.watchAll();
-        yield CartState.received(cart);
+        cart = cartRepository.watchAll();
       },
       addToCart: (e) async* {
-        final cart = cartRepository.add(e.addProduct);
-        yield CartState.received(cart);
+        cart = cartRepository.add(e.addProduct);
       },
       clearCart: (e) async* {
-        final cart = cartRepository.clear();
-        yield CartState.received(cart);
+        cart = cartRepository.clear();
       },
       deleteFromCart: (e) async* {
-        
+        cart = cartRepository.delete(e.deletedProduct);
       },
       updateCart: (e) async* {
-
+        cart = cartRepository.update(e.item, e.deltaCount);
       },
-      
     );
+    yield CartState.received(cart);
   }
 
 }

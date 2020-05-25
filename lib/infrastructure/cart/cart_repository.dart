@@ -17,13 +17,30 @@ class CartRepository implements ICartRepository {
   );
   
   @override
-  Cart add(Product item) => cart = Cart(
-    items: cart.items.plusElement(CartItem(
-      dish: item,
-      count: 1,
-    )),
-    total: Price(cart.total.getOrCrash() + item.price.getOrCrash()),
-  );
+  Cart add(Product item) {
+    final int existedElement = cart.items.indexOfFirst((el) => el.dish == item);
+    KtList<CartItem> newList;
+    if (existedElement == -1) {
+      newList = cart.items.plusElement(CartItem(
+        dish: item,
+        count: 1,
+      ));
+    } else {
+      final KtMutableList<CartItem> items = cart.items.toMutableList();
+      items[existedElement] = CartItem(
+        dish: items[existedElement].dish,
+        count: items[existedElement].count + 1,
+      );
+      newList = items;
+    }
+
+    final Price total = getTotal(newList);
+
+    return cart = Cart(
+      items: newList,
+      total: total,
+    );
+  }
   
   @override
   Cart clear() => cart = Cart(
@@ -32,17 +49,38 @@ class CartRepository implements ICartRepository {
   );
 
   @override
-  Cart delete(Product item) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Cart delete(CartItem item) {
+    final KtList<CartItem> newList = cart.items.minusElement(item);
+    final Price total = getTotal(newList);
+    return cart = Cart(
+      items: newList,
+      total: total,
+    );
   }
 
   @override
-  Cart update(Product item) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Cart update(CartItem item, int deltaCount) {
+    final int index = cart.items.indexOf(item);
+    final KtMutableList<CartItem> list = cart.items.toMutableList();
+    final int newCount = item.count + deltaCount < 1 ? 1 : item.count + deltaCount;
+    list[index] = CartItem(
+      dish: list[index].dish,
+      count: newCount,
+    );
+    final Price total = getTotal(list);
+    
+    return cart = Cart(
+      items: list,
+      total: total,
+    );
   }
 
   @override
   Cart watchAll() => cart;
+
+  Price getTotal(KtList<CartItem> items) {
+    final int total = items.sumBy((item) => item.count * item.dish.price.getOrCrash());
+
+    return Price(total);
+  }
 }
