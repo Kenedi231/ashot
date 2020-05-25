@@ -38,7 +38,7 @@ class DishCardWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Container(
-                    height: 160,
+                    height: 160 * 0.85,
                     child: Image.network(
                       _dish.imageURL.getOrCrash(),
                       fit: BoxFit.cover,

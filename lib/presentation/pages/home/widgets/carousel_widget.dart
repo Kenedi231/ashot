@@ -18,19 +18,18 @@ class CarouselWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 280.0,
         enableInfiniteScroll: false,
+        height: 300,
         reverse: false,
         autoPlay: true,
         enlargeCenterPage: true,
       ),
       items: _dishes.map<Widget>((image) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        return Wrap(
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(8.0),
-              height: MediaQuery.of(context).size.height / 3.2,
+              height: 220,
               width: MediaQuery.of(context).size.width,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
