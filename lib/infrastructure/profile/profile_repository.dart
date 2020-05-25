@@ -16,14 +16,32 @@ class ProfileRepository implements IProfileRepository {
 
   @override
   Stream<Either<ProfileFailure, Profile>> get() async* {
-    final doc = await _firestore.userDocument();
-    final snap = await doc.get();
-    yield right(ProfileDTO.fromFirestore(snap).toDomain());
+    try {
+      final doc = await _firestore.userDocument();
+      final snap = await doc.get();
+      if (snap.exists) {
+        yield right(ProfileDTO.fromFirestore(snap).toDomain());
+      } else {
+        yield left(const ProfileFailure.emptyProfile());
+      }
+    } catch (e) {
+      yield left(const ProfileFailure.unexpected());
+    }
   }
 
   @override
-  Stream<Either<ProfileFailure, Profile>> update() {
-    // TODO: implement update
-    throw UnimplementedError();
+  Stream<Either<ProfileFailure, Profile>> update(
+      Profile updatedProfile) async* {
+    try {
+      final authentificatedUser = await _firestore.authentificatedUser();
+      _firestore
+          .collection('users')
+          .document(authentificatedUser.id.getOrCrash())
+          .setData(ProfileDTO.fromDomain(updatedProfile).toJson());
+
+      yield right(updatedProfile);
+    } catch (e) {
+      yield left(const ProfileFailure.unexpected());
+    }
   }
 }

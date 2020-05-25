@@ -12,6 +12,10 @@ T _$identity<T>(T value) => value;
 class _$ProfileFailureTearOff {
   const _$ProfileFailureTearOff();
 
+  EmptyProfile emptyProfile() {
+    return const EmptyProfile();
+  }
+
   Unexpected unexpected() {
     return const Unexpected();
   }
@@ -31,12 +35,14 @@ const $ProfileFailure = _$ProfileFailureTearOff();
 mixin _$ProfileFailure {
   @optionalTypeArgs
   Result when<Result extends Object>({
+    @required Result emptyProfile(),
     @required Result unexpected(),
     @required Result insufficientPermissions(),
     @required Result unableToUpdate(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
+    Result emptyProfile(),
     Result unexpected(),
     Result insufficientPermissions(),
     Result unableToUpdate(),
@@ -44,12 +50,14 @@ mixin _$ProfileFailure {
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
+    @required Result emptyProfile(EmptyProfile value),
     @required Result unexpected(Unexpected value),
     @required Result insufficientPermissions(InsufficientPermissions value),
     @required Result unableToUpdate(UnableToUpdate value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
+    Result emptyProfile(EmptyProfile value),
     Result unexpected(Unexpected value),
     Result insufficientPermissions(InsufficientPermissions value),
     Result unableToUpdate(UnableToUpdate value),
@@ -70,6 +78,106 @@ class _$ProfileFailureCopyWithImpl<$Res>
   final ProfileFailure _value;
   // ignore: unused_field
   final $Res Function(ProfileFailure) _then;
+}
+
+abstract class $EmptyProfileCopyWith<$Res> {
+  factory $EmptyProfileCopyWith(
+          EmptyProfile value, $Res Function(EmptyProfile) then) =
+      _$EmptyProfileCopyWithImpl<$Res>;
+}
+
+class _$EmptyProfileCopyWithImpl<$Res>
+    extends _$ProfileFailureCopyWithImpl<$Res>
+    implements $EmptyProfileCopyWith<$Res> {
+  _$EmptyProfileCopyWithImpl(
+      EmptyProfile _value, $Res Function(EmptyProfile) _then)
+      : super(_value, (v) => _then(v as EmptyProfile));
+
+  @override
+  EmptyProfile get _value => super._value as EmptyProfile;
+}
+
+class _$EmptyProfile implements EmptyProfile {
+  const _$EmptyProfile();
+
+  @override
+  String toString() {
+    return 'ProfileFailure.emptyProfile()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is EmptyProfile);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result emptyProfile(),
+    @required Result unexpected(),
+    @required Result insufficientPermissions(),
+    @required Result unableToUpdate(),
+  }) {
+    assert(emptyProfile != null);
+    assert(unexpected != null);
+    assert(insufficientPermissions != null);
+    assert(unableToUpdate != null);
+    return emptyProfile();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result emptyProfile(),
+    Result unexpected(),
+    Result insufficientPermissions(),
+    Result unableToUpdate(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (emptyProfile != null) {
+      return emptyProfile();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result emptyProfile(EmptyProfile value),
+    @required Result unexpected(Unexpected value),
+    @required Result insufficientPermissions(InsufficientPermissions value),
+    @required Result unableToUpdate(UnableToUpdate value),
+  }) {
+    assert(emptyProfile != null);
+    assert(unexpected != null);
+    assert(insufficientPermissions != null);
+    assert(unableToUpdate != null);
+    return emptyProfile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result emptyProfile(EmptyProfile value),
+    Result unexpected(Unexpected value),
+    Result insufficientPermissions(InsufficientPermissions value),
+    Result unableToUpdate(UnableToUpdate value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (emptyProfile != null) {
+      return emptyProfile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmptyProfile implements ProfileFailure {
+  const factory EmptyProfile() = _$EmptyProfile;
 }
 
 abstract class $UnexpectedCopyWith<$Res> {
@@ -106,10 +214,12 @@ class _$Unexpected implements Unexpected {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
+    @required Result emptyProfile(),
     @required Result unexpected(),
     @required Result insufficientPermissions(),
     @required Result unableToUpdate(),
   }) {
+    assert(emptyProfile != null);
     assert(unexpected != null);
     assert(insufficientPermissions != null);
     assert(unableToUpdate != null);
@@ -119,6 +229,7 @@ class _$Unexpected implements Unexpected {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
+    Result emptyProfile(),
     Result unexpected(),
     Result insufficientPermissions(),
     Result unableToUpdate(),
@@ -134,10 +245,12 @@ class _$Unexpected implements Unexpected {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
+    @required Result emptyProfile(EmptyProfile value),
     @required Result unexpected(Unexpected value),
     @required Result insufficientPermissions(InsufficientPermissions value),
     @required Result unableToUpdate(UnableToUpdate value),
   }) {
+    assert(emptyProfile != null);
     assert(unexpected != null);
     assert(insufficientPermissions != null);
     assert(unableToUpdate != null);
@@ -147,6 +260,7 @@ class _$Unexpected implements Unexpected {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
+    Result emptyProfile(EmptyProfile value),
     Result unexpected(Unexpected value),
     Result insufficientPermissions(InsufficientPermissions value),
     Result unableToUpdate(UnableToUpdate value),
@@ -200,10 +314,12 @@ class _$InsufficientPermissions implements InsufficientPermissions {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
+    @required Result emptyProfile(),
     @required Result unexpected(),
     @required Result insufficientPermissions(),
     @required Result unableToUpdate(),
   }) {
+    assert(emptyProfile != null);
     assert(unexpected != null);
     assert(insufficientPermissions != null);
     assert(unableToUpdate != null);
@@ -213,6 +329,7 @@ class _$InsufficientPermissions implements InsufficientPermissions {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
+    Result emptyProfile(),
     Result unexpected(),
     Result insufficientPermissions(),
     Result unableToUpdate(),
@@ -228,10 +345,12 @@ class _$InsufficientPermissions implements InsufficientPermissions {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
+    @required Result emptyProfile(EmptyProfile value),
     @required Result unexpected(Unexpected value),
     @required Result insufficientPermissions(InsufficientPermissions value),
     @required Result unableToUpdate(UnableToUpdate value),
   }) {
+    assert(emptyProfile != null);
     assert(unexpected != null);
     assert(insufficientPermissions != null);
     assert(unableToUpdate != null);
@@ -241,6 +360,7 @@ class _$InsufficientPermissions implements InsufficientPermissions {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
+    Result emptyProfile(EmptyProfile value),
     Result unexpected(Unexpected value),
     Result insufficientPermissions(InsufficientPermissions value),
     Result unableToUpdate(UnableToUpdate value),
@@ -294,10 +414,12 @@ class _$UnableToUpdate implements UnableToUpdate {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
+    @required Result emptyProfile(),
     @required Result unexpected(),
     @required Result insufficientPermissions(),
     @required Result unableToUpdate(),
   }) {
+    assert(emptyProfile != null);
     assert(unexpected != null);
     assert(insufficientPermissions != null);
     assert(unableToUpdate != null);
@@ -307,6 +429,7 @@ class _$UnableToUpdate implements UnableToUpdate {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
+    Result emptyProfile(),
     Result unexpected(),
     Result insufficientPermissions(),
     Result unableToUpdate(),
@@ -322,10 +445,12 @@ class _$UnableToUpdate implements UnableToUpdate {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
+    @required Result emptyProfile(EmptyProfile value),
     @required Result unexpected(Unexpected value),
     @required Result insufficientPermissions(InsufficientPermissions value),
     @required Result unableToUpdate(UnableToUpdate value),
   }) {
+    assert(emptyProfile != null);
     assert(unexpected != null);
     assert(insufficientPermissions != null);
     assert(unableToUpdate != null);
@@ -335,6 +460,7 @@ class _$UnableToUpdate implements UnableToUpdate {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
+    Result emptyProfile(EmptyProfile value),
     Result unexpected(Unexpected value),
     Result insufficientPermissions(InsufficientPermissions value),
     Result unableToUpdate(UnableToUpdate value),
