@@ -16,22 +16,26 @@ class CatalogItemsWidget extends StatelessWidget {
           loadInProgress: (_) => Container(),
           loadFailure: (_) => Container(),
           loadSuccess: (state) {
-            return Category(
-              title: 'Блюда',      
-              carousel: CarouselWidget(dishes: fakeDishes),
-              child: GridView.builder(
-                padding: const EdgeInsets.only(bottom: 100),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: state.products.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return DishCardWidget(dish: state.products[index]);
-                },
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.69,
+            return ListView(
+              children: <Widget>[
+                CarouselWidget(dishes: fakeDishes),
+                Category(
+                  title: 'Блюда',
+                  child: GridView.builder(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: state.products.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return DishCardWidget(dish: state.products[index]);
+                    },
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.69,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             );
           }
         );
