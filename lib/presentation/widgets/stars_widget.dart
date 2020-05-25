@@ -12,9 +12,7 @@ class StarsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: <Widget>[
-        for (int i = 0; i < 5; i++) Icon(Icons.star, size: _size ?? 24, color: Colors.yellow),
-      ],
+      children: List(5).map((e) => Icon(Icons.star, size: _size ?? 24, color: Colors.yellow)).toList(),
     );
   }
 }
