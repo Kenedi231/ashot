@@ -13,6 +13,7 @@ part 'cart.freezed.dart';
 @freezed
 abstract class Cart with _$Cart implements IEntity {
   const factory Cart({
+    UniqueId id,
     @required KtList<CartItem> items,
     @required Price total,
   }) = _Cart;

@@ -7,8 +7,8 @@ import '../../../application/catalog/cart/cart_bloc.dart';
 import '../../../application/catalog/catalog_watcher/catalog_watcher_bloc.dart';
 import '../../../injection.dart';
 import '../../shared/common_styles.dart';
-import 'widgets/cart_widget.dart';
-import 'widgets/catalog_page_widget.dart';
+import 'widgets/cart/cart_widget.dart';
+import 'widgets/catalog/catalog_page_widget.dart';
 
 class HomePage extends StatelessWidget implements AutoRouteWrapper {
   @override

@@ -59,3 +59,11 @@ Either<ValueFailure<int>, int> validatePrice(int input) {
     return left(ValueFailure.numberMustBePositive(failedValue: input));
   }
 }
+
+Either<ValueFailure<int>, int> validateCount(int input) {
+  if (input >= 0) {
+    return right(input);
+  } else {
+    return left(ValueFailure.numberMustBePositive(failedValue: input));
+  }
+}

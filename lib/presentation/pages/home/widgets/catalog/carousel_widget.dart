@@ -3,7 +3,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../widgets/stars_widget.dart';
+import '../../../../widgets/stars_widget.dart';
 
 class CarouselWidget extends StatelessWidget {
   final List<String> _dishes;

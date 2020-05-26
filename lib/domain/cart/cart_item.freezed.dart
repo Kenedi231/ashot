@@ -12,8 +12,9 @@ T _$identity<T>(T value) => value;
 class _$CartItemTearOff {
   const _$CartItemTearOff();
 
-  _CartItem call({@required Product dish, @required int count}) {
+  _CartItem call({UniqueId id, @required Product dish, @required Count count}) {
     return _CartItem(
+      id: id,
       dish: dish,
       count: count,
     );
@@ -24,8 +25,9 @@ class _$CartItemTearOff {
 const $CartItem = _$CartItemTearOff();
 
 mixin _$CartItem {
+  UniqueId get id;
   Product get dish;
-  int get count;
+  Count get count;
 
   $CartItemCopyWith<CartItem> get copyWith;
 }
@@ -33,7 +35,7 @@ mixin _$CartItem {
 abstract class $CartItemCopyWith<$Res> {
   factory $CartItemCopyWith(CartItem value, $Res Function(CartItem) then) =
       _$CartItemCopyWithImpl<$Res>;
-  $Res call({Product dish, int count});
+  $Res call({UniqueId id, Product dish, Count count});
 
   $ProductCopyWith<$Res> get dish;
 }
@@ -47,12 +49,14 @@ class _$CartItemCopyWithImpl<$Res> implements $CartItemCopyWith<$Res> {
 
   @override
   $Res call({
+    Object id = freezed,
     Object dish = freezed,
     Object count = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed ? _value.id : id as UniqueId,
       dish: dish == freezed ? _value.dish : dish as Product,
-      count: count == freezed ? _value.count : count as int,
+      count: count == freezed ? _value.count : count as Count,
     ));
   }
 
@@ -71,7 +75,7 @@ abstract class _$CartItemCopyWith<$Res> implements $CartItemCopyWith<$Res> {
   factory _$CartItemCopyWith(_CartItem value, $Res Function(_CartItem) then) =
       __$CartItemCopyWithImpl<$Res>;
   @override
-  $Res call({Product dish, int count});
+  $Res call({UniqueId id, Product dish, Count count});
 
   @override
   $ProductCopyWith<$Res> get dish;
@@ -87,35 +91,41 @@ class __$CartItemCopyWithImpl<$Res> extends _$CartItemCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object id = freezed,
     Object dish = freezed,
     Object count = freezed,
   }) {
     return _then(_CartItem(
+      id: id == freezed ? _value.id : id as UniqueId,
       dish: dish == freezed ? _value.dish : dish as Product,
-      count: count == freezed ? _value.count : count as int,
+      count: count == freezed ? _value.count : count as Count,
     ));
   }
 }
 
 class _$_CartItem implements _CartItem {
-  const _$_CartItem({@required this.dish, @required this.count})
+  const _$_CartItem({this.id, @required this.dish, @required this.count})
       : assert(dish != null),
         assert(count != null);
 
   @override
+  final UniqueId id;
+  @override
   final Product dish;
   @override
-  final int count;
+  final Count count;
 
   @override
   String toString() {
-    return 'CartItem(dish: $dish, count: $count)';
+    return 'CartItem(id: $id, dish: $dish, count: $count)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _CartItem &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.dish, dish) ||
                 const DeepCollectionEquality().equals(other.dish, dish)) &&
             (identical(other.count, count) ||
@@ -125,26 +135,27 @@ class _$_CartItem implements _CartItem {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(dish) ^
       const DeepCollectionEquality().hash(count);
 
   @override
   _$CartItemCopyWith<_CartItem> get copyWith =>
       __$CartItemCopyWithImpl<_CartItem>(this, _$identity);
-
-  @override
-  // TODO: implement id
-  UniqueId get id => throw UnimplementedError();
 }
 
 abstract class _CartItem implements CartItem {
-  const factory _CartItem({@required Product dish, @required int count}) =
-      _$_CartItem;
+  const factory _CartItem(
+      {UniqueId id,
+      @required Product dish,
+      @required Count count}) = _$_CartItem;
 
+  @override
+  UniqueId get id;
   @override
   Product get dish;
   @override
-  int get count;
+  Count get count;
   @override
   _$CartItemCopyWith<_CartItem> get copyWith;
 }

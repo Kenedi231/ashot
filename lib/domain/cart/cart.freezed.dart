@@ -12,8 +12,10 @@ T _$identity<T>(T value) => value;
 class _$CartTearOff {
   const _$CartTearOff();
 
-  _Cart call({@required KtList<CartItem> items, @required Price total}) {
+  _Cart call(
+      {UniqueId id, @required KtList<CartItem> items, @required Price total}) {
     return _Cart(
+      id: id,
       items: items,
       total: total,
     );
@@ -24,6 +26,7 @@ class _$CartTearOff {
 const $Cart = _$CartTearOff();
 
 mixin _$Cart {
+  UniqueId get id;
   KtList<CartItem> get items;
   Price get total;
 
@@ -33,7 +36,7 @@ mixin _$Cart {
 abstract class $CartCopyWith<$Res> {
   factory $CartCopyWith(Cart value, $Res Function(Cart) then) =
       _$CartCopyWithImpl<$Res>;
-  $Res call({KtList<CartItem> items, Price total});
+  $Res call({UniqueId id, KtList<CartItem> items, Price total});
 }
 
 class _$CartCopyWithImpl<$Res> implements $CartCopyWith<$Res> {
@@ -45,10 +48,12 @@ class _$CartCopyWithImpl<$Res> implements $CartCopyWith<$Res> {
 
   @override
   $Res call({
+    Object id = freezed,
     Object items = freezed,
     Object total = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed ? _value.id : id as UniqueId,
       items: items == freezed ? _value.items : items as KtList<CartItem>,
       total: total == freezed ? _value.total : total as Price,
     ));
@@ -59,7 +64,7 @@ abstract class _$CartCopyWith<$Res> implements $CartCopyWith<$Res> {
   factory _$CartCopyWith(_Cart value, $Res Function(_Cart) then) =
       __$CartCopyWithImpl<$Res>;
   @override
-  $Res call({KtList<CartItem> items, Price total});
+  $Res call({UniqueId id, KtList<CartItem> items, Price total});
 }
 
 class __$CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res>
@@ -72,10 +77,12 @@ class __$CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object id = freezed,
     Object items = freezed,
     Object total = freezed,
   }) {
     return _then(_Cart(
+      id: id == freezed ? _value.id : id as UniqueId,
       items: items == freezed ? _value.items : items as KtList<CartItem>,
       total: total == freezed ? _value.total : total as Price,
     ));
@@ -83,10 +90,12 @@ class __$CartCopyWithImpl<$Res> extends _$CartCopyWithImpl<$Res>
 }
 
 class _$_Cart with DiagnosticableTreeMixin implements _Cart {
-  const _$_Cart({@required this.items, @required this.total})
+  const _$_Cart({this.id, @required this.items, @required this.total})
       : assert(items != null),
         assert(total != null);
 
+  @override
+  final UniqueId id;
   @override
   final KtList<CartItem> items;
   @override
@@ -94,7 +103,7 @@ class _$_Cart with DiagnosticableTreeMixin implements _Cart {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Cart(items: $items, total: $total)';
+    return 'Cart(id: $id, items: $items, total: $total)';
   }
 
   @override
@@ -102,6 +111,7 @@ class _$_Cart with DiagnosticableTreeMixin implements _Cart {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Cart'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('items', items))
       ..add(DiagnosticsProperty('total', total));
   }
@@ -110,6 +120,8 @@ class _$_Cart with DiagnosticableTreeMixin implements _Cart {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Cart &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.items, items) ||
                 const DeepCollectionEquality().equals(other.items, items)) &&
             (identical(other.total, total) ||
@@ -119,22 +131,23 @@ class _$_Cart with DiagnosticableTreeMixin implements _Cart {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(items) ^
       const DeepCollectionEquality().hash(total);
 
   @override
   _$CartCopyWith<_Cart> get copyWith =>
       __$CartCopyWithImpl<_Cart>(this, _$identity);
-
-  @override
-  // TODO: implement id
-  UniqueId get id => throw UnimplementedError();
 }
 
 abstract class _Cart implements Cart {
   const factory _Cart(
-      {@required KtList<CartItem> items, @required Price total}) = _$_Cart;
+      {UniqueId id,
+      @required KtList<CartItem> items,
+      @required Price total}) = _$_Cart;
 
+  @override
+  UniqueId get id;
   @override
   KtList<CartItem> get items;
   @override

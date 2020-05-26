@@ -1,5 +1,6 @@
-import 'package:ashot/domain/cart/cart_item.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../domain/cart/cart_item.dart';
 
 class CartItemWidget extends StatelessWidget {
   final CartItem _item;
@@ -51,7 +52,7 @@ class CartItemWidget extends StatelessWidget {
                               _update(-1);
                             },
                           ),
-                          Text('${_item.count}'),
+                          Text('${_item.count.getOrElse(1)}'),
                           IconButton(
                             icon: Icon(Icons.add_circle),
                             onPressed: () {
@@ -68,7 +69,7 @@ class CartItemWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('${_item.dish.price.getOrCrash() * _item.count} руб'),
+                  Text('${_item.dish.price.getOrCrash() * _item.count.getOrElse(1)} руб'),
                   IconButton(
                     icon: Icon(Icons.delete_sweep, color: Colors.red),
                     onPressed: () {

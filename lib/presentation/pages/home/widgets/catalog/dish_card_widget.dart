@@ -5,7 +5,7 @@ import 'package:ashot/domain/catalog/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../widgets/stars_widget.dart';
+import '../../../../widgets/stars_widget.dart';
 
 class DishCardWidget extends StatelessWidget {
   final Product _dish;

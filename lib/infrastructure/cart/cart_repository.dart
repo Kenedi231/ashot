@@ -23,13 +23,14 @@ class CartRepository implements ICartRepository {
     if (existedElement == -1) {
       newList = cart.items.plusElement(CartItem(
         dish: item,
-        count: 1,
+        count: Count(1),
       ));
     } else {
       final KtMutableList<CartItem> items = cart.items.toMutableList();
+      final int countInt = items[existedElement].count.getOrElse(1);
       items[existedElement] = CartItem(
         dish: items[existedElement].dish,
-        count: items[existedElement].count + 1,
+        count: Count(countInt + 1),
       );
       newList = items;
     }
@@ -62,7 +63,8 @@ class CartRepository implements ICartRepository {
   Cart update(CartItem item, int deltaCount) {
     final int index = cart.items.indexOf(item);
     final KtMutableList<CartItem> list = cart.items.toMutableList();
-    final int newCount = item.count + deltaCount < 1 ? 1 : item.count + deltaCount;
+    final int countInt = item.count.getOrElse(1);
+    final Count newCount = countInt + deltaCount < 1 ? Count(1) : Count(countInt + deltaCount);
     list[index] = CartItem(
       dish: list[index].dish,
       count: newCount,
@@ -79,7 +81,7 @@ class CartRepository implements ICartRepository {
   Cart watchAll() => cart;
 
   Price getTotal(KtList<CartItem> items) {
-    final int total = items.sumBy((item) => item.count * item.dish.price.getOrCrash());
+    final int total = items.sumBy((item) => item.count.getOrElse(1) * item.dish.price.getOrCrash());
 
     return Price(total);
   }

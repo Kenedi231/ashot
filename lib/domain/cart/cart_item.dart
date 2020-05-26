@@ -9,7 +9,8 @@ part 'cart_item.freezed.dart';
 @freezed
 abstract class CartItem with _$CartItem implements IEntity {
   const factory CartItem({
+    UniqueId id,
     @required Product dish,
-    @required int count,
+    @required Count count,
   }) = _CartItem;
 }
