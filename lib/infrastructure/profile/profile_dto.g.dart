@@ -10,7 +10,7 @@ _$_ProfileDTO _$_$_ProfileDTOFromJson(Map<String, dynamic> json) {
   return _$_ProfileDTO(
     name: json['name'] as String,
     email: json['email'] as String,
-    adress: json['adress'] as String,
+    address: json['address'] as String,
     phone: json['phone'] as String,
     avatar: json['avatar'] as String,
   );
@@ -20,7 +20,7 @@ Map<String, dynamic> _$_$_ProfileDTOToJson(_$_ProfileDTO instance) =>
     <String, dynamic>{
       'name': instance.name,
       'email': instance.email,
-      'adress': instance.adress,
+      'address': instance.address,
       'phone': instance.phone,
       'avatar': instance.avatar,
     };

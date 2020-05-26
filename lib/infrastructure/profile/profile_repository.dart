@@ -4,6 +4,7 @@ import 'package:ashot/domain/profile/profile_failure.dart';
 import 'package:ashot/infrastructure/core/firestore_helpers.dart';
 import 'package:ashot/infrastructure/profile/profile_dto.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 
 @prod
@@ -18,30 +19,34 @@ class ProfileRepository implements IProfileRepository {
   Stream<Either<ProfileFailure, Profile>> get() async* {
     try {
       final doc = await _firestore.userDocument();
-      final snap = await doc.get();
-      if (snap.exists) {
-        yield right(ProfileDTO.fromFirestore(snap).toDomain());
-      } else {
-        yield left(const ProfileFailure.emptyProfile());
-      }
-    } catch (e) {
+
+      yield* doc
+          .snapshots()
+          .map((snap) => right(ProfileDTO.fromFirestore(snap).toDomain()));
+    } on PlatformException catch (e) {
       yield left(const ProfileFailure.unexpected());
     }
   }
 
   @override
-  Stream<Either<ProfileFailure, Profile>> update(
-      Profile updatedProfile) async* {
+  Future<Either<ProfileFailure, Unit>> update(Profile updatedProfile) async {
     try {
       final authentificatedUser = await _firestore.authentificatedUser();
-      _firestore
+      await _firestore
           .collection('users')
           .document(authentificatedUser.id.getOrCrash())
           .setData(ProfileDTO.fromDomain(updatedProfile).toJson());
 
-      yield right(updatedProfile);
-    } catch (e) {
-      yield left(const ProfileFailure.unexpected());
+      return right(unit);
+    } on PlatformException catch (e) {
+      // These error codes and messages aren't in the documentation AFAIK, experiment in the debugger to find out about them.
+      if (e.message.contains('PERMISSION_DENIED')) {
+        return left(const ProfileFailure.insufficientPermissions());
+      } else if (e.message.contains('NOT_FOUND')) {
+        return left(const ProfileFailure.unableToUpdate());
+      } else {
+        return left(const ProfileFailure.unexpected());
+      }
     }
   }
 }

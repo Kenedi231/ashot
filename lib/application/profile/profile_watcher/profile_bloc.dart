@@ -6,9 +6,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
-import '../../domain/profile/i_profile_repository.dart';
-import '../../domain/profile/profile.dart';
-import '../../domain/profile/profile_failure.dart';
+import '../../../domain/profile/i_profile_repository.dart';
+import '../../../domain/profile/profile.dart';
+import '../../../domain/profile/profile_failure.dart';
 
 part 'profile_bloc.freezed.dart';
 part 'profile_event.dart';
@@ -33,7 +33,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       get: (e) async* {
         yield const ProfileState.loadInProgress();
         await _profileSubscription?.cancel();
-        _profileRepository
+        _profileSubscription = _profileRepository
             .get()
             .listen((profile) => add(ProfileEvent.profileReceived(profile)));
       },
@@ -44,5 +44,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         );
       },
     );
+  }
+
+  @override
+  Future<void> close() async {
+    await _profileSubscription.cancel();
+    return super.close();
   }
 }

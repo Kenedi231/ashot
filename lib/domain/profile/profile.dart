@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
 
 import '../core/entity.dart';
 import '../core/failures.dart';
@@ -12,13 +11,15 @@ part 'profile.freezed.dart';
 @freezed
 abstract class Profile with _$Profile implements IEntity {
   const factory Profile({
-    @required UniqueId id,
-    @required StringSingleLine name,
-    @required EmailAddress emailAddress,
-    Adress adress,
+    UniqueId id,
+    StringSingleLine name,
+    EmailAddress emailAddress,
+    Address address,
     Phone phone,
     URL avatar,
   }) = _Profile;
+
+  factory Profile.empty() => const Profile();
 }
 
 extension ProfileX on Profile {

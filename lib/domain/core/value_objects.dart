@@ -121,18 +121,18 @@ class StringSingleLine extends ValueObject<String> {
   const StringSingleLine._(this.value);
 }
 
-class Adress extends ValueObject<String> {
+class Address extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
 
-  factory Adress(String input) {
+  factory Address(String input) {
     assert(input != null);
-    return Adress._(
+    return Address._(
       validateStringNotEmpty(input),
     );
   }
 
-  const Adress._(this.value);
+  const Address._(this.value);
 }
 
 class Phone extends ValueObject<String> {

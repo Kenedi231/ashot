@@ -13,17 +13,17 @@ class _$ProfileTearOff {
   const _$ProfileTearOff();
 
   _Profile call(
-      {@required UniqueId id,
-      @required StringSingleLine name,
-      @required EmailAddress emailAddress,
-      Adress adress,
+      {UniqueId id,
+      StringSingleLine name,
+      EmailAddress emailAddress,
+      Address address,
       Phone phone,
       URL avatar}) {
     return _Profile(
       id: id,
       name: name,
       emailAddress: emailAddress,
-      adress: adress,
+      address: address,
       phone: phone,
       avatar: avatar,
     );
@@ -37,7 +37,7 @@ mixin _$Profile {
   UniqueId get id;
   StringSingleLine get name;
   EmailAddress get emailAddress;
-  Adress get adress;
+  Address get address;
   Phone get phone;
   URL get avatar;
 
@@ -51,7 +51,7 @@ abstract class $ProfileCopyWith<$Res> {
       {UniqueId id,
       StringSingleLine name,
       EmailAddress emailAddress,
-      Adress adress,
+      Address address,
       Phone phone,
       URL avatar});
 }
@@ -68,7 +68,7 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
     Object id = freezed,
     Object name = freezed,
     Object emailAddress = freezed,
-    Object adress = freezed,
+    Object address = freezed,
     Object phone = freezed,
     Object avatar = freezed,
   }) {
@@ -78,7 +78,7 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
       emailAddress: emailAddress == freezed
           ? _value.emailAddress
           : emailAddress as EmailAddress,
-      adress: adress == freezed ? _value.adress : adress as Adress,
+      address: address == freezed ? _value.address : address as Address,
       phone: phone == freezed ? _value.phone : phone as Phone,
       avatar: avatar == freezed ? _value.avatar : avatar as URL,
     ));
@@ -93,7 +93,7 @@ abstract class _$ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       {UniqueId id,
       StringSingleLine name,
       EmailAddress emailAddress,
-      Adress adress,
+      Address address,
       Phone phone,
       URL avatar});
 }
@@ -111,7 +111,7 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
     Object id = freezed,
     Object name = freezed,
     Object emailAddress = freezed,
-    Object adress = freezed,
+    Object address = freezed,
     Object phone = freezed,
     Object avatar = freezed,
   }) {
@@ -121,7 +121,7 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
       emailAddress: emailAddress == freezed
           ? _value.emailAddress
           : emailAddress as EmailAddress,
-      adress: adress == freezed ? _value.adress : adress as Adress,
+      address: address == freezed ? _value.address : address as Address,
       phone: phone == freezed ? _value.phone : phone as Phone,
       avatar: avatar == freezed ? _value.avatar : avatar as URL,
     ));
@@ -130,15 +130,12 @@ class __$ProfileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
 
 class _$_Profile with DiagnosticableTreeMixin implements _Profile {
   const _$_Profile(
-      {@required this.id,
-      @required this.name,
-      @required this.emailAddress,
-      this.adress,
+      {this.id,
+      this.name,
+      this.emailAddress,
+      this.address,
       this.phone,
-      this.avatar})
-      : assert(id != null),
-        assert(name != null),
-        assert(emailAddress != null);
+      this.avatar});
 
   @override
   final UniqueId id;
@@ -147,7 +144,7 @@ class _$_Profile with DiagnosticableTreeMixin implements _Profile {
   @override
   final EmailAddress emailAddress;
   @override
-  final Adress adress;
+  final Address address;
   @override
   final Phone phone;
   @override
@@ -155,7 +152,7 @@ class _$_Profile with DiagnosticableTreeMixin implements _Profile {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Profile(id: $id, name: $name, emailAddress: $emailAddress, adress: $adress, phone: $phone, avatar: $avatar)';
+    return 'Profile(id: $id, name: $name, emailAddress: $emailAddress, address: $address, phone: $phone, avatar: $avatar)';
   }
 
   @override
@@ -166,7 +163,7 @@ class _$_Profile with DiagnosticableTreeMixin implements _Profile {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('emailAddress', emailAddress))
-      ..add(DiagnosticsProperty('adress', adress))
+      ..add(DiagnosticsProperty('address', address))
       ..add(DiagnosticsProperty('phone', phone))
       ..add(DiagnosticsProperty('avatar', avatar));
   }
@@ -182,8 +179,9 @@ class _$_Profile with DiagnosticableTreeMixin implements _Profile {
             (identical(other.emailAddress, emailAddress) ||
                 const DeepCollectionEquality()
                     .equals(other.emailAddress, emailAddress)) &&
-            (identical(other.adress, adress) ||
-                const DeepCollectionEquality().equals(other.adress, adress)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.avatar, avatar) ||
@@ -196,7 +194,7 @@ class _$_Profile with DiagnosticableTreeMixin implements _Profile {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(emailAddress) ^
-      const DeepCollectionEquality().hash(adress) ^
+      const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(avatar);
 
@@ -207,10 +205,10 @@ class _$_Profile with DiagnosticableTreeMixin implements _Profile {
 
 abstract class _Profile implements Profile {
   const factory _Profile(
-      {@required UniqueId id,
-      @required StringSingleLine name,
-      @required EmailAddress emailAddress,
-      Adress adress,
+      {UniqueId id,
+      StringSingleLine name,
+      EmailAddress emailAddress,
+      Address address,
       Phone phone,
       URL avatar}) = _$_Profile;
 
@@ -221,7 +219,7 @@ abstract class _Profile implements Profile {
   @override
   EmailAddress get emailAddress;
   @override
-  Adress get adress;
+  Address get address;
   @override
   Phone get phone;
   @override

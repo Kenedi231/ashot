@@ -19,14 +19,14 @@ class _$ProfileDTOTearOff {
       {@JsonKey(ignore: true) String id,
       @required String name,
       @required String email,
-      String adress,
+      String address,
       String phone,
       String avatar}) {
     return _ProfileDTO(
       id: id,
       name: name,
       email: email,
-      adress: adress,
+      address: address,
       phone: phone,
       avatar: avatar,
     );
@@ -41,7 +41,7 @@ mixin _$ProfileDTO {
   String get id;
   String get name;
   String get email;
-  String get adress;
+  String get address;
   String get phone;
   String get avatar;
 
@@ -57,7 +57,7 @@ abstract class $ProfileDTOCopyWith<$Res> {
       {@JsonKey(ignore: true) String id,
       String name,
       String email,
-      String adress,
+      String address,
       String phone,
       String avatar});
 }
@@ -74,7 +74,7 @@ class _$ProfileDTOCopyWithImpl<$Res> implements $ProfileDTOCopyWith<$Res> {
     Object id = freezed,
     Object name = freezed,
     Object email = freezed,
-    Object adress = freezed,
+    Object address = freezed,
     Object phone = freezed,
     Object avatar = freezed,
   }) {
@@ -82,7 +82,7 @@ class _$ProfileDTOCopyWithImpl<$Res> implements $ProfileDTOCopyWith<$Res> {
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       email: email == freezed ? _value.email : email as String,
-      adress: adress == freezed ? _value.adress : adress as String,
+      address: address == freezed ? _value.address : address as String,
       phone: phone == freezed ? _value.phone : phone as String,
       avatar: avatar == freezed ? _value.avatar : avatar as String,
     ));
@@ -98,7 +98,7 @@ abstract class _$ProfileDTOCopyWith<$Res> implements $ProfileDTOCopyWith<$Res> {
       {@JsonKey(ignore: true) String id,
       String name,
       String email,
-      String adress,
+      String address,
       String phone,
       String avatar});
 }
@@ -117,7 +117,7 @@ class __$ProfileDTOCopyWithImpl<$Res> extends _$ProfileDTOCopyWithImpl<$Res>
     Object id = freezed,
     Object name = freezed,
     Object email = freezed,
-    Object adress = freezed,
+    Object address = freezed,
     Object phone = freezed,
     Object avatar = freezed,
   }) {
@@ -125,7 +125,7 @@ class __$ProfileDTOCopyWithImpl<$Res> extends _$ProfileDTOCopyWithImpl<$Res>
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       email: email == freezed ? _value.email : email as String,
-      adress: adress == freezed ? _value.adress : adress as String,
+      address: address == freezed ? _value.address : address as String,
       phone: phone == freezed ? _value.phone : phone as String,
       avatar: avatar == freezed ? _value.avatar : avatar as String,
     ));
@@ -138,7 +138,7 @@ class _$_ProfileDTO implements _ProfileDTO {
       {@JsonKey(ignore: true) this.id,
       @required this.name,
       @required this.email,
-      this.adress,
+      this.address,
       this.phone,
       this.avatar})
       : assert(name != null),
@@ -155,7 +155,7 @@ class _$_ProfileDTO implements _ProfileDTO {
   @override
   final String email;
   @override
-  final String adress;
+  final String address;
   @override
   final String phone;
   @override
@@ -163,7 +163,7 @@ class _$_ProfileDTO implements _ProfileDTO {
 
   @override
   String toString() {
-    return 'ProfileDTO(id: $id, name: $name, email: $email, adress: $adress, phone: $phone, avatar: $avatar)';
+    return 'ProfileDTO(id: $id, name: $name, email: $email, address: $address, phone: $phone, avatar: $avatar)';
   }
 
   @override
@@ -176,8 +176,9 @@ class _$_ProfileDTO implements _ProfileDTO {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
-            (identical(other.adress, adress) ||
-                const DeepCollectionEquality().equals(other.adress, adress)) &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
             (identical(other.phone, phone) ||
                 const DeepCollectionEquality().equals(other.phone, phone)) &&
             (identical(other.avatar, avatar) ||
@@ -190,7 +191,7 @@ class _$_ProfileDTO implements _ProfileDTO {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(email) ^
-      const DeepCollectionEquality().hash(adress) ^
+      const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(phone) ^
       const DeepCollectionEquality().hash(avatar);
 
@@ -209,7 +210,7 @@ abstract class _ProfileDTO implements ProfileDTO {
       {@JsonKey(ignore: true) String id,
       @required String name,
       @required String email,
-      String adress,
+      String address,
       String phone,
       String avatar}) = _$_ProfileDTO;
 
@@ -224,7 +225,7 @@ abstract class _ProfileDTO implements ProfileDTO {
   @override
   String get email;
   @override
-  String get adress;
+  String get address;
   @override
   String get phone;
   @override

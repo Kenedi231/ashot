@@ -13,7 +13,7 @@ abstract class ProfileDTO with _$ProfileDTO {
     @JsonKey(ignore: true) String id,
     @required String name,
     @required String email,
-    String adress,
+    String address,
     String phone,
     String avatar,
   }) = _ProfileDTO;
@@ -23,7 +23,7 @@ abstract class ProfileDTO with _$ProfileDTO {
       id: user.id.getOrCrash(),
       name: user.name.getOrElse(''),
       email: user.emailAddress.getOrCrash(),
-      adress: user.adress.getOrElse(''),
+      address: user.address.getOrElse(''),
       phone: user.phone.getOrElse(''),
       avatar: user.avatar.getOrElse(''),
     );
@@ -43,7 +43,7 @@ extension ProfileDTOX on ProfileDTO {
       id: UniqueId.fromUniqueString(id),
       emailAddress: EmailAddress(email),
       name: StringSingleLine(name),
-      adress: Adress(adress ?? ''),
+      address: Address(address ?? ''),
       phone: Phone(phone ?? ''),
       avatar: URL(avatar),
     );
