@@ -128,5 +128,11 @@ class Count extends ValueObject<int> {
     );
   }
 
+  Count add(Count delta) {
+    return Count._(
+      validateCount(getOrElse(1) + delta.getOrElse(1)),
+    );
+  }
+
   const Count._(this.value);
 }

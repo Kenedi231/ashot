@@ -27,10 +27,9 @@ class CartRepository implements ICartRepository {
       ));
     } else {
       final KtMutableList<CartItem> items = cart.items.toMutableList();
-      final int countInt = items[existedElement].count.getOrElse(1);
       items[existedElement] = CartItem(
         dish: items[existedElement].dish,
-        count: Count(countInt + 1),
+        count: items[existedElement].count.add(Count(1)),
       );
       newList = items;
     }
@@ -63,8 +62,7 @@ class CartRepository implements ICartRepository {
   Cart update(CartItem item, int deltaCount) {
     final int index = cart.items.indexOf(item);
     final KtMutableList<CartItem> list = cart.items.toMutableList();
-    final int countInt = item.count.getOrElse(1);
-    final Count newCount = countInt + deltaCount < 1 ? Count(1) : Count(countInt + deltaCount);
+    final Count newCount = item.count.add(Count(deltaCount)).getOrElse(1) < 1 ? Count(1) : item.count.add(Count(deltaCount));
     list[index] = CartItem(
       dish: list[index].dish,
       count: newCount,
