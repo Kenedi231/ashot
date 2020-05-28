@@ -53,9 +53,6 @@ class ProfileEditForm extends HookWidget {
             },
           );
         },
-        buildWhen: (p, c) =>
-            p.profile != c.profile &&
-            p.showErrorMessages != c.showErrorMessages,
         builder: (context, state) {
           return Form(
             autovalidate: state.showErrorMessages,
@@ -145,7 +142,7 @@ class ProfileEditForm extends HookWidget {
                       .bloc<ProfileFormBloc>()
                       .state
                       .profile
-                      .name
+                      .address
                       .value
                       .fold(
                         (f) => f.maybeMap(
@@ -173,13 +170,13 @@ class ProfileEditForm extends HookWidget {
                       .bloc<ProfileFormBloc>()
                       .state
                       .profile
-                      .address
+                      .phone
                       .value
                       .fold(
                         (f) => f.maybeMap(
                           empty: (f) => 'Не может быть пустым',
                           orElse: () => null,
-                          invalidPhoneNumber: (_) => 'Неправильный номер',
+                          invalidPhoneNumber: (_) => 'Неверный формат',
                         ),
                         (_) => null,
                       ),

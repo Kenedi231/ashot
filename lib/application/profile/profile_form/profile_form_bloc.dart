@@ -41,21 +41,25 @@ class ProfileFormBloc extends Bloc<ProfileFormEvent, ProfileFormState> {
       emailChanged: (e) async* {
         yield state.copyWith(
           profile: state.profile.copyWith(emailAddress: EmailAddress(e.email)),
+          saveFailureOrSuccessOption: none(),
         );
       },
       nameChanged: (e) async* {
         yield state.copyWith(
           profile: state.profile.copyWith(name: StringSingleLine(e.name)),
+          saveFailureOrSuccessOption: none(),
         );
       },
       addressChanged: (e) async* {
         yield state.copyWith(
           profile: state.profile.copyWith(address: Address(e.address)),
+          saveFailureOrSuccessOption: none(),
         );
       },
       phoneChanged: (e) async* {
         yield state.copyWith(
           profile: state.profile.copyWith(phone: Phone(e.phone)),
+          saveFailureOrSuccessOption: none(),
         );
       },
       saved: (e) async* {
