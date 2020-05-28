@@ -12,7 +12,7 @@ import 'catalog_dto.dart';
 
 @prod
 @lazySingleton
-@Injectable(as: ICatalogRepository)
+@RegisterAs(ICatalogRepository)
 class CatalogRepository implements ICatalogRepository {
   final Firestore _firestore;
 

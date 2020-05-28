@@ -904,13 +904,13 @@ class _$ProfileFormStateTearOff {
       @required
           bool showErrorMessages,
       @required
-          bool isSaving,
+          bool isSubmitting,
       @required
           Option<Either<ProfileFailure, Unit>> saveFailureOrSuccessOption}) {
     return _ProfileFormState(
       profile: profile,
       showErrorMessages: showErrorMessages,
-      isSaving: isSaving,
+      isSubmitting: isSubmitting,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption,
     );
   }
@@ -922,7 +922,7 @@ const $ProfileFormState = _$ProfileFormStateTearOff();
 mixin _$ProfileFormState {
   Profile get profile;
   bool get showErrorMessages;
-  bool get isSaving;
+  bool get isSubmitting;
   Option<Either<ProfileFailure, Unit>> get saveFailureOrSuccessOption;
 
   $ProfileFormStateCopyWith<ProfileFormState> get copyWith;
@@ -935,7 +935,7 @@ abstract class $ProfileFormStateCopyWith<$Res> {
   $Res call(
       {Profile profile,
       bool showErrorMessages,
-      bool isSaving,
+      bool isSubmitting,
       Option<Either<ProfileFailure, Unit>> saveFailureOrSuccessOption});
 
   $ProfileCopyWith<$Res> get profile;
@@ -953,7 +953,7 @@ class _$ProfileFormStateCopyWithImpl<$Res>
   $Res call({
     Object profile = freezed,
     Object showErrorMessages = freezed,
-    Object isSaving = freezed,
+    Object isSubmitting = freezed,
     Object saveFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
@@ -961,7 +961,8 @@ class _$ProfileFormStateCopyWithImpl<$Res>
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages as bool,
-      isSaving: isSaving == freezed ? _value.isSaving : isSaving as bool,
+      isSubmitting:
+          isSubmitting == freezed ? _value.isSubmitting : isSubmitting as bool,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
           ? _value.saveFailureOrSuccessOption
           : saveFailureOrSuccessOption as Option<Either<ProfileFailure, Unit>>,
@@ -988,7 +989,7 @@ abstract class _$ProfileFormStateCopyWith<$Res>
   $Res call(
       {Profile profile,
       bool showErrorMessages,
-      bool isSaving,
+      bool isSubmitting,
       Option<Either<ProfileFailure, Unit>> saveFailureOrSuccessOption});
 
   @override
@@ -1009,7 +1010,7 @@ class __$ProfileFormStateCopyWithImpl<$Res>
   $Res call({
     Object profile = freezed,
     Object showErrorMessages = freezed,
-    Object isSaving = freezed,
+    Object isSubmitting = freezed,
     Object saveFailureOrSuccessOption = freezed,
   }) {
     return _then(_ProfileFormState(
@@ -1017,7 +1018,8 @@ class __$ProfileFormStateCopyWithImpl<$Res>
       showErrorMessages: showErrorMessages == freezed
           ? _value.showErrorMessages
           : showErrorMessages as bool,
-      isSaving: isSaving == freezed ? _value.isSaving : isSaving as bool,
+      isSubmitting:
+          isSubmitting == freezed ? _value.isSubmitting : isSubmitting as bool,
       saveFailureOrSuccessOption: saveFailureOrSuccessOption == freezed
           ? _value.saveFailureOrSuccessOption
           : saveFailureOrSuccessOption as Option<Either<ProfileFailure, Unit>>,
@@ -1029,11 +1031,11 @@ class _$_ProfileFormState implements _ProfileFormState {
   const _$_ProfileFormState(
       {@required this.profile,
       @required this.showErrorMessages,
-      @required this.isSaving,
+      @required this.isSubmitting,
       @required this.saveFailureOrSuccessOption})
       : assert(profile != null),
         assert(showErrorMessages != null),
-        assert(isSaving != null),
+        assert(isSubmitting != null),
         assert(saveFailureOrSuccessOption != null);
 
   @override
@@ -1041,13 +1043,13 @@ class _$_ProfileFormState implements _ProfileFormState {
   @override
   final bool showErrorMessages;
   @override
-  final bool isSaving;
+  final bool isSubmitting;
   @override
   final Option<Either<ProfileFailure, Unit>> saveFailureOrSuccessOption;
 
   @override
   String toString() {
-    return 'ProfileFormState(profile: $profile, showErrorMessages: $showErrorMessages, isSaving: $isSaving, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
+    return 'ProfileFormState(profile: $profile, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, saveFailureOrSuccessOption: $saveFailureOrSuccessOption)';
   }
 
   @override
@@ -1060,9 +1062,9 @@ class _$_ProfileFormState implements _ProfileFormState {
             (identical(other.showErrorMessages, showErrorMessages) ||
                 const DeepCollectionEquality()
                     .equals(other.showErrorMessages, showErrorMessages)) &&
-            (identical(other.isSaving, isSaving) ||
+            (identical(other.isSubmitting, isSubmitting) ||
                 const DeepCollectionEquality()
-                    .equals(other.isSaving, isSaving)) &&
+                    .equals(other.isSubmitting, isSubmitting)) &&
             (identical(other.saveFailureOrSuccessOption,
                     saveFailureOrSuccessOption) ||
                 const DeepCollectionEquality().equals(
@@ -1075,7 +1077,7 @@ class _$_ProfileFormState implements _ProfileFormState {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(profile) ^
       const DeepCollectionEquality().hash(showErrorMessages) ^
-      const DeepCollectionEquality().hash(isSaving) ^
+      const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(saveFailureOrSuccessOption);
 
   @override
@@ -1090,7 +1092,7 @@ abstract class _ProfileFormState implements ProfileFormState {
       @required
           bool showErrorMessages,
       @required
-          bool isSaving,
+          bool isSubmitting,
       @required
           Option<Either<ProfileFailure, Unit>>
               saveFailureOrSuccessOption}) = _$_ProfileFormState;
@@ -1100,7 +1102,7 @@ abstract class _ProfileFormState implements ProfileFormState {
   @override
   bool get showErrorMessages;
   @override
-  bool get isSaving;
+  bool get isSubmitting;
   @override
   Option<Either<ProfileFailure, Unit>> get saveFailureOrSuccessOption;
   @override

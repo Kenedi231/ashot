@@ -1,4 +1,5 @@
 import 'package:ashot/application/profile/profile_form/profile_form_bloc.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -24,14 +25,40 @@ class ProfileEditForm extends HookWidget {
 
     return BlocConsumer<ProfileFormBloc, ProfileFormState>(
         listener: (context, state) {
-          emailEditingController.text = state.profile.emailAddress.getOrCrash();
-          nameEditingController.text = state.profile.name.getOrCrash();
-          addressEditingController.text = state.profile.address.getOrCrash();
-          phoneEditingController.text = state.profile.phone.getOrCrash();
+          emailEditingController.text =
+              state.profile.emailAddress.getOrElse(emailEditingController.text);
+          nameEditingController.text =
+              state.profile.name.getOrElse(nameEditingController.text);
+          addressEditingController.text =
+              state.profile.address.getOrElse(addressEditingController.text);
+          phoneEditingController.text =
+              state.profile.phone.getOrElse(phoneEditingController.text);
+
+          state.saveFailureOrSuccessOption.fold(
+            () {},
+            (either) {
+              either.fold(
+                (failure) {
+                  FlushbarHelper.createError(
+                    message: failure.map(
+                      emptyProfile: (_) => 'Заполните обязательные поля',
+                      unexpected: (_) => 'Ошибка сервера',
+                      insufficientPermissions: (_) => 'Недостаточно прав',
+                      unableToUpdate: (_) => 'Невозможно обновить профиль',
+                    ),
+                  ).show(context);
+                },
+                (_) => null,
+              );
+            },
+          );
         },
-        buildWhen: (p, c) => p.profile != c.profile,
-        builder: (state, _) {
+        buildWhen: (p, c) =>
+            p.profile != c.profile &&
+            p.showErrorMessages != c.showErrorMessages,
+        builder: (context, state) {
           return Form(
+            autovalidate: state.showErrorMessages,
             child: ListView(
               padding: const EdgeInsets.all(8.0),
               children: <Widget>[

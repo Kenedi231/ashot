@@ -71,7 +71,7 @@ class ProfileFormBloc extends Bloc<ProfileFormEvent, ProfileFormState> {
 
         if (isFieldsValid) {
           yield state.copyWith(
-            isSaving: true,
+            isSubmitting: true,
             saveFailureOrSuccessOption: none(),
           );
 
@@ -81,7 +81,7 @@ class ProfileFormBloc extends Bloc<ProfileFormEvent, ProfileFormState> {
         }
 
         yield state.copyWith(
-          isSaving: false,
+          isSubmitting: false,
           showErrorMessages: true,
           saveFailureOrSuccessOption: optionOf(failureOrSuccess),
         );
