@@ -1,4 +1,3 @@
-import '../../routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,15 +24,15 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        body: SizedBox.expand(
-          child: SlidingUpPanel(
-            minHeight: 50,
-            backdropEnabled: true,
-            borderRadius: CommonStyles.slidePanelRadius,
-            body: CatalogPageWidget(),
-            panel: CartWidget(),
-          ),
-        ));
+      body: SizedBox.expand(
+        child: SlidingUpPanel(
+          minHeight: 50,
+          backdropEnabled: true,
+          borderRadius: CommonStyles.slidePanelRadius,
+          body: CatalogPageWidget(),
+          panel: CartWidget(),
+        ),
+      ),
+    );
   }
 }

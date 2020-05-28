@@ -18,7 +18,7 @@ const String defaultAvatar =
 
 @prod
 @lazySingleton
-@RegisterAs(IAuthFacade)
+@Injectable(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;

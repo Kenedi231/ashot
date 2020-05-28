@@ -9,8 +9,8 @@ class CarouselWidget extends StatelessWidget {
   const CarouselWidget({
     Key key,
     List<String> dishes,
-  })  : _dishes = dishes,
-        super(key: key);
+  }) : _dishes = dishes,
+       super(key: key);
 
   @override
   Widget build(BuildContext context) {
