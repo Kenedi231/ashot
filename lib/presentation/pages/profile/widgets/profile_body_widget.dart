@@ -16,7 +16,7 @@ class ProfileBody extends StatelessWidget {
             listener: (context, state) {
               state.maybeMap(
                 unauthenticated: (_) =>
-                    Router.navigator.pushReplacementNamed(Router.signInPage),
+                  Router.navigator.pushNamedAndRemoveUntil(Router.signInPage, (_) => false),
                 orElse: () {},
               );
             },

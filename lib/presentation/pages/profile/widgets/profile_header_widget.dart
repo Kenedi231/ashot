@@ -25,21 +25,19 @@ class ProfileHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Avatar(imageURL: _avatarURL),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(children: <Widget>[
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
                 Text(
                   _name,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                      fontSize: 24, fontWeight: FontWeight.bold),
+                    fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-              ]),
-              const SizedBox(height: 8.0),
-              Row(children: <Widget>[
+                const SizedBox(height: 8.0),
                 Text(
                   _email,
                   overflow: TextOverflow.ellipsis,
@@ -49,8 +47,8 @@ class ProfileHeader extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              ]),
-            ],
+              ],
+            ),
           ),
         ),
         IconButton(

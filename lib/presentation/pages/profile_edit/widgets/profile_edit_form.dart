@@ -4,11 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+
+
 class ProfileEditForm extends HookWidget {
   void _fieldFocusChange(
       BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
+  }
+
+  void updateText(TextEditingController controller, String text) {
+    controller.value = controller.value.copyWith(
+      text: text,
+      selection: TextSelection(
+        baseOffset: text.length,
+        extentOffset: text.length,
+      ),
+    );
   }
 
   @override
@@ -18,21 +30,28 @@ class ProfileEditForm extends HookWidget {
     final addressEditingController = useTextEditingController();
     final phoneEditingController = useTextEditingController();
 
-    final FocusNode _emailFocus = FocusNode();
     final FocusNode _nameFocus = FocusNode();
     final FocusNode _addressFocus = FocusNode();
     final FocusNode _phoneFocus = FocusNode();
 
     return BlocConsumer<ProfileFormBloc, ProfileFormState>(
         listener: (context, state) {
-          emailEditingController.text =
-              state.profile.emailAddress.getOrElse(emailEditingController.text);
-          nameEditingController.text =
-              state.profile.name.getOrElse(nameEditingController.text);
-          addressEditingController.text =
-              state.profile.address.getOrElse(addressEditingController.text);
-          phoneEditingController.text =
-              state.profile.phone.getOrElse(phoneEditingController.text);
+          updateText(
+            emailEditingController,
+            state.profile.emailAddress.getOrElse(emailEditingController.text),
+          );
+          updateText(
+            nameEditingController,
+            state.profile.name.getOrElse(nameEditingController.text),
+          );
+          updateText(
+            addressEditingController,
+            state.profile.address.getOrElse(addressEditingController.text),
+          );
+          updateText(
+            phoneEditingController,
+            state.profile.phone.getOrElse(phoneEditingController.text),
+          );
 
           state.saveFailureOrSuccessOption.fold(
             () {},
@@ -72,7 +91,7 @@ class ProfileEditForm extends HookWidget {
                       .bloc<ProfileFormBloc>()
                       .add(ProfileFormEvent.nameChanged(name)),
                   onFieldSubmitted: (term) {
-                    _fieldFocusChange(context, _nameFocus, _emailFocus);
+                    _fieldFocusChange(context, _nameFocus, _addressFocus);
                   },
                   validator: (_) => context
                       .bloc<ProfileFormBloc>()
@@ -90,37 +109,13 @@ class ProfileEditForm extends HookWidget {
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
+                  enabled: false,
                   autocorrect: false,
                   controller: emailEditingController,
-                  focusNode: _emailFocus,
-                  keyboardType: TextInputType.emailAddress,
-                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.email),
                     labelText: 'Email',
                   ),
-                  onChanged: (email) => context
-                      .bloc<ProfileFormBloc>()
-                      .add(ProfileFormEvent.emailChanged(email)),
-                  onFieldSubmitted: (term) {
-                    _fieldFocusChange(context, _emailFocus, _addressFocus);
-                  },
-                  validator: (_) => context
-                      .bloc<ProfileFormBloc>()
-                      .state
-                      .profile
-                      .emailAddress
-                      .value
-                      .fold(
-                        (f) => f.maybeMap(
-                          empty: (f) => 'Не может быть пустым',
-                          exceedingLength: (f) =>
-                              'Exceeding length, max: ${f.max}',
-                          orElse: () => null,
-                          invalidEmail: (_) => 'Неверный формат',
-                        ),
-                        (_) => null,
-                      ),
                 ),
                 const SizedBox(height: 8),
                 TextFormField(
