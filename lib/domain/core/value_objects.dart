@@ -116,3 +116,23 @@ class Price extends ValueObject<int> {
 
   const Price._(this.value);
 }
+
+class Count extends ValueObject<int> {
+  @override
+  final Either<ValueFailure<int>, int> value;
+
+  factory Count(int input) {
+    assert(input != null);
+    return Count._(
+      validateCount(input),
+    );
+  }
+
+  Count add(Count delta) {
+    return Count._(
+      validateCount(getOrElse(1) + delta.getOrElse(1)),
+    );
+  }
+
+  const Count._(this.value);
+}

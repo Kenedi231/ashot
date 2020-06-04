@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 
-class CartItemWidget extends StatelessWidget {
-  final String item;
+import '../../../../../domain/cart/cart_item.dart';
 
-  const CartItemWidget({this.item});
+class CartItemWidget extends StatelessWidget {
+  final CartItem _item;
+  final Function _delete;
+  final Function _update;
+
+  const CartItemWidget({
+    Key key,
+    CartItem item,
+    Function delete,
+    Function update,
+  }) : _item = item,
+       _delete = delete,
+       _update = update,
+       super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +31,7 @@ class CartItemWidget extends StatelessWidget {
               Expanded(
                 child: CircleAvatar(
                   radius: 30,
-                  backgroundImage: NetworkImage(item),
+                  backgroundImage: NetworkImage(_item.dish.imageURL.getOrCrash()),
                 ),
               ),
               Expanded(
@@ -30,18 +42,22 @@ class CartItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('Dishes Dishes Dishes Dishes Dishes'),
-                      SizedBox(height: 5),
+                      Text(_item.dish.name.getOrCrash()),
+                      const SizedBox(height: 5),
                       Row(
                         children: <Widget>[
                           IconButton(
                             icon: Icon(Icons.remove_circle),
-                            onPressed: () {},
+                            onPressed: () {
+                              _update(-1);
+                            },
                           ),
-                          Text('1'),
+                          Text('${_item.count.getOrElse(1)}'),
                           IconButton(
                             icon: Icon(Icons.add_circle),
-                            onPressed: () {},
+                            onPressed: () {
+                              _update(1);
+                            },
                           ),
                         ],
                       )
@@ -53,10 +69,12 @@ class CartItemWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('455 руб'),
+                  Text('${_item.dish.price.getOrCrash() * _item.count.getOrElse(1)} руб'),
                   IconButton(
                     icon: Icon(Icons.delete_sweep, color: Colors.red),
-                    onPressed: () {}
+                    onPressed: () {
+                      _delete();
+                    },
                   ),
                 ],
               ),
