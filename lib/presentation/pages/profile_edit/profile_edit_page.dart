@@ -60,6 +60,10 @@ class ProfileEditPage extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.white10,
         elevation: 0,
       ),
       body: ProfileEditForm(),

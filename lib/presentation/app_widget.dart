@@ -17,7 +17,7 @@ class AppWidget extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(
-          primaryColor: Colors.white,
+          primaryColor: Colors.blueAccent,
         ),
         title: 'Ашот',
         debugShowCheckedModeBanner: false,

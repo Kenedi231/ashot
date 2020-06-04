@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../misc/avatar.dart';
-
 class ProfileHeader extends StatelessWidget {
-  final String _avatarURL, _name, _email;
+  final String _email;
   final VoidCallback _onEditPressed;
 
   const ProfileHeader({
     Key key,
-    String avatarURL,
-    String name,
     String email,
     VoidCallback onEditPressed,
-  })  : _avatarURL = avatarURL,
-        _name = name,
-        _email = email,
+  })  : _email = email,
         _onEditPressed = onEditPressed,
         super(key: key);
 
@@ -24,20 +18,12 @@ class ProfileHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Avatar(imageURL: _avatarURL),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.only(top: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  _name,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 8.0),
                 Text(
                   _email,
                   overflow: TextOverflow.ellipsis,

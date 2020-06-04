@@ -27,11 +27,16 @@ class CatalogPageWidget extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Ашот'),
+          backgroundColor: Colors.white,
+          title: const Text(
+            'Ашот',
+            style: TextStyle(color: Colors.black),
+          ),
           actions: <Widget>[
             IconButton(
               icon: Icon(
                 Icons.account_circle,
+                color: Colors.black,
               ),
               onPressed: () {
                 Router.navigator.pushNamed(Router.profilePage);
