@@ -2,6 +2,7 @@
 
 import 'package:ashot/application/catalog/cart/cart_bloc.dart';
 import 'package:ashot/domain/catalog/product.dart';
+import 'package:ashot/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,11 +38,20 @@ class DishCardWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Container(
-                    height: 160 * 0.85,
-                    child: Image.network(
-                      _dish.imageURL.getOrCrash(),
-                      fit: BoxFit.cover,
+                  InkWell(
+                    onTap: () => Router.navigator.pushNamed(
+                      Router.productPage,
+                      arguments: ProductPageArguments(product: _dish),
+                    ),
+                    child: Hero(
+                      tag: _dish.imageURL.getOrCrash(),
+                      child: Container(
+                        height: 160 * 0.85,
+                        child: Image.network(
+                          _dish.imageURL.getOrCrash(),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                   Padding(
