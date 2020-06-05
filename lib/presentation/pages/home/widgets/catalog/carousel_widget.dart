@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../../widgets/stars_widget.dart';
+import '../../../../widgets/stars_widget.dart';
 
 class CarouselWidget extends StatelessWidget {
   final List<String> _dishes;
@@ -16,19 +16,18 @@ class CarouselWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 280.0,
         enableInfiniteScroll: false,
+        height: 300,
         reverse: false,
         autoPlay: true,
         enlargeCenterPage: true,
       ),
       items: _dishes.map<Widget>((image) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        return Wrap(
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(8.0),
-              height: MediaQuery.of(context).size.height / 3.2,
+              height: 220,
               width: MediaQuery.of(context).size.width,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),

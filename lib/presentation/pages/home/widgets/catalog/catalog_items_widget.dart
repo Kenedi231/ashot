@@ -29,9 +29,10 @@ class CatalogItemsWidget extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return DishCardWidget(dish: state.products[index]);
                     },
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.69,
+                      childAspectRatio: MediaQuery.of(context).size.width /
+              (MediaQuery.of(context).size.height / 1.2),
                     ),
                   ),
                 ),

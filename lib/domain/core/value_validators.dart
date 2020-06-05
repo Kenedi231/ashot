@@ -82,3 +82,11 @@ Either<ValueFailure<String>, String> validateURL(String input) {
     return left(ValueFailure.invalidURL(failedValue: input));
   }
 }
+
+Either<ValueFailure<int>, int> validateCount(int input) {
+  if (input is int) {
+    return right(input);
+  } else {
+    return left(ValueFailure.numberMustBePositive(failedValue: input));
+  }
+}
