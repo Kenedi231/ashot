@@ -99,7 +99,7 @@ class DishCardWidget extends StatelessWidget {
                               child: Container(
                                 width: 28,
                                 height: 28,
-                                color: Colors.yellow,
+                                color: Colors.orangeAccent,
                                 child: Icon(Icons.add),
                               ),
                             ),
