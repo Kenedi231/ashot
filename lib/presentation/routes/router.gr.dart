@@ -46,7 +46,8 @@ class Router {
             args as ProductPageArguments ?? ProductPageArguments();
         return MaterialPageRoute<dynamic>(
           builder: (_) =>
-              ProductPage(key: typedArgs.key, product: typedArgs.product),
+              ProductPage(key: typedArgs.key, product: typedArgs.product)
+                  .wrappedRoute,
           settings: settings,
         );
       default:
