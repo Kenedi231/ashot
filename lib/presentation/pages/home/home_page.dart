@@ -20,11 +20,13 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
       ),
       BlocProvider<CartBloc>(
         create: (context) => getIt<CartBloc>()
-          ..add(const CartEvent.cartReceived())
+          ..add(const CartEvent.cartReceived()),
       )
     ],
     child: this,
   );
+
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,9 @@
-
-
-import 'package:ashot/application/catalog/cart/cart_bloc.dart';
-import 'package:ashot/domain/catalog/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../application/catalog/cart/cart_bloc.dart';
+import '../../../../../domain/catalog/product.dart';
+import '../../../../routes/router.gr.dart';
 import '../../../../widgets/stars_widget.dart';
 
 class DishCardWidget extends StatelessWidget {
@@ -37,11 +36,21 @@ class DishCardWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Container(
-                    height: 160 * 0.85,
-                    child: Image.network(
-                      _dish.imageURL.getOrCrash(),
-                      fit: BoxFit.cover,
+                  InkWell(
+                    onTap: () => Router.navigator.pushNamed(
+                      Router.productPage,
+                      arguments: ProductPageArguments(product: _dish),
+                    ).then((value) => context.bloc<CartBloc>()
+                        .add(const CartEvent.cartReceived())),
+                    child: Hero(
+                      tag: _dish.imageURL.getOrCrash(),
+                      child: Container(
+                        height: 160 * 0.85,
+                        child: Image.network(
+                          _dish.imageURL.getOrCrash(),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                   Padding(
@@ -90,7 +99,7 @@ class DishCardWidget extends StatelessWidget {
                               child: Container(
                                 width: 28,
                                 height: 28,
-                                color: Colors.yellow,
+                                color: Colors.orangeAccent,
                                 child: Icon(Icons.add),
                               ),
                             ),
