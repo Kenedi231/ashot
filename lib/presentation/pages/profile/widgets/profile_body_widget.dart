@@ -1,12 +1,12 @@
-import 'package:ashot/application/profile/profile_watcher/profile_bloc.dart';
-import 'package:ashot/presentation/pages/profile/widgets/profile_info_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../application/auth/auth_bloc.dart';
+import '../../../../application/profile/profile_watcher/profile_bloc.dart';
 import '../../../routes/router.gr.dart';
 import 'profile_header_widget.dart';
 import 'profile_header_widget_bar.dart';
+import 'profile_info_widget.dart';
 
 class ProfileBody extends StatefulWidget {
   @override

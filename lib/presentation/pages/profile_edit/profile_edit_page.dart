@@ -1,13 +1,13 @@
-import 'package:ashot/application/profile/profile_form/profile_form_bloc.dart';
-import 'package:ashot/domain/profile/profile.dart';
-import 'package:ashot/injection.dart';
-import 'package:ashot/presentation/routes/router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../application/profile/profile_form/profile_form_bloc.dart';
+import '../../../domain/profile/profile.dart';
+import '../../../injection.dart';
+import '../../routes/router.gr.dart';
 import 'widgets/profile_edit_form.dart';
 
 class ProfileEditPage extends StatelessWidget implements AutoRouteWrapper {
