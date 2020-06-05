@@ -48,6 +48,7 @@ class SignInForm extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 8),
               TextFormField(
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email),
                   labelText: 'Email',

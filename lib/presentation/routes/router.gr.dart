@@ -12,12 +12,17 @@ import 'package:ashot/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:ashot/presentation/pages/home/home_page.dart';
 import 'package:ashot/presentation/pages/product_page/product_page.dart';
 import 'package:ashot/domain/catalog/product.dart';
+import 'package:ashot/presentation/pages/profile/profile_page.dart';
+import 'package:ashot/presentation/pages/profile_edit/profile_edit_page.dart';
+import 'package:ashot/domain/profile/profile.dart';
 
 class Router {
   static const splashPage = '/';
   static const signInPage = '/sign-in-page';
   static const homePage = '/home-page';
   static const productPage = '/product-page';
+  static const profilePage = '/profile-page';
+  static const profileEditPage = '/profile-edit-page';
   static final navigator = ExtendedNavigator();
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -50,6 +55,23 @@ class Router {
                   .wrappedRoute,
           settings: settings,
         );
+      case Router.profilePage:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => ProfilePage().wrappedRoute,
+          settings: settings,
+        );
+      case Router.profileEditPage:
+        if (hasInvalidArgs<ProfileEditPageArguments>(args)) {
+          return misTypedArgsRoute<ProfileEditPageArguments>(args);
+        }
+        final typedArgs =
+            args as ProfileEditPageArguments ?? ProfileEditPageArguments();
+        return MaterialPageRoute<dynamic>(
+          builder: (_) =>
+              ProfileEditPage(key: typedArgs.key, profile: typedArgs.profile)
+                  .wrappedRoute,
+          settings: settings,
+        );
       default:
         return unknownRoutePage(settings.name);
     }
@@ -65,4 +87,11 @@ class ProductPageArguments {
   final Key key;
   final Product product;
   ProductPageArguments({this.key, this.product});
+}
+
+//ProfileEditPage arguments holder class
+class ProfileEditPageArguments {
+  final Key key;
+  final Profile profile;
+  ProfileEditPageArguments({this.key, this.profile});
 }

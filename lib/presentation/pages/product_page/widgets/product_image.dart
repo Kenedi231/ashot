@@ -13,6 +13,7 @@ class ProductImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       pinned: true,
+      backgroundColor: Colors.white,
       floating: true,
       flexibleSpace: FlexibleSpaceBar(
         background: Hero(

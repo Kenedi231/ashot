@@ -27,15 +27,22 @@ class CatalogPageWidget extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Ашот'),
-          leading: IconButton(
-            icon: Icon(
-              Icons.exit_to_app,
-            ),
-            onPressed: () {
-              context.bloc<AuthBloc>().add(const AuthEvent.signedOut());
-            },
+          backgroundColor: Colors.white,
+          title: const Text(
+            'Ашот',
+            style: TextStyle(color: Colors.black),
           ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.account_circle,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Router.navigator.pushNamed(Router.profilePage);
+              },
+            ),
+          ],
           elevation: 0,
         ),
         backgroundColor: Colors.white,

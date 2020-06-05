@@ -1,0 +1,12 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'profile_failure.freezed.dart';
+
+@freezed
+abstract class ProfileFailure with _$ProfileFailure {
+  const factory ProfileFailure.emptyProfile() = EmptyProfile;
+  const factory ProfileFailure.unexpected() = Unexpected;
+  const factory ProfileFailure.insufficientPermissions() =
+      InsufficientPermissions;
+  const factory ProfileFailure.unableToUpdate() = UnableToUpdate;
+}
