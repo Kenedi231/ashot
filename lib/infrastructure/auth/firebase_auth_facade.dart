@@ -1,3 +1,5 @@
+import 'package:ashot/domain/core/errors.dart';
+import 'package:ashot/infrastructure/core/firestore_helpers.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
@@ -8,8 +10,11 @@ import 'package:meta/meta.dart';
 import '../../domain/auth/auth_failure.dart';
 import '../../domain/auth/i_auth_facade.dart';
 import '../../domain/auth/user.dart';
-import '../../domain/auth/value_objects.dart';
+import '../../domain/core/value_objects.dart';
 import 'firebase_user_mapper.dart';
+
+const String defaultAvatar =
+    'https://images.unsplash.com/photo-1567186937675-a5131c8a89ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=360&q=80';
 
 @prod
 @lazySingleton
@@ -18,11 +23,13 @@ class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
   final FirebaseUserMapper _firebaseUserMapper;
+  final Firestore _firestore;
 
   FirebaseAuthFacade(
     this._firebaseAuth,
     this._googleSignIn,
     this._firebaseUserMapper,
+    this._firestore,
   );
 
   @override
@@ -38,12 +45,23 @@ class FirebaseAuthFacade implements IAuthFacade {
     final emailAddressStr = emailAddress.value.getOrElse(() => 'INVALID EMAIL');
     final passwordStr = password.value.getOrElse(() => 'INVALID PASSWORD');
     try {
-      return await _firebaseAuth
-          .createUserWithEmailAndPassword(
-            email: emailAddressStr,
-            password: passwordStr,
-          )
-          .then((_) => right(unit));
+      await _firebaseAuth.createUserWithEmailAndPassword(
+        email: emailAddressStr,
+        password: passwordStr,
+      );
+
+      final user = (await getSignedInUser())
+          .getOrElse(() => throw NotAuthenticatedError());
+
+      await _firestore
+          .collection('users')
+          .document(user.id.getOrCrash())
+          .setData({
+        ..._firebaseUserMapper.fromDomain(user),
+        'avatar': defaultAvatar,
+      });
+
+      return right(unit);
     } on PlatformException catch (e) {
       if (e.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
         return left(const AuthFailure.emailAlreadyInUse());
@@ -90,9 +108,10 @@ class FirebaseAuthFacade implements IAuthFacade {
         accessToken: googleAuthentication.accessToken,
         idToken: googleAuthentication.idToken,
       );
-      return _firebaseAuth
-          .signInWithCredential(authCredential)
-          .then((r) => right(unit));
+
+      return _firebaseAuth.signInWithCredential(authCredential).then((r) {
+        return right(unit);
+      });
     } on PlatformException catch (_) {
       return left(const AuthFailure.serverError());
     }

@@ -60,6 +60,29 @@ Either<ValueFailure<int>, int> validatePrice(int input) {
   }
 }
 
+Either<ValueFailure<String>, String> validatePhone(String input) {
+  const phoneRegex = r"""^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$""";
+  if (input.isEmpty) {
+    return left(ValueFailure.empty(failedValue: input));
+  }
+  if (RegExp(phoneRegex).hasMatch(input)) {
+    return right(input);
+  } else {
+    return left(ValueFailure.invalidPhoneNumber(failedValue: input));
+  }
+}
+
+Either<ValueFailure<String>, String> validateURL(String input) {
+  const urlPattern =
+      r"^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$";
+
+  if (RegExp(urlPattern).hasMatch(input)) {
+    return right(input);
+  } else {
+    return left(ValueFailure.invalidURL(failedValue: input));
+  }
+}
+
 Either<ValueFailure<int>, int> validateCount(int input) {
   if (input is int) {
     return right(input);

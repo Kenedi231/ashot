@@ -75,6 +75,38 @@ class UniqueId extends ValueObject<String> {
   }
 }
 
+class EmailAddress extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory EmailAddress(String input) {
+    assert(input != null);
+    return EmailAddress._(
+      validateEmailAddress(input),
+    );
+  }
+
+  const EmailAddress._(
+    this.value,
+  ) : assert(value != null);
+}
+
+class Password extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Password(String input) {
+    assert(input != null);
+    return Password._(
+      validatePassword(input),
+    );
+  }
+
+  const Password._(
+    this.value,
+  ) : assert(value != null);
+}
+
 class StringSingleLine extends ValueObject<String> {
   @override
   final Either<ValueFailure<String>, String> value;
@@ -87,6 +119,34 @@ class StringSingleLine extends ValueObject<String> {
   }
 
   const StringSingleLine._(this.value);
+}
+
+class Address extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Address(String input) {
+    assert(input != null);
+    return Address._(
+      validateStringNotEmpty(input),
+    );
+  }
+
+  const Address._(this.value);
+}
+
+class Phone extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Phone(String input) {
+    assert(input != null);
+    return Phone._(
+      validatePhone(input),
+    );
+  }
+
+  const Phone._(this.value);
 }
 
 class StringMultLine extends ValueObject<String> {
@@ -117,6 +177,20 @@ class Price extends ValueObject<int> {
   const Price._(this.value);
 }
 
+class URL extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory URL(String input) {
+    assert(input != null);
+    return URL._(
+      validateURL(input),
+    );
+  }
+
+  const URL._(this.value);
+
+}
 class Count extends ValueObject<int> {
   @override
   final Either<ValueFailure<int>, int> value;
