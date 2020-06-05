@@ -1,3 +1,4 @@
+import 'package:ashot/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 
 import 'comment_block.dart';
@@ -10,12 +11,23 @@ class ProductReviewers extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            'Обзоры',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w600,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'Обзоры',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Router.navigator.pushNamed(Router.productNewReview);
+                },
+                child: Text('Написать отзыв'),
+              )
+            ],
           ),
           CommentBlock(
             imageURL: 'https://images.pexels.com/photos/247878/pexels-photo-247878.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',

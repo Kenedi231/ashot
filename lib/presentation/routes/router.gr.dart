@@ -12,6 +12,7 @@ import 'package:ashot/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:ashot/presentation/pages/home/home_page.dart';
 import 'package:ashot/presentation/pages/product_page/product_page.dart';
 import 'package:ashot/domain/catalog/product.dart';
+import 'package:ashot/presentation/pages/product_new_review.dart/product_new_review.dart';
 import 'package:ashot/presentation/pages/profile/profile_page.dart';
 import 'package:ashot/presentation/pages/profile_edit/profile_edit_page.dart';
 import 'package:ashot/domain/profile/profile.dart';
@@ -21,6 +22,7 @@ class Router {
   static const signInPage = '/sign-in-page';
   static const homePage = '/home-page';
   static const productPage = '/product-page';
+  static const productNewReview = '/product-new-review';
   static const profilePage = '/profile-page';
   static const profileEditPage = '/profile-edit-page';
   static final navigator = ExtendedNavigator();
@@ -53,6 +55,11 @@ class Router {
           builder: (_) =>
               ProductPage(key: typedArgs.key, product: typedArgs.product)
                   .wrappedRoute,
+          settings: settings,
+        );
+      case Router.productNewReview:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => ProductNewReview(),
           settings: settings,
         );
       case Router.profilePage:
