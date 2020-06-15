@@ -210,3 +210,34 @@ class Count extends ValueObject<int> {
 
   const Count._(this.value);
 }
+
+class Comment extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory Comment(String input) {
+    assert(input != null);
+    return Comment._(
+      validateComment(input),
+    );
+  }
+
+  const Comment._(
+    this.value,
+  ) : assert(value != null);
+}
+class Rate extends ValueObject<double> {
+  @override
+  final Either<ValueFailure<double>, double> value;
+
+  factory Rate(double input) {
+    assert(input != null);
+    return Rate._(
+      validateRate(input),
+    );
+  }
+
+  const Rate._(
+    this.value,
+  ) : assert(value != null);
+}

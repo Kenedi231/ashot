@@ -1,5 +1,8 @@
+import 'package:ashot/application/review/review_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../injection.dart';
 import 'widgets/review_body.dart';
 
 class ProductNewReview extends StatelessWidget {
@@ -13,7 +16,10 @@ class ProductNewReview extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      body: ReviewBody(),
+      body: BlocProvider(
+        create: (context) => getIt<ReviewBloc>(),
+        child: ReviewBody()
+      ),
     );
   }
 }

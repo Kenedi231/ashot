@@ -39,7 +39,7 @@ class StarsWidget extends StatelessWidget {
       stars.add(
         GestureDetector(
           onTap: () {
-            onPress(i + 1);
+            onPress((i + 1).toDouble());
           },
           child: newIcon,
         )

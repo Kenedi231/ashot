@@ -2,6 +2,17 @@ import 'package:ashot/presentation/widgets/stars_widget.dart';
 import 'package:flutter/material.dart';
 
 class ReviewRate extends StatelessWidget {
+  final double _rate;
+  final Function _onTap;
+
+  const ReviewRate({
+    Key key,
+    double rate,
+    Function onTap,
+  }) : _rate = rate,
+       _onTap = onTap,
+       super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,9 +28,9 @@ class ReviewRate extends StatelessWidget {
         StarsWidget(
           size: 60,
           onTap: (value) {
-            print(value); // changed star rate
+            _onTap(value);// changed star rate
           },
-          rate: 3.0, // rate
+          rate: _rate, // rate
         ),
       ],
     );
