@@ -19,7 +19,7 @@ class ReviewComment extends StatelessWidget {
           _onChange(value);
         },
         decoration: InputDecoration(
-          border: OutlineInputBorder()
+          border: OutlineInputBorder(),
         ),
       ),
     );
