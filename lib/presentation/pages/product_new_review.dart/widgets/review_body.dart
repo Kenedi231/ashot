@@ -29,9 +29,9 @@ class ReviewBody extends StatelessWidget {
                   .add(ReviewEvent.commentChanged(value));
               },
             ),
-
             RaisedButton(
-              onPressed: null,
+              color: Colors.orangeAccent,
+              onPressed: () {},
               child: Text('Оставить отзыв'),
             ),
           ],

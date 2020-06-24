@@ -12,9 +12,15 @@ T _$identity<T>(T value) => value;
 class _$ReviewTearOff {
   const _$ReviewTearOff();
 
-  _Review call({UniqueId id, Rate rate, Comment comment, Profile profile}) {
+  _Review call(
+      {UniqueId id,
+      String product_id,
+      Rate rate,
+      Comment comment,
+      Profile profile}) {
     return _Review(
       id: id,
+      product_id: product_id,
       rate: rate,
       comment: comment,
       profile: profile,
@@ -27,6 +33,7 @@ const $Review = _$ReviewTearOff();
 
 mixin _$Review {
   UniqueId get id;
+  String get product_id;
   Rate get rate;
   Comment get comment;
   Profile get profile;
@@ -37,7 +44,12 @@ mixin _$Review {
 abstract class $ReviewCopyWith<$Res> {
   factory $ReviewCopyWith(Review value, $Res Function(Review) then) =
       _$ReviewCopyWithImpl<$Res>;
-  $Res call({UniqueId id, Rate rate, Comment comment, Profile profile});
+  $Res call(
+      {UniqueId id,
+      String product_id,
+      Rate rate,
+      Comment comment,
+      Profile profile});
 
   $ProfileCopyWith<$Res> get profile;
 }
@@ -52,12 +64,15 @@ class _$ReviewCopyWithImpl<$Res> implements $ReviewCopyWith<$Res> {
   @override
   $Res call({
     Object id = freezed,
+    Object product_id = freezed,
     Object rate = freezed,
     Object comment = freezed,
     Object profile = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as UniqueId,
+      product_id:
+          product_id == freezed ? _value.product_id : product_id as String,
       rate: rate == freezed ? _value.rate : rate as Rate,
       comment: comment == freezed ? _value.comment : comment as Comment,
       profile: profile == freezed ? _value.profile : profile as Profile,
@@ -79,7 +94,12 @@ abstract class _$ReviewCopyWith<$Res> implements $ReviewCopyWith<$Res> {
   factory _$ReviewCopyWith(_Review value, $Res Function(_Review) then) =
       __$ReviewCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, Rate rate, Comment comment, Profile profile});
+  $Res call(
+      {UniqueId id,
+      String product_id,
+      Rate rate,
+      Comment comment,
+      Profile profile});
 
   @override
   $ProfileCopyWith<$Res> get profile;
@@ -96,12 +116,15 @@ class __$ReviewCopyWithImpl<$Res> extends _$ReviewCopyWithImpl<$Res>
   @override
   $Res call({
     Object id = freezed,
+    Object product_id = freezed,
     Object rate = freezed,
     Object comment = freezed,
     Object profile = freezed,
   }) {
     return _then(_Review(
       id: id == freezed ? _value.id : id as UniqueId,
+      product_id:
+          product_id == freezed ? _value.product_id : product_id as String,
       rate: rate == freezed ? _value.rate : rate as Rate,
       comment: comment == freezed ? _value.comment : comment as Comment,
       profile: profile == freezed ? _value.profile : profile as Profile,
@@ -110,10 +133,13 @@ class __$ReviewCopyWithImpl<$Res> extends _$ReviewCopyWithImpl<$Res>
 }
 
 class _$_Review with DiagnosticableTreeMixin implements _Review {
-  const _$_Review({this.id, this.rate, this.comment, this.profile});
+  const _$_Review(
+      {this.id, this.product_id, this.rate, this.comment, this.profile});
 
   @override
   final UniqueId id;
+  @override
+  final String product_id;
   @override
   final Rate rate;
   @override
@@ -123,7 +149,7 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Review(id: $id, rate: $rate, comment: $comment, profile: $profile)';
+    return 'Review(id: $id, product_id: $product_id, rate: $rate, comment: $comment, profile: $profile)';
   }
 
   @override
@@ -132,6 +158,7 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
     properties
       ..add(DiagnosticsProperty('type', 'Review'))
       ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('product_id', product_id))
       ..add(DiagnosticsProperty('rate', rate))
       ..add(DiagnosticsProperty('comment', comment))
       ..add(DiagnosticsProperty('profile', profile));
@@ -143,6 +170,9 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
         (other is _Review &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.product_id, product_id) ||
+                const DeepCollectionEquality()
+                    .equals(other.product_id, product_id)) &&
             (identical(other.rate, rate) ||
                 const DeepCollectionEquality().equals(other.rate, rate)) &&
             (identical(other.comment, comment) ||
@@ -156,6 +186,7 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(product_id) ^
       const DeepCollectionEquality().hash(rate) ^
       const DeepCollectionEquality().hash(comment) ^
       const DeepCollectionEquality().hash(profile);
@@ -167,10 +198,16 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
 
 abstract class _Review implements Review {
   const factory _Review(
-      {UniqueId id, Rate rate, Comment comment, Profile profile}) = _$_Review;
+      {UniqueId id,
+      String product_id,
+      Rate rate,
+      Comment comment,
+      Profile profile}) = _$_Review;
 
   @override
   UniqueId get id;
+  @override
+  String get product_id;
   @override
   Rate get rate;
   @override
