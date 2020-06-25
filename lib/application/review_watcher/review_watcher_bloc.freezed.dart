@@ -12,8 +12,10 @@ T _$identity<T>(T value) => value;
 class _$ReviewWatcherEventTearOff {
   const _$ReviewWatcherEventTearOff();
 
-  _WatchAll watchAll() {
-    return const _WatchAll();
+  _WatchAll watchAll(String id) {
+    return _WatchAll(
+      id,
+    );
   }
 
   _ReviewReceived reviewReceived(
@@ -30,14 +32,14 @@ const $ReviewWatcherEvent = _$ReviewWatcherEventTearOff();
 mixin _$ReviewWatcherEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result watchAll(),
+    @required Result watchAll(String id),
     @required
         Result reviewReceived(
             Either<ReviewFailure, List<Review>> failureOrReviews),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result watchAll(),
+    Result watchAll(String id),
     Result reviewReceived(Either<ReviewFailure, List<Review>> failureOrReviews),
     @required Result orElse(),
   });
@@ -72,6 +74,7 @@ class _$ReviewWatcherEventCopyWithImpl<$Res>
 abstract class _$WatchAllCopyWith<$Res> {
   factory _$WatchAllCopyWith(_WatchAll value, $Res Function(_WatchAll) then) =
       __$WatchAllCopyWithImpl<$Res>;
+  $Res call({String id});
 }
 
 class __$WatchAllCopyWithImpl<$Res>
@@ -82,47 +85,67 @@ class __$WatchAllCopyWithImpl<$Res>
 
   @override
   _WatchAll get _value => super._value as _WatchAll;
+
+  @override
+  $Res call({
+    Object id = freezed,
+  }) {
+    return _then(_WatchAll(
+      id == freezed ? _value.id : id as String,
+    ));
+  }
 }
 
 class _$_WatchAll implements _WatchAll {
-  const _$_WatchAll();
+  const _$_WatchAll(this.id) : assert(id != null);
+
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'ReviewWatcherEvent.watchAll()';
+    return 'ReviewWatcherEvent.watchAll(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _WatchAll);
+    return identical(this, other) ||
+        (other is _WatchAll &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+
+  @override
+  _$WatchAllCopyWith<_WatchAll> get copyWith =>
+      __$WatchAllCopyWithImpl<_WatchAll>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result watchAll(),
+    @required Result watchAll(String id),
     @required
         Result reviewReceived(
             Either<ReviewFailure, List<Review>> failureOrReviews),
   }) {
     assert(watchAll != null);
     assert(reviewReceived != null);
-    return watchAll();
+    return watchAll(id);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result watchAll(),
+    Result watchAll(String id),
     Result reviewReceived(Either<ReviewFailure, List<Review>> failureOrReviews),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (watchAll != null) {
-      return watchAll();
+      return watchAll(id);
     }
     return orElse();
   }
@@ -154,7 +177,10 @@ class _$_WatchAll implements _WatchAll {
 }
 
 abstract class _WatchAll implements ReviewWatcherEvent {
-  const factory _WatchAll() = _$_WatchAll;
+  const factory _WatchAll(String id) = _$_WatchAll;
+
+  String get id;
+  _$WatchAllCopyWith<_WatchAll> get copyWith;
 }
 
 abstract class _$ReviewReceivedCopyWith<$Res> {
@@ -219,7 +245,7 @@ class _$_ReviewReceived implements _ReviewReceived {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result watchAll(),
+    @required Result watchAll(String id),
     @required
         Result reviewReceived(
             Either<ReviewFailure, List<Review>> failureOrReviews),
@@ -232,7 +258,7 @@ class _$_ReviewReceived implements _ReviewReceived {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result watchAll(),
+    Result watchAll(String id),
     Result reviewReceived(Either<ReviewFailure, List<Review>> failureOrReviews),
     @required Result orElse(),
   }) {

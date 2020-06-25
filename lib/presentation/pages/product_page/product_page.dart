@@ -20,6 +20,10 @@ class ProductPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget get wrappedRoute => MultiBlocProvider(
     providers: [
+      BlocProvider<ReviewWatcherBloc>(
+        create: (context) => getIt<ReviewWatcherBloc>()
+          ..add(ReviewWatcherEvent.watchAll(_product.id.getOrCrash()))
+      ),
       BlocProvider<CartBloc>(
         create: (context) => getIt<CartBloc>()
           ..add(const CartEvent.cartReceived())

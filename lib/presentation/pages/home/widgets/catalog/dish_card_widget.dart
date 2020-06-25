@@ -70,8 +70,8 @@ class DishCardWidget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        StarsWidget(),
-                        Text('(16)'), // Rating
+                        StarsWidget(rate: _dish.rate.getOrCrash()),
+                        Text('(${_dish.countReviews.getOrElse(0)})'), // Rating
                       ],
                     ),
                   ),

@@ -31,9 +31,8 @@ class ReviewWatcherBloc
   ) async* {
     yield* event.map(
       watchAll: (e) async* {
-        print(1);
         await _reviewStreamSubscription?.cancel();
-        _reviewRepository.watchAll().listen(
+        _reviewRepository.watchAll(e.id).listen(
             (reviews) => add(ReviewWatcherEvent.reviewReceived(reviews)));
       },
       reviewReceived: (e) async* {
@@ -47,7 +46,7 @@ class ReviewWatcherBloc
 
   @override
   Future<void> close() async {
-    await _reviewStreamSubscription.cancel();
+    await _reviewStreamSubscription?.cancel();
     return super.close();
   }
 }

@@ -11,15 +11,14 @@ part 'review.freezed.dart';
 abstract class Review with _$Review implements IEntity {
   const factory Review({
     UniqueId id,
-    String product_id,
+    UniqueId product_id,
     Rate rate,
     Comment comment,
-    Profile profile,
+    Profile user,
   }) = _Review;
 
   factory Review.empty() => Review(
     rate: Rate(0.0),
     comment: Comment(''),
-    product_id: '',
   );
 }

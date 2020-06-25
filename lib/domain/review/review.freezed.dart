@@ -14,16 +14,16 @@ class _$ReviewTearOff {
 
   _Review call(
       {UniqueId id,
-      String product_id,
+      UniqueId product_id,
       Rate rate,
       Comment comment,
-      Profile profile}) {
+      Profile user}) {
     return _Review(
       id: id,
       product_id: product_id,
       rate: rate,
       comment: comment,
-      profile: profile,
+      user: user,
     );
   }
 }
@@ -33,10 +33,10 @@ const $Review = _$ReviewTearOff();
 
 mixin _$Review {
   UniqueId get id;
-  String get product_id;
+  UniqueId get product_id;
   Rate get rate;
   Comment get comment;
-  Profile get profile;
+  Profile get user;
 
   $ReviewCopyWith<Review> get copyWith;
 }
@@ -46,12 +46,12 @@ abstract class $ReviewCopyWith<$Res> {
       _$ReviewCopyWithImpl<$Res>;
   $Res call(
       {UniqueId id,
-      String product_id,
+      UniqueId product_id,
       Rate rate,
       Comment comment,
-      Profile profile});
+      Profile user});
 
-  $ProfileCopyWith<$Res> get profile;
+  $ProfileCopyWith<$Res> get user;
 }
 
 class _$ReviewCopyWithImpl<$Res> implements $ReviewCopyWith<$Res> {
@@ -67,25 +67,25 @@ class _$ReviewCopyWithImpl<$Res> implements $ReviewCopyWith<$Res> {
     Object product_id = freezed,
     Object rate = freezed,
     Object comment = freezed,
-    Object profile = freezed,
+    Object user = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as UniqueId,
       product_id:
-          product_id == freezed ? _value.product_id : product_id as String,
+          product_id == freezed ? _value.product_id : product_id as UniqueId,
       rate: rate == freezed ? _value.rate : rate as Rate,
       comment: comment == freezed ? _value.comment : comment as Comment,
-      profile: profile == freezed ? _value.profile : profile as Profile,
+      user: user == freezed ? _value.user : user as Profile,
     ));
   }
 
   @override
-  $ProfileCopyWith<$Res> get profile {
-    if (_value.profile == null) {
+  $ProfileCopyWith<$Res> get user {
+    if (_value.user == null) {
       return null;
     }
-    return $ProfileCopyWith<$Res>(_value.profile, (value) {
-      return _then(_value.copyWith(profile: value));
+    return $ProfileCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
     });
   }
 }
@@ -96,13 +96,13 @@ abstract class _$ReviewCopyWith<$Res> implements $ReviewCopyWith<$Res> {
   @override
   $Res call(
       {UniqueId id,
-      String product_id,
+      UniqueId product_id,
       Rate rate,
       Comment comment,
-      Profile profile});
+      Profile user});
 
   @override
-  $ProfileCopyWith<$Res> get profile;
+  $ProfileCopyWith<$Res> get user;
 }
 
 class __$ReviewCopyWithImpl<$Res> extends _$ReviewCopyWithImpl<$Res>
@@ -119,37 +119,37 @@ class __$ReviewCopyWithImpl<$Res> extends _$ReviewCopyWithImpl<$Res>
     Object product_id = freezed,
     Object rate = freezed,
     Object comment = freezed,
-    Object profile = freezed,
+    Object user = freezed,
   }) {
     return _then(_Review(
       id: id == freezed ? _value.id : id as UniqueId,
       product_id:
-          product_id == freezed ? _value.product_id : product_id as String,
+          product_id == freezed ? _value.product_id : product_id as UniqueId,
       rate: rate == freezed ? _value.rate : rate as Rate,
       comment: comment == freezed ? _value.comment : comment as Comment,
-      profile: profile == freezed ? _value.profile : profile as Profile,
+      user: user == freezed ? _value.user : user as Profile,
     ));
   }
 }
 
 class _$_Review with DiagnosticableTreeMixin implements _Review {
   const _$_Review(
-      {this.id, this.product_id, this.rate, this.comment, this.profile});
+      {this.id, this.product_id, this.rate, this.comment, this.user});
 
   @override
   final UniqueId id;
   @override
-  final String product_id;
+  final UniqueId product_id;
   @override
   final Rate rate;
   @override
   final Comment comment;
   @override
-  final Profile profile;
+  final Profile user;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Review(id: $id, product_id: $product_id, rate: $rate, comment: $comment, profile: $profile)';
+    return 'Review(id: $id, product_id: $product_id, rate: $rate, comment: $comment, user: $user)';
   }
 
   @override
@@ -161,7 +161,7 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
       ..add(DiagnosticsProperty('product_id', product_id))
       ..add(DiagnosticsProperty('rate', rate))
       ..add(DiagnosticsProperty('comment', comment))
-      ..add(DiagnosticsProperty('profile', profile));
+      ..add(DiagnosticsProperty('user', user));
   }
 
   @override
@@ -178,8 +178,8 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
             (identical(other.comment, comment) ||
                 const DeepCollectionEquality()
                     .equals(other.comment, comment)) &&
-            (identical(other.profile, profile) ||
-                const DeepCollectionEquality().equals(other.profile, profile)));
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)));
   }
 
   @override
@@ -189,7 +189,7 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
       const DeepCollectionEquality().hash(product_id) ^
       const DeepCollectionEquality().hash(rate) ^
       const DeepCollectionEquality().hash(comment) ^
-      const DeepCollectionEquality().hash(profile);
+      const DeepCollectionEquality().hash(user);
 
   @override
   _$ReviewCopyWith<_Review> get copyWith =>
@@ -199,21 +199,21 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
 abstract class _Review implements Review {
   const factory _Review(
       {UniqueId id,
-      String product_id,
+      UniqueId product_id,
       Rate rate,
       Comment comment,
-      Profile profile}) = _$_Review;
+      Profile user}) = _$_Review;
 
   @override
   UniqueId get id;
   @override
-  String get product_id;
+  UniqueId get product_id;
   @override
   Rate get rate;
   @override
   Comment get comment;
   @override
-  Profile get profile;
+  Profile get user;
   @override
   _$ReviewCopyWith<_Review> get copyWith;
 }

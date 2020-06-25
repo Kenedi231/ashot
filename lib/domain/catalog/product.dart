@@ -14,5 +14,7 @@ abstract class Product with _$Product implements IEntity {
     @required StringMultLine description,
     @required Price price,
     @required StringSingleLine imageURL,
+    Rate rate,
+    Count countReviews,
   }) = _Product;
 }

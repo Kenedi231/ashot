@@ -15,6 +15,8 @@ abstract class ProductDto with _$ProductDto {
     @required String description,
     @required int price,
     @required String imageURL,
+    double rate,
+    int countReviews,
   }) = _CatalogDto;
 
   factory ProductDto.fromDomain(Product product) {
@@ -24,6 +26,8 @@ abstract class ProductDto with _$ProductDto {
       description: product.description.getOrCrash(),
       price: product.price.getOrCrash(),
       imageURL: product.imageURL.getOrCrash(),
+      rate: product.rate.getOrCrash(),
+      countReviews: product.countReviews.getOrElse(0),
     );
   }
 
@@ -43,6 +47,8 @@ extension ProductDtoX on ProductDto {
       description: StringMultLine(description),
       price: Price(price),
       imageURL: StringSingleLine(imageURL),
+      rate: Rate(rate),
+      countReviews: Count(countReviews)
     );
   }
 }

@@ -17,13 +17,17 @@ class _$ProductTearOff {
       @required StringSingleLine name,
       @required StringMultLine description,
       @required Price price,
-      @required StringSingleLine imageURL}) {
+      @required StringSingleLine imageURL,
+      Rate rate,
+      Count countReviews}) {
     return _Product(
       id: id,
       name: name,
       description: description,
       price: price,
       imageURL: imageURL,
+      rate: rate,
+      countReviews: countReviews,
     );
   }
 }
@@ -37,6 +41,8 @@ mixin _$Product {
   StringMultLine get description;
   Price get price;
   StringSingleLine get imageURL;
+  Rate get rate;
+  Count get countReviews;
 
   $ProductCopyWith<Product> get copyWith;
 }
@@ -49,7 +55,9 @@ abstract class $ProductCopyWith<$Res> {
       StringSingleLine name,
       StringMultLine description,
       Price price,
-      StringSingleLine imageURL});
+      StringSingleLine imageURL,
+      Rate rate,
+      Count countReviews});
 }
 
 class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
@@ -66,6 +74,8 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object description = freezed,
     Object price = freezed,
     Object imageURL = freezed,
+    Object rate = freezed,
+    Object countReviews = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as UniqueId,
@@ -76,6 +86,9 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
       price: price == freezed ? _value.price : price as Price,
       imageURL:
           imageURL == freezed ? _value.imageURL : imageURL as StringSingleLine,
+      rate: rate == freezed ? _value.rate : rate as Rate,
+      countReviews:
+          countReviews == freezed ? _value.countReviews : countReviews as Count,
     ));
   }
 }
@@ -89,7 +102,9 @@ abstract class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       StringSingleLine name,
       StringMultLine description,
       Price price,
-      StringSingleLine imageURL});
+      StringSingleLine imageURL,
+      Rate rate,
+      Count countReviews});
 }
 
 class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
@@ -107,6 +122,8 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
     Object description = freezed,
     Object price = freezed,
     Object imageURL = freezed,
+    Object rate = freezed,
+    Object countReviews = freezed,
   }) {
     return _then(_Product(
       id: id == freezed ? _value.id : id as UniqueId,
@@ -117,6 +134,9 @@ class __$ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
       price: price == freezed ? _value.price : price as Price,
       imageURL:
           imageURL == freezed ? _value.imageURL : imageURL as StringSingleLine,
+      rate: rate == freezed ? _value.rate : rate as Rate,
+      countReviews:
+          countReviews == freezed ? _value.countReviews : countReviews as Count,
     ));
   }
 }
@@ -127,7 +147,9 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
       @required this.name,
       @required this.description,
       @required this.price,
-      @required this.imageURL})
+      @required this.imageURL,
+      this.rate,
+      this.countReviews})
       : assert(id != null),
         assert(name != null),
         assert(description != null),
@@ -144,10 +166,14 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
   final Price price;
   @override
   final StringSingleLine imageURL;
+  @override
+  final Rate rate;
+  @override
+  final Count countReviews;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Product(id: $id, name: $name, description: $description, price: $price, imageURL: $imageURL)';
+    return 'Product(id: $id, name: $name, description: $description, price: $price, imageURL: $imageURL, rate: $rate, countReviews: $countReviews)';
   }
 
   @override
@@ -159,7 +185,9 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('description', description))
       ..add(DiagnosticsProperty('price', price))
-      ..add(DiagnosticsProperty('imageURL', imageURL));
+      ..add(DiagnosticsProperty('imageURL', imageURL))
+      ..add(DiagnosticsProperty('rate', rate))
+      ..add(DiagnosticsProperty('countReviews', countReviews));
   }
 
   @override
@@ -177,7 +205,12 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
                 const DeepCollectionEquality().equals(other.price, price)) &&
             (identical(other.imageURL, imageURL) ||
                 const DeepCollectionEquality()
-                    .equals(other.imageURL, imageURL)));
+                    .equals(other.imageURL, imageURL)) &&
+            (identical(other.rate, rate) ||
+                const DeepCollectionEquality().equals(other.rate, rate)) &&
+            (identical(other.countReviews, countReviews) ||
+                const DeepCollectionEquality()
+                    .equals(other.countReviews, countReviews)));
   }
 
   @override
@@ -187,7 +220,9 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(imageURL);
+      const DeepCollectionEquality().hash(imageURL) ^
+      const DeepCollectionEquality().hash(rate) ^
+      const DeepCollectionEquality().hash(countReviews);
 
   @override
   _$ProductCopyWith<_Product> get copyWith =>
@@ -200,7 +235,9 @@ abstract class _Product implements Product {
       @required StringSingleLine name,
       @required StringMultLine description,
       @required Price price,
-      @required StringSingleLine imageURL}) = _$_Product;
+      @required StringSingleLine imageURL,
+      Rate rate,
+      Count countReviews}) = _$_Product;
 
   @override
   UniqueId get id;
@@ -212,6 +249,10 @@ abstract class _Product implements Product {
   Price get price;
   @override
   StringSingleLine get imageURL;
+  @override
+  Rate get rate;
+  @override
+  Count get countReviews;
   @override
   _$ProductCopyWith<_Product> get copyWith;
 }

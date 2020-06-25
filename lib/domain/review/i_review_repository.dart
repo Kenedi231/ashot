@@ -5,6 +5,6 @@ import 'review.dart';
 import 'review_failure.dart';
 
 abstract class IReviewRepository {
-  Stream<Either<ReviewFailure, List<Review>>> watchAll();
+  Stream<Either<ReviewFailure, List<Review>>> watchAll(String id);
   Future<Either<ReviewFailure, Unit>> update(Review updatedReview);
 }

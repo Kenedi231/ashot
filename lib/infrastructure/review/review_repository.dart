@@ -1,7 +1,7 @@
+import 'package:ashot/infrastructure/review/review_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/core/value_objects.dart';
 import '../../domain/review/i_review_repository.dart';
 import '../../domain/review/review.dart';
 import '../../domain/review/review_failure.dart';
@@ -16,11 +16,19 @@ class ReviewRepository implements IReviewRepository {
   ReviewRepository(this._firestore);
 
   @override
-  Stream<Either<ReviewFailure, List<Review>>> watchAll() async* {
-    final doc = await _firestore.reviews();
-    final reviews = doc.where('product_id', isEqualTo: 'SLsjHfiGF46fnbe6LcIf');
-    print(reviews);
-    yield right<ReviewFailure, List<Review>>(List<Review>());
+  Stream<Either<ReviewFailure, List<Review>>> watchAll(String id) async* {
+    final collection = await _firestore.reviews();
+    final documents = (
+      await collection.where('product_id', isEqualTo: id).getDocuments()
+    ).documents;
+    
+    yield right<ReviewFailure, List<Review>>(
+      List.from(
+        documents.map(
+          (doc) => ReviewDTO.fromFirestore(doc).toDomain(),
+        )
+      )
+    );
   }
 
   @override

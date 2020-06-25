@@ -20,13 +20,17 @@ class _$ProductDtoTearOff {
       @required String name,
       @required String description,
       @required int price,
-      @required String imageURL}) {
+      @required String imageURL,
+      double rate,
+      int countReviews}) {
     return _CatalogDto(
       id: id,
       name: name,
       description: description,
       price: price,
       imageURL: imageURL,
+      rate: rate,
+      countReviews: countReviews,
     );
   }
 }
@@ -41,6 +45,8 @@ mixin _$ProductDto {
   String get description;
   int get price;
   String get imageURL;
+  double get rate;
+  int get countReviews;
 
   Map<String, dynamic> toJson();
   $ProductDtoCopyWith<ProductDto> get copyWith;
@@ -55,7 +61,9 @@ abstract class $ProductDtoCopyWith<$Res> {
       String name,
       String description,
       int price,
-      String imageURL});
+      String imageURL,
+      double rate,
+      int countReviews});
 }
 
 class _$ProductDtoCopyWithImpl<$Res> implements $ProductDtoCopyWith<$Res> {
@@ -72,6 +80,8 @@ class _$ProductDtoCopyWithImpl<$Res> implements $ProductDtoCopyWith<$Res> {
     Object description = freezed,
     Object price = freezed,
     Object imageURL = freezed,
+    Object rate = freezed,
+    Object countReviews = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -80,6 +90,9 @@ class _$ProductDtoCopyWithImpl<$Res> implements $ProductDtoCopyWith<$Res> {
           description == freezed ? _value.description : description as String,
       price: price == freezed ? _value.price : price as int,
       imageURL: imageURL == freezed ? _value.imageURL : imageURL as String,
+      rate: rate == freezed ? _value.rate : rate as double,
+      countReviews:
+          countReviews == freezed ? _value.countReviews : countReviews as int,
     ));
   }
 }
@@ -94,7 +107,9 @@ abstract class _$CatalogDtoCopyWith<$Res> implements $ProductDtoCopyWith<$Res> {
       String name,
       String description,
       int price,
-      String imageURL});
+      String imageURL,
+      double rate,
+      int countReviews});
 }
 
 class __$CatalogDtoCopyWithImpl<$Res> extends _$ProductDtoCopyWithImpl<$Res>
@@ -113,6 +128,8 @@ class __$CatalogDtoCopyWithImpl<$Res> extends _$ProductDtoCopyWithImpl<$Res>
     Object description = freezed,
     Object price = freezed,
     Object imageURL = freezed,
+    Object rate = freezed,
+    Object countReviews = freezed,
   }) {
     return _then(_CatalogDto(
       id: id == freezed ? _value.id : id as String,
@@ -121,6 +138,9 @@ class __$CatalogDtoCopyWithImpl<$Res> extends _$ProductDtoCopyWithImpl<$Res>
           description == freezed ? _value.description : description as String,
       price: price == freezed ? _value.price : price as int,
       imageURL: imageURL == freezed ? _value.imageURL : imageURL as String,
+      rate: rate == freezed ? _value.rate : rate as double,
+      countReviews:
+          countReviews == freezed ? _value.countReviews : countReviews as int,
     ));
   }
 }
@@ -132,7 +152,9 @@ class _$_CatalogDto implements _CatalogDto {
       @required this.name,
       @required this.description,
       @required this.price,
-      @required this.imageURL})
+      @required this.imageURL,
+      this.rate,
+      this.countReviews})
       : assert(name != null),
         assert(description != null),
         assert(price != null),
@@ -152,10 +174,14 @@ class _$_CatalogDto implements _CatalogDto {
   final int price;
   @override
   final String imageURL;
+  @override
+  final double rate;
+  @override
+  final int countReviews;
 
   @override
   String toString() {
-    return 'ProductDto(id: $id, name: $name, description: $description, price: $price, imageURL: $imageURL)';
+    return 'ProductDto(id: $id, name: $name, description: $description, price: $price, imageURL: $imageURL, rate: $rate, countReviews: $countReviews)';
   }
 
   @override
@@ -173,7 +199,12 @@ class _$_CatalogDto implements _CatalogDto {
                 const DeepCollectionEquality().equals(other.price, price)) &&
             (identical(other.imageURL, imageURL) ||
                 const DeepCollectionEquality()
-                    .equals(other.imageURL, imageURL)));
+                    .equals(other.imageURL, imageURL)) &&
+            (identical(other.rate, rate) ||
+                const DeepCollectionEquality().equals(other.rate, rate)) &&
+            (identical(other.countReviews, countReviews) ||
+                const DeepCollectionEquality()
+                    .equals(other.countReviews, countReviews)));
   }
 
   @override
@@ -183,7 +214,9 @@ class _$_CatalogDto implements _CatalogDto {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(price) ^
-      const DeepCollectionEquality().hash(imageURL);
+      const DeepCollectionEquality().hash(imageURL) ^
+      const DeepCollectionEquality().hash(rate) ^
+      const DeepCollectionEquality().hash(countReviews);
 
   @override
   _$CatalogDtoCopyWith<_CatalogDto> get copyWith =>
@@ -201,7 +234,9 @@ abstract class _CatalogDto implements ProductDto {
       @required String name,
       @required String description,
       @required int price,
-      @required String imageURL}) = _$_CatalogDto;
+      @required String imageURL,
+      double rate,
+      int countReviews}) = _$_CatalogDto;
 
   factory _CatalogDto.fromJson(Map<String, dynamic> json) =
       _$_CatalogDto.fromJson;
@@ -217,6 +252,10 @@ abstract class _CatalogDto implements ProductDto {
   int get price;
   @override
   String get imageURL;
+  @override
+  double get rate;
+  @override
+  int get countReviews;
   @override
   _$CatalogDtoCopyWith<_CatalogDto> get copyWith;
 }

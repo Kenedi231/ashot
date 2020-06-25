@@ -16,7 +16,7 @@ class _$ProfileDTOTearOff {
   const _$ProfileDTOTearOff();
 
   _ProfileDTO call(
-      {@JsonKey(ignore: true) String id,
+      {@JsonKey(ignore: false) String id,
       @required String name,
       @required String email,
       String address,
@@ -37,7 +37,7 @@ class _$ProfileDTOTearOff {
 const $ProfileDTO = _$ProfileDTOTearOff();
 
 mixin _$ProfileDTO {
-  @JsonKey(ignore: true)
+  @JsonKey(ignore: false)
   String get id;
   String get name;
   String get email;
@@ -54,7 +54,7 @@ abstract class $ProfileDTOCopyWith<$Res> {
           ProfileDTO value, $Res Function(ProfileDTO) then) =
       _$ProfileDTOCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(ignore: true) String id,
+      {@JsonKey(ignore: false) String id,
       String name,
       String email,
       String address,
@@ -95,7 +95,7 @@ abstract class _$ProfileDTOCopyWith<$Res> implements $ProfileDTOCopyWith<$Res> {
       __$ProfileDTOCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(ignore: true) String id,
+      {@JsonKey(ignore: false) String id,
       String name,
       String email,
       String address,
@@ -135,7 +135,7 @@ class __$ProfileDTOCopyWithImpl<$Res> extends _$ProfileDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ProfileDTO implements _ProfileDTO {
   _$_ProfileDTO(
-      {@JsonKey(ignore: true) this.id,
+      {@JsonKey(ignore: false) this.id,
       @required this.name,
       @required this.email,
       this.address,
@@ -148,7 +148,7 @@ class _$_ProfileDTO implements _ProfileDTO {
       _$_$_ProfileDTOFromJson(json);
 
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(ignore: false)
   final String id;
   @override
   final String name;
@@ -207,7 +207,7 @@ class _$_ProfileDTO implements _ProfileDTO {
 
 abstract class _ProfileDTO implements ProfileDTO {
   factory _ProfileDTO(
-      {@JsonKey(ignore: true) String id,
+      {@JsonKey(ignore: false) String id,
       @required String name,
       @required String email,
       String address,
@@ -218,7 +218,7 @@ abstract class _ProfileDTO implements ProfileDTO {
       _$_ProfileDTO.fromJson;
 
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(ignore: false)
   String get id;
   @override
   String get name;

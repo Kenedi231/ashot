@@ -7,67 +7,56 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'comment_block.dart';
 
-class ProductReviewers extends StatelessWidget implements AutoRouteWrapper {
-
-  @override
-  Widget get wrappedRoute => MultiBlocProvider(
-    providers: [
-      BlocProvider<ReviewWatcherBloc>(
-        create: (context) => getIt<ReviewWatcherBloc>()
-          ..add(const ReviewWatcherEvent.watchAll())
-      )
-    ],
-    child: this,
-  );
+class ProductReviewers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ReviewWatcherBloc, ReviewWatcherState>(
       builder: (BuildContext context, ReviewWatcherState state) {
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        return state.map(
+          initial: (_) => Container(),
+          loadInProgress: (_) => Container(),
+          loadFailure: (_) => Container(),
+          loadSuccess: (state) {
+            print(state.reviews);
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    'Обзоры',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Обзоры',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Router.navigator.pushNamed(Router.productNewReview);
+                        },
+                        child: const Text('Написать отзыв'),
+                      )
+                    ],
                   ),
-                  InkWell(
-                    onTap: () {
-                      Router.navigator.pushNamed(Router.productNewReview);
-                    },
-                    child: Text('Написать отзыв'),
-                  )
+                  if (state.reviews.isEmpty) const Text('На этот товар нет обзоров. Станьте первыми!')
+                  else Column(
+                    children: state.reviews.map((review) => CommentBlock(
+                      imageURL: review.user.avatar.getOrElse(''),
+                      name: review.user.name.getOrElse(''),
+                      comment: review.comment.getOrElse(''),
+                      date: ' 18 февраля 1999',
+                      rate: review.rate.getOrElse(0.0),
+                    )
+                    ).toList(),
+                  ),
                 ],
               ),
-              CommentBlock(
-                imageURL: 'https://images.pexels.com/photos/247878/pexels-photo-247878.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                name: 'Diana Line',
-                comment: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
-                date: ' 18 февраля 1999',
-              ),
-              CommentBlock(
-                imageURL: 'https://images.pexels.com/photos/247878/pexels-photo-247878.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                name: 'Merlin Mono',
-                comment: 'Very cool',
-                date: ' 18 июль 2911',
-              ),
-              CommentBlock(
-                imageURL: 'https://images.pexels.com/photos/247878/pexels-photo-247878.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                name: 'Narl Jon',
-                comment: 'Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem not bad',
-                date: ' 18 апрель 2000',
-              ),
-            ],
-          ),
-        );
+            );
+          });
       }
     );
   }

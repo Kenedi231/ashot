@@ -10,7 +10,7 @@ part 'profile_dto.g.dart';
 @freezed
 abstract class ProfileDTO with _$ProfileDTO {
   factory ProfileDTO({
-    @JsonKey(ignore: true) String id,
+    @JsonKey(ignore: false) String id,
     @required String name,
     @required String email,
     String address,
