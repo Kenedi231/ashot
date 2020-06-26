@@ -31,7 +31,12 @@ class ReviewBody extends StatelessWidget {
             ),
             RaisedButton(
               color: Colors.orangeAccent,
-              onPressed: () {},
+              onPressed: () {
+
+                context
+                  .bloc<ReviewBloc>()
+                  .add(const ReviewEvent.saved());
+              },
               child: const Text('Оставить отзыв'),
             ),
           ],

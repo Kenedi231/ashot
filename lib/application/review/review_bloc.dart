@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ashot/domain/review/i_review_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,8 +16,9 @@ part 'review_state.dart';
 
 @injectable
 class ReviewBloc extends Bloc<ReviewEvent, ReviewState> {
+  final IReviewRepository _reviewRepository;
 
-  ReviewBloc();
+  ReviewBloc(this._reviewRepository);
 
   @override
   ReviewState get initialState => ReviewState.initial();
@@ -47,7 +49,8 @@ class ReviewBloc extends Bloc<ReviewEvent, ReviewState> {
         );
       },
       saved: (e) async* {
-        // todo 
+        // TODO: validate review
+        _reviewRepository.addNewReview(state.review);
       },
     );
   }

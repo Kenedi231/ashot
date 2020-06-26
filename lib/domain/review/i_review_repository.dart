@@ -8,4 +8,5 @@ abstract class IReviewRepository {
   Future<User> getUser();
   Stream<Either<ReviewFailure, List<Review>>> watchAll(String id);
   Future<Either<ReviewFailure, Unit>> update(Review updatedReview);
+  Future<Either<ReviewFailure, Unit>> addNewReview(Review newReview);
 }

@@ -40,7 +40,7 @@ void $initGetIt(GetIt g, {String environment}) {
   g.registerFactory<ProfileBloc>(() => ProfileBloc(g<IProfileRepository>()));
   g.registerFactory<ProfileFormBloc>(
       () => ProfileFormBloc(g<IProfileRepository>()));
-  g.registerFactory<ReviewBloc>(() => ReviewBloc());
+  g.registerFactory<ReviewBloc>(() => ReviewBloc(g<IReviewRepository>()));
   g.registerFactory<ReviewWatcherBloc>(
       () => ReviewWatcherBloc(g<IReviewRepository>()));
   g.registerFactory<SignInFormBloc>(() => SignInFormBloc(g<IAuthFacade>()));
