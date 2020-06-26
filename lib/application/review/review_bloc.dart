@@ -1,14 +1,13 @@
 import 'dart:async';
 
-import 'package:ashot/domain/review/i_review_repository.dart';
-import 'package:ashot/domain/review/review.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
-import 'package:ashot/domain/core/value_objects.dart';
+import '../../domain/core/value_objects.dart';
+import '../../domain/review/review.dart';
 
 part 'review_bloc.freezed.dart';
 part 'review_event.dart';

@@ -1,11 +1,12 @@
-import 'package:ashot/domain/profile/i_profile_repository.dart';
-import 'package:ashot/domain/profile/profile.dart';
-import 'package:ashot/domain/profile/profile_failure.dart';
-import 'package:ashot/infrastructure/core/firestore_helpers.dart';
-import 'package:ashot/infrastructure/profile/profile_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../domain/profile/i_profile_repository.dart';
+import '../../domain/profile/profile.dart';
+import '../../domain/profile/profile_failure.dart';
+import '../core/firestore_helpers.dart';
+import 'profile_dto.dart';
 
 @prod
 @lazySingleton

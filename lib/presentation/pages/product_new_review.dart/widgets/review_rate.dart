@@ -1,5 +1,6 @@
-import 'package:ashot/presentation/widgets/stars_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../../../widgets/stars_widget.dart';
 
 class ReviewRate extends StatelessWidget {
   final double _rate;

@@ -1,7 +1,7 @@
-import 'package:ashot/application/review/review_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../application/review/review_bloc.dart';
 import 'review_comment.dart';
 import 'review_rate.dart';
 
@@ -32,7 +32,7 @@ class ReviewBody extends StatelessWidget {
             RaisedButton(
               color: Colors.orangeAccent,
               onPressed: () {},
-              child: Text('Оставить отзыв'),
+              child: const Text('Оставить отзыв'),
             ),
           ],
         ),

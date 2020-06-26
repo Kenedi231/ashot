@@ -17,13 +17,15 @@ class _$ReviewTearOff {
       UniqueId product_id,
       Rate rate,
       Comment comment,
-      Profile user}) {
+      Profile user,
+      Timestamp date}) {
     return _Review(
       id: id,
       product_id: product_id,
       rate: rate,
       comment: comment,
       user: user,
+      date: date,
     );
   }
 }
@@ -37,6 +39,7 @@ mixin _$Review {
   Rate get rate;
   Comment get comment;
   Profile get user;
+  Timestamp get date;
 
   $ReviewCopyWith<Review> get copyWith;
 }
@@ -49,7 +52,8 @@ abstract class $ReviewCopyWith<$Res> {
       UniqueId product_id,
       Rate rate,
       Comment comment,
-      Profile user});
+      Profile user,
+      Timestamp date});
 
   $ProfileCopyWith<$Res> get user;
 }
@@ -68,6 +72,7 @@ class _$ReviewCopyWithImpl<$Res> implements $ReviewCopyWith<$Res> {
     Object rate = freezed,
     Object comment = freezed,
     Object user = freezed,
+    Object date = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as UniqueId,
@@ -76,6 +81,7 @@ class _$ReviewCopyWithImpl<$Res> implements $ReviewCopyWith<$Res> {
       rate: rate == freezed ? _value.rate : rate as Rate,
       comment: comment == freezed ? _value.comment : comment as Comment,
       user: user == freezed ? _value.user : user as Profile,
+      date: date == freezed ? _value.date : date as Timestamp,
     ));
   }
 
@@ -99,7 +105,8 @@ abstract class _$ReviewCopyWith<$Res> implements $ReviewCopyWith<$Res> {
       UniqueId product_id,
       Rate rate,
       Comment comment,
-      Profile user});
+      Profile user,
+      Timestamp date});
 
   @override
   $ProfileCopyWith<$Res> get user;
@@ -120,6 +127,7 @@ class __$ReviewCopyWithImpl<$Res> extends _$ReviewCopyWithImpl<$Res>
     Object rate = freezed,
     Object comment = freezed,
     Object user = freezed,
+    Object date = freezed,
   }) {
     return _then(_Review(
       id: id == freezed ? _value.id : id as UniqueId,
@@ -128,13 +136,19 @@ class __$ReviewCopyWithImpl<$Res> extends _$ReviewCopyWithImpl<$Res>
       rate: rate == freezed ? _value.rate : rate as Rate,
       comment: comment == freezed ? _value.comment : comment as Comment,
       user: user == freezed ? _value.user : user as Profile,
+      date: date == freezed ? _value.date : date as Timestamp,
     ));
   }
 }
 
 class _$_Review with DiagnosticableTreeMixin implements _Review {
   const _$_Review(
-      {this.id, this.product_id, this.rate, this.comment, this.user});
+      {this.id,
+      this.product_id,
+      this.rate,
+      this.comment,
+      this.user,
+      this.date});
 
   @override
   final UniqueId id;
@@ -146,10 +160,12 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
   final Comment comment;
   @override
   final Profile user;
+  @override
+  final Timestamp date;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Review(id: $id, product_id: $product_id, rate: $rate, comment: $comment, user: $user)';
+    return 'Review(id: $id, product_id: $product_id, rate: $rate, comment: $comment, user: $user, date: $date)';
   }
 
   @override
@@ -161,7 +177,8 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
       ..add(DiagnosticsProperty('product_id', product_id))
       ..add(DiagnosticsProperty('rate', rate))
       ..add(DiagnosticsProperty('comment', comment))
-      ..add(DiagnosticsProperty('user', user));
+      ..add(DiagnosticsProperty('user', user))
+      ..add(DiagnosticsProperty('date', date));
   }
 
   @override
@@ -179,7 +196,9 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
                 const DeepCollectionEquality()
                     .equals(other.comment, comment)) &&
             (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.date, date) ||
+                const DeepCollectionEquality().equals(other.date, date)));
   }
 
   @override
@@ -189,7 +208,8 @@ class _$_Review with DiagnosticableTreeMixin implements _Review {
       const DeepCollectionEquality().hash(product_id) ^
       const DeepCollectionEquality().hash(rate) ^
       const DeepCollectionEquality().hash(comment) ^
-      const DeepCollectionEquality().hash(user);
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(date);
 
   @override
   _$ReviewCopyWith<_Review> get copyWith =>
@@ -202,7 +222,8 @@ abstract class _Review implements Review {
       UniqueId product_id,
       Rate rate,
       Comment comment,
-      Profile user}) = _$_Review;
+      Profile user,
+      Timestamp date}) = _$_Review;
 
   @override
   UniqueId get id;
@@ -214,6 +235,8 @@ abstract class _Review implements Review {
   Comment get comment;
   @override
   Profile get user;
+  @override
+  Timestamp get date;
   @override
   _$ReviewCopyWith<_Review> get copyWith;
 }

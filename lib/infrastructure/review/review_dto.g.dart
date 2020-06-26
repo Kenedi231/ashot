@@ -14,6 +14,7 @@ _$_ReviewDTO _$_$_ReviewDTOFromJson(Map<String, dynamic> json) {
     user: json['user'] == null
         ? null
         : ProfileDTO.fromJson(json['user'] as Map<String, dynamic>),
+    date: json['date'] == null ? null : DateTime.parse(json['date'] as String),
   );
 }
 
@@ -23,4 +24,5 @@ Map<String, dynamic> _$_$_ReviewDTOToJson(_$_ReviewDTO instance) =>
       'product_id': instance.product_id,
       'rate': instance.rate,
       'user': instance.user?.toJson(),
+      'date': instance.date?.toIso8601String(),
     };

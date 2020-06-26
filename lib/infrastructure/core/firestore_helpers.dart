@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
 
 import '../../domain/auth/i_auth_facade.dart';
 import '../../domain/auth/user.dart';

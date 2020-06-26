@@ -20,13 +20,15 @@ class _$ReviewDTOTearOff {
       @required String comment,
       @required String product_id,
       double rate,
-      ProfileDTO user}) {
+      ProfileDTO user,
+      DateTime date}) {
     return _ReviewDTO(
       id: id,
       comment: comment,
       product_id: product_id,
       rate: rate,
       user: user,
+      date: date,
     );
   }
 }
@@ -41,6 +43,7 @@ mixin _$ReviewDTO {
   String get product_id;
   double get rate;
   ProfileDTO get user;
+  DateTime get date;
 
   Map<String, dynamic> toJson();
   $ReviewDTOCopyWith<ReviewDTO> get copyWith;
@@ -54,7 +57,8 @@ abstract class $ReviewDTOCopyWith<$Res> {
       String comment,
       String product_id,
       double rate,
-      ProfileDTO user});
+      ProfileDTO user,
+      DateTime date});
 
   $ProfileDTOCopyWith<$Res> get user;
 }
@@ -73,6 +77,7 @@ class _$ReviewDTOCopyWithImpl<$Res> implements $ReviewDTOCopyWith<$Res> {
     Object product_id = freezed,
     Object rate = freezed,
     Object user = freezed,
+    Object date = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -81,6 +86,7 @@ class _$ReviewDTOCopyWithImpl<$Res> implements $ReviewDTOCopyWith<$Res> {
           product_id == freezed ? _value.product_id : product_id as String,
       rate: rate == freezed ? _value.rate : rate as double,
       user: user == freezed ? _value.user : user as ProfileDTO,
+      date: date == freezed ? _value.date : date as DateTime,
     ));
   }
 
@@ -105,7 +111,8 @@ abstract class _$ReviewDTOCopyWith<$Res> implements $ReviewDTOCopyWith<$Res> {
       String comment,
       String product_id,
       double rate,
-      ProfileDTO user});
+      ProfileDTO user,
+      DateTime date});
 
   @override
   $ProfileDTOCopyWith<$Res> get user;
@@ -126,6 +133,7 @@ class __$ReviewDTOCopyWithImpl<$Res> extends _$ReviewDTOCopyWithImpl<$Res>
     Object product_id = freezed,
     Object rate = freezed,
     Object user = freezed,
+    Object date = freezed,
   }) {
     return _then(_ReviewDTO(
       id: id == freezed ? _value.id : id as String,
@@ -134,6 +142,7 @@ class __$ReviewDTOCopyWithImpl<$Res> extends _$ReviewDTOCopyWithImpl<$Res>
           product_id == freezed ? _value.product_id : product_id as String,
       rate: rate == freezed ? _value.rate : rate as double,
       user: user == freezed ? _value.user : user as ProfileDTO,
+      date: date == freezed ? _value.date : date as DateTime,
     ));
   }
 }
@@ -145,7 +154,8 @@ class _$_ReviewDTO implements _ReviewDTO {
       @required this.comment,
       @required this.product_id,
       this.rate,
-      this.user})
+      this.user,
+      this.date})
       : assert(comment != null),
         assert(product_id != null);
 
@@ -163,10 +173,12 @@ class _$_ReviewDTO implements _ReviewDTO {
   final double rate;
   @override
   final ProfileDTO user;
+  @override
+  final DateTime date;
 
   @override
   String toString() {
-    return 'ReviewDTO(id: $id, comment: $comment, product_id: $product_id, rate: $rate, user: $user)';
+    return 'ReviewDTO(id: $id, comment: $comment, product_id: $product_id, rate: $rate, user: $user, date: $date)';
   }
 
   @override
@@ -184,7 +196,9 @@ class _$_ReviewDTO implements _ReviewDTO {
             (identical(other.rate, rate) ||
                 const DeepCollectionEquality().equals(other.rate, rate)) &&
             (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.date, date) ||
+                const DeepCollectionEquality().equals(other.date, date)));
   }
 
   @override
@@ -194,7 +208,8 @@ class _$_ReviewDTO implements _ReviewDTO {
       const DeepCollectionEquality().hash(comment) ^
       const DeepCollectionEquality().hash(product_id) ^
       const DeepCollectionEquality().hash(rate) ^
-      const DeepCollectionEquality().hash(user);
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(date);
 
   @override
   _$ReviewDTOCopyWith<_ReviewDTO> get copyWith =>
@@ -212,7 +227,8 @@ abstract class _ReviewDTO implements ReviewDTO {
       @required String comment,
       @required String product_id,
       double rate,
-      ProfileDTO user}) = _$_ReviewDTO;
+      ProfileDTO user,
+      DateTime date}) = _$_ReviewDTO;
 
   factory _ReviewDTO.fromJson(Map<String, dynamic> json) =
       _$_ReviewDTO.fromJson;
@@ -228,6 +244,8 @@ abstract class _ReviewDTO implements ReviewDTO {
   double get rate;
   @override
   ProfileDTO get user;
+  @override
+  DateTime get date;
   @override
   _$ReviewDTOCopyWith<_ReviewDTO> get copyWith;
 }

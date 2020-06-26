@@ -21,7 +21,7 @@ class CatalogRepository implements ICatalogRepository {
   @override
   Stream<Either<CatalogFailure, List<Product>>> watchAll() async* {
     final productsCollection = await _firestore.products();
-
+    
     yield* productsCollection
         .snapshots()
         .map<Either<CatalogFailure, List<Product>>>((snapshot) {

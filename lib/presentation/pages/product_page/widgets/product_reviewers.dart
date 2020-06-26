@@ -1,10 +1,9 @@
-import 'package:ashot/application/review_watcher/review_watcher_bloc.dart';
-import 'package:ashot/injection.dart';
-import 'package:ashot/presentation/routes/router.gr.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
+import '../../../../application/review_watcher/review_watcher_bloc.dart';
+import '../../../routes/router.gr.dart';
 import 'comment_block.dart';
 
 class ProductReviewers extends StatelessWidget {
@@ -18,7 +17,8 @@ class ProductReviewers extends StatelessWidget {
           loadInProgress: (_) => Container(),
           loadFailure: (_) => Container(),
           loadSuccess: (state) {
-            print(state.reviews);
+            final dateFormat = DateFormat('dd MMMM yyyy', 'ru');
+
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -34,12 +34,12 @@ class ProductReviewers extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      InkWell(
+                      if (state.possibleComment) InkWell(
                         onTap: () {
                           Router.navigator.pushNamed(Router.productNewReview);
                         },
                         child: const Text('Написать отзыв'),
-                      )
+                      ) else const SizedBox(),
                     ],
                   ),
                   if (state.reviews.isEmpty) const Text('На этот товар нет обзоров. Станьте первыми!')
@@ -48,7 +48,7 @@ class ProductReviewers extends StatelessWidget {
                       imageURL: review.user.avatar.getOrElse(''),
                       name: review.user.name.getOrElse(''),
                       comment: review.comment.getOrElse(''),
-                      date: ' 18 февраля 1999',
+                      date: ' ${dateFormat.format(review.date.toDate())}',
                       rate: review.rate.getOrElse(0.0),
                     )
                     ).toList(),

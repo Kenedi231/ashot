@@ -1,12 +1,14 @@
 import 'dart:async';
 
-import 'package:ashot/domain/review/i_review_repository.dart';
-import 'package:ashot/domain/review/review.dart';
-import 'package:ashot/domain/review/review_failure.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../domain/auth/user.dart';
+import '../../domain/review/i_review_repository.dart';
+import '../../domain/review/review.dart';
+import '../../domain/review/review_failure.dart';
 
 part 'review_watcher_bloc.freezed.dart';
 part 'review_watcher_event.dart';
@@ -22,6 +24,13 @@ class ReviewWatcherBloc
   StreamSubscription<Either<ReviewFailure, List<Review>>>
       _reviewStreamSubscription;
 
+  bool _checkPossibleComment(List<Review> reviews, String userId) {
+    for (final review in reviews) {
+      if (review.user.id.getOrCrash() == userId) return false;
+    }
+    return true;
+  }
+
   @override
   ReviewWatcherState get initialState => const ReviewWatcherState.initial();
 
@@ -36,9 +45,10 @@ class ReviewWatcherBloc
             (reviews) => add(ReviewWatcherEvent.reviewReceived(reviews)));
       },
       reviewReceived: (e) async* {
+        final User user = await _reviewRepository.getUser();
         yield e.failureOrReviews.fold(
           (f) => ReviewWatcherState.loadFailure(f),
-          (reviews) => ReviewWatcherState.loadSuccess(reviews),
+          (reviews) => ReviewWatcherState.loadSuccess(reviews, _checkPossibleComment(reviews, user.id.getOrCrash())),
         );
       },
     );

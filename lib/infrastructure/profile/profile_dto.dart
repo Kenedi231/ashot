@@ -1,7 +1,7 @@
-import 'package:ashot/domain/profile/profile.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../domain/core/value_objects.dart';
+import '../../domain/profile/profile.dart';
 import '../core/firestore_helpers.dart';
 
 part 'profile_dto.freezed.dart';

@@ -1,11 +1,12 @@
-import 'package:ashot/infrastructure/review/review_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/auth/user.dart';
 import '../../domain/review/i_review_repository.dart';
 import '../../domain/review/review.dart';
 import '../../domain/review/review_failure.dart';
 import '../core/firestore_helpers.dart';
+import 'review_dto.dart';
 
 @prod
 @lazySingleton
@@ -21,7 +22,7 @@ class ReviewRepository implements IReviewRepository {
     final documents = (
       await collection.where('product_id', isEqualTo: id).getDocuments()
     ).documents;
-    
+
     yield right<ReviewFailure, List<Review>>(
       List.from(
         documents.map(
@@ -35,4 +36,10 @@ class ReviewRepository implements IReviewRepository {
   Future<Either<ReviewFailure, Unit>> update(Review updatedReview) async {
     return left(const ReviewFailure.unableToUpdate());
   }
+
+  @override
+  Future<User> getUser() {
+    return _firestore.authentificatedUser();
+  }
+
 }
