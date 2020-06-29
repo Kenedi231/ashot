@@ -32,7 +32,7 @@ abstract class ReviewDTO with _$ReviewDTO {
   }
 
   factory ReviewDTO.fromJson(Map<String, dynamic> json) {
-    json["date"] = (json["date"] as Timestamp).toDate().toString();
+    json['date'] = (json['date'] as Timestamp).toDate().toString();
     return _$ReviewDTOFromJson(json);
   }
 

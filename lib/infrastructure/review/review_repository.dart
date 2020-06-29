@@ -1,7 +1,7 @@
 import 'package:ashot/domain/core/value_objects.dart';
-import 'package:ashot/domain/profile/profile.dart';
 import 'package:ashot/infrastructure/profile/profile_dto.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/auth/user.dart';
@@ -51,18 +51,25 @@ class ReviewRepository implements IReviewRepository {
 
   @override
   Future<Either<ReviewFailure, Unit>> addNewReview(Review newReview) async {
-    final firestoreCollection = await _firestore.reviews();
-    final doc = await _firestore.userDocument();
-    print(doc);
-    doc.snapshots().map((data) {
-      Profile profile = ProfileDTO.fromFirestore(data).toDomain();
-      print(profile);
-    });
-    Review review = newReview.copyWith(
-      product_id: UniqueId.fromUniqueString(productId)
+    final reviewsCollection = await _firestore.reviews();
+    final doc = await (await _firestore.userDocument()).snapshots().first;
+    final profile = ProfileDTO.fromFirestore(doc).toDomain();
+    final Review review = newReview.copyWith(
+      id: UniqueId.fromUniqueString('new_review'),
+      product_id: UniqueId.fromUniqueString(productId),
+      user: profile,
+      date: Timestamp.now(),
     );
-    print(review);
-    throw UnimplementedError();
+
+    try {
+      final Map<String, dynamic> json = ReviewDTO.fromDomain(review).toJson();  
+      json['date'] = Timestamp.fromDate(DateTime.parse(json['date'] as String));
+      await reviewsCollection.add(json);
+
+      return right(unit);
+    } on PlatformException catch (e) {
+      return left(const ReviewFailure.unexpected());
+    }
   }
 
 }
