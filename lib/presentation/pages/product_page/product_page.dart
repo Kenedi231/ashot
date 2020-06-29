@@ -22,7 +22,7 @@ class ProductPage extends StatelessWidget implements AutoRouteWrapper {
     providers: [
       BlocProvider<ReviewWatcherBloc>(
         create: (context) => getIt<ReviewWatcherBloc>()
-          ..add(ReviewWatcherEvent.watchAll(_product.id.getOrCrash()))
+          ..add(ReviewWatcherEvent.watchAll(_product))
       ),
       BlocProvider<CartBloc>(
         create: (context) => getIt<CartBloc>()

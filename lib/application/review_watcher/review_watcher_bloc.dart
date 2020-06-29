@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/auth/user.dart';
+import '../../domain/catalog/product.dart';
 import '../../domain/review/i_review_repository.dart';
 import '../../domain/review/review.dart';
 import '../../domain/review/review_failure.dart';
@@ -41,7 +42,7 @@ class ReviewWatcherBloc
     yield* event.map(
       watchAll: (e) async* {
         await _reviewStreamSubscription?.cancel();
-        _reviewRepository.watchAll(e.id).listen(
+        _reviewRepository.watchAll(e.product).listen(
             (reviews) => add(ReviewWatcherEvent.reviewReceived(reviews)));
       },
       reviewReceived: (e) async* {

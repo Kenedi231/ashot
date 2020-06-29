@@ -12,9 +12,9 @@ T _$identity<T>(T value) => value;
 class _$ReviewWatcherEventTearOff {
   const _$ReviewWatcherEventTearOff();
 
-  _WatchAll watchAll(String id) {
+  _WatchAll watchAll(Product product) {
     return _WatchAll(
-      id,
+      product,
     );
   }
 
@@ -32,14 +32,14 @@ const $ReviewWatcherEvent = _$ReviewWatcherEventTearOff();
 mixin _$ReviewWatcherEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result watchAll(String id),
+    @required Result watchAll(Product product),
     @required
         Result reviewReceived(
             Either<ReviewFailure, List<Review>> failureOrReviews),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result watchAll(String id),
+    Result watchAll(Product product),
     Result reviewReceived(Either<ReviewFailure, List<Review>> failureOrReviews),
     @required Result orElse(),
   });
@@ -74,7 +74,9 @@ class _$ReviewWatcherEventCopyWithImpl<$Res>
 abstract class _$WatchAllCopyWith<$Res> {
   factory _$WatchAllCopyWith(_WatchAll value, $Res Function(_WatchAll) then) =
       __$WatchAllCopyWithImpl<$Res>;
-  $Res call({String id});
+  $Res call({Product product});
+
+  $ProductCopyWith<$Res> get product;
 }
 
 class __$WatchAllCopyWithImpl<$Res>
@@ -88,36 +90,46 @@ class __$WatchAllCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
+    Object product = freezed,
   }) {
     return _then(_WatchAll(
-      id == freezed ? _value.id : id as String,
+      product == freezed ? _value.product : product as Product,
     ));
+  }
+
+  @override
+  $ProductCopyWith<$Res> get product {
+    if (_value.product == null) {
+      return null;
+    }
+    return $ProductCopyWith<$Res>(_value.product, (value) {
+      return _then(_value.copyWith(product: value));
+    });
   }
 }
 
 class _$_WatchAll implements _WatchAll {
-  const _$_WatchAll(this.id) : assert(id != null);
+  const _$_WatchAll(this.product) : assert(product != null);
 
   @override
-  final String id;
+  final Product product;
 
   @override
   String toString() {
-    return 'ReviewWatcherEvent.watchAll(id: $id)';
+    return 'ReviewWatcherEvent.watchAll(product: $product)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _WatchAll &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+            (identical(other.product, product) ||
+                const DeepCollectionEquality().equals(other.product, product)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(product);
 
   @override
   _$WatchAllCopyWith<_WatchAll> get copyWith =>
@@ -126,26 +138,26 @@ class _$_WatchAll implements _WatchAll {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result watchAll(String id),
+    @required Result watchAll(Product product),
     @required
         Result reviewReceived(
             Either<ReviewFailure, List<Review>> failureOrReviews),
   }) {
     assert(watchAll != null);
     assert(reviewReceived != null);
-    return watchAll(id);
+    return watchAll(product);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result watchAll(String id),
+    Result watchAll(Product product),
     Result reviewReceived(Either<ReviewFailure, List<Review>> failureOrReviews),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (watchAll != null) {
-      return watchAll(id);
+      return watchAll(product);
     }
     return orElse();
   }
@@ -177,9 +189,9 @@ class _$_WatchAll implements _WatchAll {
 }
 
 abstract class _WatchAll implements ReviewWatcherEvent {
-  const factory _WatchAll(String id) = _$_WatchAll;
+  const factory _WatchAll(Product product) = _$_WatchAll;
 
-  String get id;
+  Product get product;
   _$WatchAllCopyWith<_WatchAll> get copyWith;
 }
 
@@ -245,7 +257,7 @@ class _$_ReviewReceived implements _ReviewReceived {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result watchAll(String id),
+    @required Result watchAll(Product product),
     @required
         Result reviewReceived(
             Either<ReviewFailure, List<Review>> failureOrReviews),
@@ -258,7 +270,7 @@ class _$_ReviewReceived implements _ReviewReceived {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result watchAll(String id),
+    Result watchAll(Product product),
     Result reviewReceived(Either<ReviewFailure, List<Review>> failureOrReviews),
     @required Result orElse(),
   }) {

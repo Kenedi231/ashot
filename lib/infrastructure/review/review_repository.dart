@@ -1,14 +1,16 @@
-import 'package:ashot/domain/core/value_objects.dart';
-import 'package:ashot/infrastructure/profile/profile_dto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/auth/user.dart';
+import '../../domain/catalog/product.dart';
+import '../../domain/core/value_objects.dart';
 import '../../domain/review/i_review_repository.dart';
 import '../../domain/review/review.dart';
 import '../../domain/review/review_failure.dart';
+import '../catalog/catalog_dto.dart';
 import '../core/firestore_helpers.dart';
+import '../profile/profile_dto.dart';
 import 'review_dto.dart';
 
 @prod
@@ -20,14 +22,17 @@ class ReviewRepository implements IReviewRepository {
   ReviewRepository(this._firestore);
 
   List<Review> reviews;
-  String productId;
+  Product currentProduct;
 
   @override
-  Stream<Either<ReviewFailure, List<Review>>> watchAll(String id) async* {
-    productId = id;
+  Stream<Either<ReviewFailure, List<Review>>> watchAll(Product product) async* {
+    currentProduct = product;
     final collection = await _firestore.reviews();
     final documents = (
-      await collection.where('product_id', isEqualTo: id).getDocuments()
+      await collection.where(
+        'product_id',
+        isEqualTo: product.id.getOrCrash(),
+      ).getDocuments()
     ).documents;
 
     reviews = List.from(
@@ -51,20 +56,37 @@ class ReviewRepository implements IReviewRepository {
 
   @override
   Future<Either<ReviewFailure, Unit>> addNewReview(Review newReview) async {
+    final productsCollection = await _firestore.products();
     final reviewsCollection = await _firestore.reviews();
     final doc = await (await _firestore.userDocument()).snapshots().first;
+
     final profile = ProfileDTO.fromFirestore(doc).toDomain();
     final Review review = newReview.copyWith(
       id: UniqueId.fromUniqueString('new_review'),
-      product_id: UniqueId.fromUniqueString(productId),
+      product_id: UniqueId.fromUniqueString(currentProduct.id.getOrCrash()),
       user: profile,
       date: Timestamp.now(),
+    );
+
+    final countReviews = reviews.length + 1;
+    final double commonRate = reviews.fold(
+      newReview.rate.getOrElse(0.0),
+      (previousValue, element) => previousValue + element.rate.getOrElse(0.0),
+    );
+    
+    final updatedProduct = currentProduct.copyWith(
+      countReviews: Count(countReviews),
+      rate: Rate(commonRate / countReviews),
     );
 
     try {
       final Map<String, dynamic> json = ReviewDTO.fromDomain(review).toJson();  
       json['date'] = Timestamp.fromDate(DateTime.parse(json['date'] as String));
       await reviewsCollection.add(json);
+
+      await productsCollection
+        .document(updatedProduct.id.getOrCrash())
+        .setData(ProductDto.fromDomain(updatedProduct).toJson());
 
       return right(unit);
     } on PlatformException catch (e) {
