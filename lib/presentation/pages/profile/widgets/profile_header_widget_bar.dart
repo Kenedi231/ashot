@@ -34,6 +34,13 @@ class ProfileHeaderBar extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
             color: _titlePadding != 30 ? Colors.black : Colors.white,
+            shadows: [
+              Shadow(
+                blurRadius: 15.0,
+                color: Colors.black,
+                offset: const Offset(2.0, 1.0),
+              )
+            ]
           ),
         ),
         collapseMode: CollapseMode.parallax,
