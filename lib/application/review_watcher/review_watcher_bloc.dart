@@ -41,6 +41,7 @@ class ReviewWatcherBloc
   ) async* {
     yield* event.map(
       watchAll: (e) async* {
+        yield const ReviewWatcherState.loadInProgress();
         await _reviewStreamSubscription?.cancel();
         _reviewRepository.watchAll(e.product).listen(
             (reviews) => add(ReviewWatcherEvent.reviewReceived(reviews)));

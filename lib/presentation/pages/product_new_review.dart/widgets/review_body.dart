@@ -1,3 +1,4 @@
+import 'package:ashot/presentation/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,10 +33,11 @@ class ReviewBody extends StatelessWidget {
             RaisedButton(
               color: Colors.orangeAccent,
               onPressed: () {
-
                 context
                   .bloc<ReviewBloc>()
                   .add(const ReviewEvent.saved());
+
+                Router.navigator.pop();
               },
               child: const Text('Оставить отзыв'),
             ),
