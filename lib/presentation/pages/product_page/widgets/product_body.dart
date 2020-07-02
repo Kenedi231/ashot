@@ -22,6 +22,8 @@ class ProductBody extends StatelessWidget {
           name: _product.name.getOrElse(''),
           price: _product.price.getOrElse(0),
           description: _product.description.getOrElse(''),
+          rate: _product.rate.getOrElse(0.0),
+          countReviews: _product.countReviews.getOrElse(0),
         ),
       ],
     );

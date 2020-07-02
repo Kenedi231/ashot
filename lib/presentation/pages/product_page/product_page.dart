@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/catalog/cart/cart_bloc.dart';
+import '../../../application/review_watcher/review_watcher_bloc.dart';
 import '../../../domain/catalog/product.dart';
 import '../../../injection.dart';
 import 'widgets/product_body.dart';
@@ -19,10 +20,14 @@ class ProductPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget get wrappedRoute => MultiBlocProvider(
     providers: [
+      BlocProvider<ReviewWatcherBloc>(
+        create: (context) => getIt<ReviewWatcherBloc>()
+          ..add(ReviewWatcherEvent.watchAll(_product))
+      ),
       BlocProvider<CartBloc>(
         create: (context) => getIt<CartBloc>()
           ..add(const CartEvent.cartReceived())
-      )
+      ),
     ],
     child: this,
   );

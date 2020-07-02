@@ -1,10 +1,10 @@
-import 'package:ashot/domain/cart/cart_item.dart';
-import 'package:ashot/domain/cart/i_cart_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../domain/cart/cart.dart';
+import '../../../domain/cart/cart_item.dart';
+import '../../../domain/cart/i_cart_repository.dart';
 import '../../../domain/catalog/product.dart';
 
 part 'cart_bloc.freezed.dart';

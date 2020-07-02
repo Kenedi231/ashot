@@ -1,7 +1,7 @@
-import 'package:ashot/domain/profile/profile.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../domain/core/value_objects.dart';
+import '../../domain/profile/profile.dart';
 import '../core/firestore_helpers.dart';
 
 part 'profile_dto.freezed.dart';
@@ -10,7 +10,7 @@ part 'profile_dto.g.dart';
 @freezed
 abstract class ProfileDTO with _$ProfileDTO {
   factory ProfileDTO({
-    @JsonKey(ignore: true) String id,
+    @JsonKey(ignore: false) String id,
     @required String name,
     @required String email,
     String address,

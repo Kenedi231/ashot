@@ -12,6 +12,8 @@ _$_CatalogDto _$_$_CatalogDtoFromJson(Map<String, dynamic> json) {
     description: json['description'] as String,
     price: json['price'] as int,
     imageURL: json['imageURL'] as String,
+    rate: (json['rate'] as num)?.toDouble(),
+    countReviews: json['countReviews'] as int,
   );
 }
 
@@ -21,4 +23,6 @@ Map<String, dynamic> _$_$_CatalogDtoToJson(_$_CatalogDto instance) =>
       'description': instance.description,
       'price': instance.price,
       'imageURL': instance.imageURL,
+      'rate': instance.rate,
+      'countReviews': instance.countReviews,
     };

@@ -17,8 +17,12 @@ import 'package:ashot/infrastructure/catalog/catalog_repository.dart';
 import 'package:ashot/domain/catalog/i_catalog_repository.dart';
 import 'package:ashot/infrastructure/profile/profile_repository.dart';
 import 'package:ashot/domain/profile/i_profile_repository.dart';
+import 'package:ashot/infrastructure/review/review_repository.dart';
+import 'package:ashot/domain/review/i_review_repository.dart';
 import 'package:ashot/application/profile/profile_watcher/profile_bloc.dart';
 import 'package:ashot/application/profile/profile_form/profile_form_bloc.dart';
+import 'package:ashot/application/review/review_bloc.dart';
+import 'package:ashot/application/review_watcher/review_watcher_bloc.dart';
 import 'package:ashot/application/auth/sign_in_form/sign_in_form_bloc.dart';
 import 'package:ashot/application/auth/auth_bloc.dart';
 import 'package:ashot/application/catalog/cart/cart_bloc.dart';
@@ -36,6 +40,9 @@ void $initGetIt(GetIt g, {String environment}) {
   g.registerFactory<ProfileBloc>(() => ProfileBloc(g<IProfileRepository>()));
   g.registerFactory<ProfileFormBloc>(
       () => ProfileFormBloc(g<IProfileRepository>()));
+  g.registerFactory<ReviewBloc>(() => ReviewBloc(g<IReviewRepository>()));
+  g.registerFactory<ReviewWatcherBloc>(
+      () => ReviewWatcherBloc(g<IReviewRepository>()));
   g.registerFactory<SignInFormBloc>(() => SignInFormBloc(g<IAuthFacade>()));
   g.registerFactory<AuthBloc>(() => AuthBloc(g<IAuthFacade>()));
   g.registerFactory<CartBloc>(
@@ -56,6 +63,8 @@ void $initGetIt(GetIt g, {String environment}) {
         () => CatalogRepository(g<Firestore>()));
     g.registerLazySingleton<IProfileRepository>(
         () => ProfileRepository(g<Firestore>()));
+    g.registerLazySingleton<IReviewRepository>(
+        () => ReviewRepository(g<Firestore>()));
   }
 }
 

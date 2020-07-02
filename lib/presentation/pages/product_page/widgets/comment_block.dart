@@ -5,6 +5,7 @@ import '../../../widgets/stars_widget.dart';
 
 class CommentBlock extends StatelessWidget {
   final String _imageURL, _name, _comment, _date;
+  final double _rate;
 
   const CommentBlock({
     Key key,
@@ -12,10 +13,12 @@ class CommentBlock extends StatelessWidget {
     String name,
     String comment,
     String date,
+    double rate,
   }) : _imageURL = imageURL,
        _name = name,
        _comment = comment,
        _date = date,
+       _rate = rate,
        super(key: key);
 
   @override
@@ -48,7 +51,7 @@ class CommentBlock extends StatelessWidget {
                 ),
                 Row(
                   children: <Widget>[
-                    const StarsWidget(size: 18),
+                    StarsWidget(size: 18, rate: _rate),
                     Text(_date)
                   ],
                 ),

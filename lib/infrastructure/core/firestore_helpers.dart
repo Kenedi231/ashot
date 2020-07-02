@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
 
 import '../../domain/auth/i_auth_facade.dart';
 import '../../domain/auth/user.dart';
@@ -25,6 +24,10 @@ extension FirestoreX on Firestore {
 
   Future<CollectionReference> products() async {
     return Firestore.instance.collection('products');
+  }
+
+  Future<CollectionReference> reviews() async {
+    return Firestore.instance.collection('reviews');
   }
 }
 

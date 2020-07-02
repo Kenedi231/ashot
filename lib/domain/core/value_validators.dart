@@ -90,3 +90,19 @@ Either<ValueFailure<int>, int> validateCount(int input) {
     return left(ValueFailure.numberMustBePositive(failedValue: input));
   }
 }
+
+Either<ValueFailure<String>, String> validateComment(String input) {
+  if (input.isEmpty) {
+    return left(ValueFailure.empty(failedValue: input));
+  } else {
+    return right(input);
+  }
+}
+
+Either<ValueFailure<double>, double> validateRate(double input) {
+  if (input is double) {
+    return right(input);
+  } else {
+    return left(ValueFailure.numberMustBePositive(failedValue: input));
+  }
+}

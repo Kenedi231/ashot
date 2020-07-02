@@ -48,7 +48,7 @@ class CatalogWatcherBloc
 
   @override
   Future<void> close() async {
-    await _productStreamSubscription.cancel();
+    await _productStreamSubscription?.cancel();
     return super.close();
   }
 }

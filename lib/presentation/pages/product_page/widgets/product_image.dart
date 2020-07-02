@@ -15,6 +15,9 @@ class ProductImage extends StatelessWidget {
       pinned: true,
       backgroundColor: Colors.white,
       floating: true,
+      iconTheme: const IconThemeData(
+        color: Colors.black,
+      ),
       flexibleSpace: FlexibleSpaceBar(
         background: Hero(
           tag: _imageURL,

@@ -1,8 +1,8 @@
-import 'package:ashot/presentation/pages/home/home_page.dart';
-import 'package:ashot/presentation/pages/product_page/product_page.dart';
 import 'package:auto_route/auto_route_annotations.dart';
 
 import '../pages/home/home_page.dart';
+import '../pages/product_new_review.dart/product_new_review.dart';
+import '../pages/product_page/product_page.dart';
 import '../pages/profile/profile_page.dart';
 import '../pages/profile_edit/profile_edit_page.dart';
 import '../pages/sign_in/sign_in_page.dart';
@@ -18,6 +18,7 @@ class $Router {
   HomePage homePage;
 
   ProductPage productPage;
+  ProductNewReview productNewReview;
   ProfilePage profilePage;
   ProfileEditPage profileEditPage;
 }

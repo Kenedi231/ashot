@@ -1,5 +1,3 @@
-import 'package:ashot/domain/core/errors.dart';
-import 'package:ashot/infrastructure/core/firestore_helpers.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +8,9 @@ import 'package:meta/meta.dart';
 import '../../domain/auth/auth_failure.dart';
 import '../../domain/auth/i_auth_facade.dart';
 import '../../domain/auth/user.dart';
+import '../../domain/core/errors.dart';
 import '../../domain/core/value_objects.dart';
+import '../core/firestore_helpers.dart';
 import 'firebase_user_mapper.dart';
 
 const String defaultAvatar =
@@ -109,7 +109,19 @@ class FirebaseAuthFacade implements IAuthFacade {
         idToken: googleAuthentication.idToken,
       );
 
-      return _firebaseAuth.signInWithCredential(authCredential).then((r) {
+      return _firebaseAuth.signInWithCredential(authCredential).then((r) async {
+        final user = (await getSignedInUser())
+          .getOrElse(() => throw NotAuthenticatedError());
+
+        await _firestore
+          .collection('users')
+          .document(user.id.getOrCrash())
+          .setData({
+            'avatar': googleUser.photoUrl,
+            'id': user.id.getOrCrash(),
+            'name': googleUser.displayName,
+            'email': googleUser.email,
+          });
         return right(unit);
       });
     } on PlatformException catch (_) {

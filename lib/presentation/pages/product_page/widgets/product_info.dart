@@ -5,16 +5,21 @@ import 'product_reviewers.dart';
 
 class ProductInfo extends StatelessWidget {
   final String _name, _description;
-  final int _price;
+  final int _price, _countReviews;
+  final double _rate;
 
   const ProductInfo({
     Key key,
     String name,
     String description,
     int price,
+    double rate,
+    int countReviews,
   }) : _name = name,
        _description = description,
        _price = price,
+       _rate = rate,
+       _countReviews = countReviews,
        super(key: key);
 
 
@@ -51,7 +56,7 @@ class ProductInfo extends StatelessWidget {
                     ],
                   ),
                 ),
-                ProductRate(),
+                ProductRate(rate: _rate, countReviews: _countReviews),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
