@@ -11,14 +11,16 @@ class ReviewComment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: TextField(
+        maxLength: 400,
         autocorrect: false,
         maxLines: null,
         onChanged: (value) {
           _onChange(value);
         },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           border: OutlineInputBorder(),
         ),
       ),

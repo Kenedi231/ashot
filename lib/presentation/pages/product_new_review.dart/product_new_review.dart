@@ -18,7 +18,7 @@ class ProductNewReview extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => getIt<ReviewBloc>(),
-        child: ReviewBody()
+        child: SingleChildScrollView(child: ReviewBody()),
       ),
     );
   }

@@ -326,10 +326,10 @@ class _$ReviewWatcherStateTearOff {
     return const DataTransferInProgress();
   }
 
-  LoadSuccess loadSuccess(List<Review> reviews, bool possibleComment) {
+  LoadSuccess loadSuccess(List<Review> reviews, bool existComment) {
     return LoadSuccess(
       reviews,
-      possibleComment,
+      existComment,
     );
   }
 
@@ -348,14 +348,14 @@ mixin _$ReviewWatcherState {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loadInProgress(),
-    @required Result loadSuccess(List<Review> reviews, bool possibleComment),
+    @required Result loadSuccess(List<Review> reviews, bool existComment),
     @required Result loadFailure(ReviewFailure reviewFailure),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loadInProgress(),
-    Result loadSuccess(List<Review> reviews, bool possibleComment),
+    Result loadSuccess(List<Review> reviews, bool existComment),
     Result loadFailure(ReviewFailure reviewFailure),
     @required Result orElse(),
   });
@@ -426,7 +426,7 @@ class _$Initial implements Initial {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loadInProgress(),
-    @required Result loadSuccess(List<Review> reviews, bool possibleComment),
+    @required Result loadSuccess(List<Review> reviews, bool existComment),
     @required Result loadFailure(ReviewFailure reviewFailure),
   }) {
     assert(initial != null);
@@ -441,7 +441,7 @@ class _$Initial implements Initial {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loadInProgress(),
-    Result loadSuccess(List<Review> reviews, bool possibleComment),
+    Result loadSuccess(List<Review> reviews, bool existComment),
     Result loadFailure(ReviewFailure reviewFailure),
     @required Result orElse(),
   }) {
@@ -526,7 +526,7 @@ class _$DataTransferInProgress implements DataTransferInProgress {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loadInProgress(),
-    @required Result loadSuccess(List<Review> reviews, bool possibleComment),
+    @required Result loadSuccess(List<Review> reviews, bool existComment),
     @required Result loadFailure(ReviewFailure reviewFailure),
   }) {
     assert(initial != null);
@@ -541,7 +541,7 @@ class _$DataTransferInProgress implements DataTransferInProgress {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loadInProgress(),
-    Result loadSuccess(List<Review> reviews, bool possibleComment),
+    Result loadSuccess(List<Review> reviews, bool existComment),
     Result loadFailure(ReviewFailure reviewFailure),
     @required Result orElse(),
   }) {
@@ -592,7 +592,7 @@ abstract class $LoadSuccessCopyWith<$Res> {
   factory $LoadSuccessCopyWith(
           LoadSuccess value, $Res Function(LoadSuccess) then) =
       _$LoadSuccessCopyWithImpl<$Res>;
-  $Res call({List<Review> reviews, bool possibleComment});
+  $Res call({List<Review> reviews, bool existComment});
 }
 
 class _$LoadSuccessCopyWithImpl<$Res>
@@ -608,30 +608,28 @@ class _$LoadSuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object reviews = freezed,
-    Object possibleComment = freezed,
+    Object existComment = freezed,
   }) {
     return _then(LoadSuccess(
       reviews == freezed ? _value.reviews : reviews as List<Review>,
-      possibleComment == freezed
-          ? _value.possibleComment
-          : possibleComment as bool,
+      existComment == freezed ? _value.existComment : existComment as bool,
     ));
   }
 }
 
 class _$LoadSuccess implements LoadSuccess {
-  const _$LoadSuccess(this.reviews, this.possibleComment)
+  const _$LoadSuccess(this.reviews, this.existComment)
       : assert(reviews != null),
-        assert(possibleComment != null);
+        assert(existComment != null);
 
   @override
   final List<Review> reviews;
   @override
-  final bool possibleComment;
+  final bool existComment;
 
   @override
   String toString() {
-    return 'ReviewWatcherState.loadSuccess(reviews: $reviews, possibleComment: $possibleComment)';
+    return 'ReviewWatcherState.loadSuccess(reviews: $reviews, existComment: $existComment)';
   }
 
   @override
@@ -641,16 +639,16 @@ class _$LoadSuccess implements LoadSuccess {
             (identical(other.reviews, reviews) ||
                 const DeepCollectionEquality()
                     .equals(other.reviews, reviews)) &&
-            (identical(other.possibleComment, possibleComment) ||
+            (identical(other.existComment, existComment) ||
                 const DeepCollectionEquality()
-                    .equals(other.possibleComment, possibleComment)));
+                    .equals(other.existComment, existComment)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(reviews) ^
-      const DeepCollectionEquality().hash(possibleComment);
+      const DeepCollectionEquality().hash(existComment);
 
   @override
   $LoadSuccessCopyWith<LoadSuccess> get copyWith =>
@@ -661,14 +659,14 @@ class _$LoadSuccess implements LoadSuccess {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loadInProgress(),
-    @required Result loadSuccess(List<Review> reviews, bool possibleComment),
+    @required Result loadSuccess(List<Review> reviews, bool existComment),
     @required Result loadFailure(ReviewFailure reviewFailure),
   }) {
     assert(initial != null);
     assert(loadInProgress != null);
     assert(loadSuccess != null);
     assert(loadFailure != null);
-    return loadSuccess(reviews, possibleComment);
+    return loadSuccess(reviews, existComment);
   }
 
   @override
@@ -676,13 +674,13 @@ class _$LoadSuccess implements LoadSuccess {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loadInProgress(),
-    Result loadSuccess(List<Review> reviews, bool possibleComment),
+    Result loadSuccess(List<Review> reviews, bool existComment),
     Result loadFailure(ReviewFailure reviewFailure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (loadSuccess != null) {
-      return loadSuccess(reviews, possibleComment);
+      return loadSuccess(reviews, existComment);
     }
     return orElse();
   }
@@ -720,11 +718,11 @@ class _$LoadSuccess implements LoadSuccess {
 }
 
 abstract class LoadSuccess implements ReviewWatcherState {
-  const factory LoadSuccess(List<Review> reviews, bool possibleComment) =
+  const factory LoadSuccess(List<Review> reviews, bool existComment) =
       _$LoadSuccess;
 
   List<Review> get reviews;
-  bool get possibleComment;
+  bool get existComment;
   $LoadSuccessCopyWith<LoadSuccess> get copyWith;
 }
 
@@ -802,7 +800,7 @@ class _$LoadFailure implements LoadFailure {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loadInProgress(),
-    @required Result loadSuccess(List<Review> reviews, bool possibleComment),
+    @required Result loadSuccess(List<Review> reviews, bool existComment),
     @required Result loadFailure(ReviewFailure reviewFailure),
   }) {
     assert(initial != null);
@@ -817,7 +815,7 @@ class _$LoadFailure implements LoadFailure {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loadInProgress(),
-    Result loadSuccess(List<Review> reviews, bool possibleComment),
+    Result loadSuccess(List<Review> reviews, bool existComment),
     Result loadFailure(ReviewFailure reviewFailure),
     @required Result orElse(),
   }) {

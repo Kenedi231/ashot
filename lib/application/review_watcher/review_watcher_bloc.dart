@@ -25,7 +25,7 @@ class ReviewWatcherBloc
   StreamSubscription<Either<ReviewFailure, List<Review>>>
       _reviewStreamSubscription;
 
-  bool _checkPossibleComment(List<Review> reviews, String userId) {
+  bool _checkExistComment(List<Review> reviews, String userId) {
     for (final review in reviews) {
       if (review.user.id.getOrCrash() == userId) return false;
     }
@@ -50,7 +50,7 @@ class ReviewWatcherBloc
         final User user = await _reviewRepository.getUser();
         yield e.failureOrReviews.fold(
           (f) => ReviewWatcherState.loadFailure(f),
-          (reviews) => ReviewWatcherState.loadSuccess(reviews, _checkPossibleComment(reviews, user.id.getOrCrash())),
+          (reviews) => ReviewWatcherState.loadSuccess(reviews, _checkExistComment(reviews, user.id.getOrCrash())),
         );
       },
     );

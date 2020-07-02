@@ -34,12 +34,12 @@ class ProductReviewers extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      if (state.possibleComment) InkWell(
+                      if (state.existComment) InkWell(
                         onTap: () {
                           Router.navigator.pushNamed(Router.productNewReview);
                         },
                         child: const Text('Написать отзыв'),
-                      ) else const SizedBox(),
+                      ) else const Text('Редактировать отзыв'),
                     ],
                   ),
                   if (state.reviews.isEmpty) const Text('На этот товар нет обзоров. Станьте первыми!')

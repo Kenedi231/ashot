@@ -41,6 +41,12 @@ class ReviewBody extends StatelessWidget {
               },
               child: const Text('Оставить отзыв'),
             ),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              child: Center(
+                child: Text('Удалить отзыв')
+              ),
+            ),
           ],
         ),
       ), listener: (BuildContext context, state) {},
