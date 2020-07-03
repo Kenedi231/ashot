@@ -57,7 +57,10 @@ class ReviewBody extends StatelessWidget {
               onPressed: () {
                 context
                   .bloc<ReviewBloc>()
-                  .add(const ReviewEvent.saved());
+                  .add(_existReview
+                    ? ReviewEvent.update(_review)
+                    : const ReviewEvent.saved()
+                  );
               },
               child: Text(_existReview ? 'Редактировать отзыв' : 'Оставить отзыв'),
             ),

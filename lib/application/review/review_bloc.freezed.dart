@@ -34,6 +34,12 @@ class _$ReviewEventTearOff {
     return const Saved();
   }
 
+  Update update(Review currentReview) {
+    return Update(
+      currentReview,
+    );
+  }
+
   RemoveReview removeReview(Review review) {
     return RemoveReview(
       review,
@@ -51,6 +57,7 @@ mixin _$ReviewEvent {
     @required Result rateChanged(double rate),
     @required Result commentChanged(String comment),
     @required Result saved(),
+    @required Result update(Review currentReview),
     @required Result removeReview(Review review),
   });
   @optionalTypeArgs
@@ -59,6 +66,7 @@ mixin _$ReviewEvent {
     Result rateChanged(double rate),
     Result commentChanged(String comment),
     Result saved(),
+    Result update(Review currentReview),
     Result removeReview(Review review),
     @required Result orElse(),
   });
@@ -68,6 +76,7 @@ mixin _$ReviewEvent {
     @required Result rateChanged(RateChanged value),
     @required Result commentChanged(CommentChanged value),
     @required Result saved(Saved value),
+    @required Result update(Update value),
     @required Result removeReview(RemoveReview value),
   });
   @optionalTypeArgs
@@ -76,6 +85,7 @@ mixin _$ReviewEvent {
     Result rateChanged(RateChanged value),
     Result commentChanged(CommentChanged value),
     Result saved(Saved value),
+    Result update(Update value),
     Result removeReview(RemoveReview value),
     @required Result orElse(),
   });
@@ -154,12 +164,14 @@ class _$Initial implements Initial {
     @required Result rateChanged(double rate),
     @required Result commentChanged(String comment),
     @required Result saved(),
+    @required Result update(Review currentReview),
     @required Result removeReview(Review review),
   }) {
     assert(initial != null);
     assert(rateChanged != null);
     assert(commentChanged != null);
     assert(saved != null);
+    assert(update != null);
     assert(removeReview != null);
     return initial(initReview);
   }
@@ -171,6 +183,7 @@ class _$Initial implements Initial {
     Result rateChanged(double rate),
     Result commentChanged(String comment),
     Result saved(),
+    Result update(Review currentReview),
     Result removeReview(Review review),
     @required Result orElse(),
   }) {
@@ -188,12 +201,14 @@ class _$Initial implements Initial {
     @required Result rateChanged(RateChanged value),
     @required Result commentChanged(CommentChanged value),
     @required Result saved(Saved value),
+    @required Result update(Update value),
     @required Result removeReview(RemoveReview value),
   }) {
     assert(initial != null);
     assert(rateChanged != null);
     assert(commentChanged != null);
     assert(saved != null);
+    assert(update != null);
     assert(removeReview != null);
     return initial(this);
   }
@@ -205,6 +220,7 @@ class _$Initial implements Initial {
     Result rateChanged(RateChanged value),
     Result commentChanged(CommentChanged value),
     Result saved(Saved value),
+    Result update(Update value),
     Result removeReview(RemoveReview value),
     @required Result orElse(),
   }) {
@@ -283,12 +299,14 @@ class _$RateChanged implements RateChanged {
     @required Result rateChanged(double rate),
     @required Result commentChanged(String comment),
     @required Result saved(),
+    @required Result update(Review currentReview),
     @required Result removeReview(Review review),
   }) {
     assert(initial != null);
     assert(rateChanged != null);
     assert(commentChanged != null);
     assert(saved != null);
+    assert(update != null);
     assert(removeReview != null);
     return rateChanged(rate);
   }
@@ -300,6 +318,7 @@ class _$RateChanged implements RateChanged {
     Result rateChanged(double rate),
     Result commentChanged(String comment),
     Result saved(),
+    Result update(Review currentReview),
     Result removeReview(Review review),
     @required Result orElse(),
   }) {
@@ -317,12 +336,14 @@ class _$RateChanged implements RateChanged {
     @required Result rateChanged(RateChanged value),
     @required Result commentChanged(CommentChanged value),
     @required Result saved(Saved value),
+    @required Result update(Update value),
     @required Result removeReview(RemoveReview value),
   }) {
     assert(initial != null);
     assert(rateChanged != null);
     assert(commentChanged != null);
     assert(saved != null);
+    assert(update != null);
     assert(removeReview != null);
     return rateChanged(this);
   }
@@ -334,6 +355,7 @@ class _$RateChanged implements RateChanged {
     Result rateChanged(RateChanged value),
     Result commentChanged(CommentChanged value),
     Result saved(Saved value),
+    Result update(Update value),
     Result removeReview(RemoveReview value),
     @required Result orElse(),
   }) {
@@ -412,12 +434,14 @@ class _$CommentChanged implements CommentChanged {
     @required Result rateChanged(double rate),
     @required Result commentChanged(String comment),
     @required Result saved(),
+    @required Result update(Review currentReview),
     @required Result removeReview(Review review),
   }) {
     assert(initial != null);
     assert(rateChanged != null);
     assert(commentChanged != null);
     assert(saved != null);
+    assert(update != null);
     assert(removeReview != null);
     return commentChanged(comment);
   }
@@ -429,6 +453,7 @@ class _$CommentChanged implements CommentChanged {
     Result rateChanged(double rate),
     Result commentChanged(String comment),
     Result saved(),
+    Result update(Review currentReview),
     Result removeReview(Review review),
     @required Result orElse(),
   }) {
@@ -446,12 +471,14 @@ class _$CommentChanged implements CommentChanged {
     @required Result rateChanged(RateChanged value),
     @required Result commentChanged(CommentChanged value),
     @required Result saved(Saved value),
+    @required Result update(Update value),
     @required Result removeReview(RemoveReview value),
   }) {
     assert(initial != null);
     assert(rateChanged != null);
     assert(commentChanged != null);
     assert(saved != null);
+    assert(update != null);
     assert(removeReview != null);
     return commentChanged(this);
   }
@@ -463,6 +490,7 @@ class _$CommentChanged implements CommentChanged {
     Result rateChanged(RateChanged value),
     Result commentChanged(CommentChanged value),
     Result saved(Saved value),
+    Result update(Update value),
     Result removeReview(RemoveReview value),
     @required Result orElse(),
   }) {
@@ -518,12 +546,14 @@ class _$Saved implements Saved {
     @required Result rateChanged(double rate),
     @required Result commentChanged(String comment),
     @required Result saved(),
+    @required Result update(Review currentReview),
     @required Result removeReview(Review review),
   }) {
     assert(initial != null);
     assert(rateChanged != null);
     assert(commentChanged != null);
     assert(saved != null);
+    assert(update != null);
     assert(removeReview != null);
     return saved();
   }
@@ -535,6 +565,7 @@ class _$Saved implements Saved {
     Result rateChanged(double rate),
     Result commentChanged(String comment),
     Result saved(),
+    Result update(Review currentReview),
     Result removeReview(Review review),
     @required Result orElse(),
   }) {
@@ -552,12 +583,14 @@ class _$Saved implements Saved {
     @required Result rateChanged(RateChanged value),
     @required Result commentChanged(CommentChanged value),
     @required Result saved(Saved value),
+    @required Result update(Update value),
     @required Result removeReview(RemoveReview value),
   }) {
     assert(initial != null);
     assert(rateChanged != null);
     assert(commentChanged != null);
     assert(saved != null);
+    assert(update != null);
     assert(removeReview != null);
     return saved(this);
   }
@@ -569,6 +602,7 @@ class _$Saved implements Saved {
     Result rateChanged(RateChanged value),
     Result commentChanged(CommentChanged value),
     Result saved(Saved value),
+    Result update(Update value),
     Result removeReview(RemoveReview value),
     @required Result orElse(),
   }) {
@@ -582,6 +616,152 @@ class _$Saved implements Saved {
 
 abstract class Saved implements ReviewEvent {
   const factory Saved() = _$Saved;
+}
+
+abstract class $UpdateCopyWith<$Res> {
+  factory $UpdateCopyWith(Update value, $Res Function(Update) then) =
+      _$UpdateCopyWithImpl<$Res>;
+  $Res call({Review currentReview});
+
+  $ReviewCopyWith<$Res> get currentReview;
+}
+
+class _$UpdateCopyWithImpl<$Res> extends _$ReviewEventCopyWithImpl<$Res>
+    implements $UpdateCopyWith<$Res> {
+  _$UpdateCopyWithImpl(Update _value, $Res Function(Update) _then)
+      : super(_value, (v) => _then(v as Update));
+
+  @override
+  Update get _value => super._value as Update;
+
+  @override
+  $Res call({
+    Object currentReview = freezed,
+  }) {
+    return _then(Update(
+      currentReview == freezed ? _value.currentReview : currentReview as Review,
+    ));
+  }
+
+  @override
+  $ReviewCopyWith<$Res> get currentReview {
+    if (_value.currentReview == null) {
+      return null;
+    }
+    return $ReviewCopyWith<$Res>(_value.currentReview, (value) {
+      return _then(_value.copyWith(currentReview: value));
+    });
+  }
+}
+
+class _$Update implements Update {
+  const _$Update(this.currentReview) : assert(currentReview != null);
+
+  @override
+  final Review currentReview;
+
+  @override
+  String toString() {
+    return 'ReviewEvent.update(currentReview: $currentReview)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Update &&
+            (identical(other.currentReview, currentReview) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentReview, currentReview)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(currentReview);
+
+  @override
+  $UpdateCopyWith<Update> get copyWith =>
+      _$UpdateCopyWithImpl<Update>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initial(Option<Review> initReview),
+    @required Result rateChanged(double rate),
+    @required Result commentChanged(String comment),
+    @required Result saved(),
+    @required Result update(Review currentReview),
+    @required Result removeReview(Review review),
+  }) {
+    assert(initial != null);
+    assert(rateChanged != null);
+    assert(commentChanged != null);
+    assert(saved != null);
+    assert(update != null);
+    assert(removeReview != null);
+    return update(currentReview);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initial(Option<Review> initReview),
+    Result rateChanged(double rate),
+    Result commentChanged(String comment),
+    Result saved(),
+    Result update(Review currentReview),
+    Result removeReview(Review review),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (update != null) {
+      return update(currentReview);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initial(Initial value),
+    @required Result rateChanged(RateChanged value),
+    @required Result commentChanged(CommentChanged value),
+    @required Result saved(Saved value),
+    @required Result update(Update value),
+    @required Result removeReview(RemoveReview value),
+  }) {
+    assert(initial != null);
+    assert(rateChanged != null);
+    assert(commentChanged != null);
+    assert(saved != null);
+    assert(update != null);
+    assert(removeReview != null);
+    return update(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initial(Initial value),
+    Result rateChanged(RateChanged value),
+    Result commentChanged(CommentChanged value),
+    Result saved(Saved value),
+    Result update(Update value),
+    Result removeReview(RemoveReview value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (update != null) {
+      return update(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Update implements ReviewEvent {
+  const factory Update(Review currentReview) = _$Update;
+
+  Review get currentReview;
+  $UpdateCopyWith<Update> get copyWith;
 }
 
 abstract class $RemoveReviewCopyWith<$Res> {
@@ -656,12 +836,14 @@ class _$RemoveReview implements RemoveReview {
     @required Result rateChanged(double rate),
     @required Result commentChanged(String comment),
     @required Result saved(),
+    @required Result update(Review currentReview),
     @required Result removeReview(Review review),
   }) {
     assert(initial != null);
     assert(rateChanged != null);
     assert(commentChanged != null);
     assert(saved != null);
+    assert(update != null);
     assert(removeReview != null);
     return removeReview(review);
   }
@@ -673,6 +855,7 @@ class _$RemoveReview implements RemoveReview {
     Result rateChanged(double rate),
     Result commentChanged(String comment),
     Result saved(),
+    Result update(Review currentReview),
     Result removeReview(Review review),
     @required Result orElse(),
   }) {
@@ -690,12 +873,14 @@ class _$RemoveReview implements RemoveReview {
     @required Result rateChanged(RateChanged value),
     @required Result commentChanged(CommentChanged value),
     @required Result saved(Saved value),
+    @required Result update(Update value),
     @required Result removeReview(RemoveReview value),
   }) {
     assert(initial != null);
     assert(rateChanged != null);
     assert(commentChanged != null);
     assert(saved != null);
+    assert(update != null);
     assert(removeReview != null);
     return removeReview(this);
   }
@@ -707,6 +892,7 @@ class _$RemoveReview implements RemoveReview {
     Result rateChanged(RateChanged value),
     Result commentChanged(CommentChanged value),
     Result saved(Saved value),
+    Result update(Update value),
     Result removeReview(RemoveReview value),
     @required Result orElse(),
   }) {

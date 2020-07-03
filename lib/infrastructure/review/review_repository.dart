@@ -47,8 +47,33 @@ class ReviewRepository implements IReviewRepository {
   }
 
   @override
-  Future<Either<ReviewFailure, Unit>> update(Review updatedReview) async {
-    return left(const ReviewFailure.unableToUpdate()); // TODO: edit review
+  Future<Either<ReviewFailure, Unit>> update(Review currentReview, Review updatedReview) async {
+    final productsCollection = await _firestore.products();
+    final reviewsCollection = await _firestore.reviews();
+
+    final updateReview = currentReview.copyWith(
+      comment: updatedReview.comment,
+      rate: updatedReview.rate,
+      date: Timestamp.now(),
+    );
+
+    try {
+      await reviewsCollection
+        .document(updateReview.id.getOrCrash())
+        .setData(getJsonFromReview(updateReview));
+
+      final index = reviews.indexOf(currentReview);
+      reviews[index] = updateReview;
+      final updatedProduct = getUpdatedProduct(0.0);
+
+      await productsCollection
+        .document(updatedProduct.id.getOrCrash())
+        .setData(ProductDto.fromDomain(updatedProduct).toJson());
+
+      return right(unit);
+    } on PlatformException catch (_) {
+      return left(const ReviewFailure.unableToUpdate());
+    }
   }
 
   @override
@@ -74,9 +99,7 @@ class ReviewRepository implements IReviewRepository {
     reviews.add(review);
 
     try {
-      final Map<String, dynamic> json = ReviewDTO.fromDomain(review).toJson();  
-      json['date'] = Timestamp.fromDate(DateTime.parse(json['date'] as String));
-      await reviewsCollection.add(json);
+      await reviewsCollection.add(getJsonFromReview(review));
 
       await productsCollection
         .document(updatedProduct.id.getOrCrash())
@@ -108,6 +131,17 @@ class ReviewRepository implements IReviewRepository {
     }
   }
 
+  @override
+  Either<ReviewFailure, List<Review>> getCurrentReviews() {
+    return right(reviews);
+  }
+
+  Map<String, dynamic> getJsonFromReview(Review review) {
+    final Map<String, dynamic> json = ReviewDTO.fromDomain(review).toJson();  
+    json['date'] = Timestamp.fromDate(DateTime.parse(json['date'] as String));
+    return json;
+  }
+
   Product getUpdatedProduct(double initRate) {
     final countReviews = reviews.length + (initRate != 0.0 ? 1 : 0);
     final double commonRate = reviews.fold(
@@ -122,10 +156,4 @@ class ReviewRepository implements IReviewRepository {
 
     return updatedProduct;
   }
-
-  @override
-  Either<ReviewFailure, List<Review>> getCurrentReviews() {
-    return right(reviews);
-  }
-
 }

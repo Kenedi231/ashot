@@ -23,8 +23,8 @@ abstract class ProfileDTO with _$ProfileDTO {
       id: user.id.getOrCrash(),
       name: user.name.getOrElse(''),
       email: user.emailAddress.getOrCrash(),
-      address: user.address.getOrElse(''),
-      phone: user.phone.getOrElse(''),
+      address: user.address?.getOrElse('') ?? '',
+      phone: user.phone?.getOrElse('') ?? '',
       avatar: user.avatar.getOrElse(''),
     );
   }

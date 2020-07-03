@@ -54,6 +54,12 @@ class ReviewBloc extends Bloc<ReviewEvent, ReviewState> {
           isSubmitting: true,
         );
       },
+      update: (e) async* {
+        await _reviewRepository.update(e.currentReview, state.review);
+        yield state.copyWith(
+          isSubmitting: true,
+        );
+      },
       removeReview: (e) async* {
         await _reviewRepository.removeReview(e.review);
         yield state.copyWith(
