@@ -22,7 +22,7 @@ class ProductRate extends StatelessWidget {
       child: Row(
         children: <Widget>[
           StarsWidget(size: 24, rate: _rate,),
-          Text(' $_rate ($_countReviews Обзоров)')
+          Text(' ${_rate.toStringAsFixed(1)} ($_countReviews Обзоров)')
         ],
       ),
     );

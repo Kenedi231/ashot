@@ -18,6 +18,10 @@ class _$ReviewWatcherEventTearOff {
     );
   }
 
+  _GetCurrentReviews getCurrentReviews() {
+    return const _GetCurrentReviews();
+  }
+
   _ReviewReceived reviewReceived(
       Either<ReviewFailure, List<Review>> failureOrReviews) {
     return _ReviewReceived(
@@ -33,6 +37,7 @@ mixin _$ReviewWatcherEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result watchAll(Product product),
+    @required Result getCurrentReviews(),
     @required
         Result reviewReceived(
             Either<ReviewFailure, List<Review>> failureOrReviews),
@@ -40,17 +45,20 @@ mixin _$ReviewWatcherEvent {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result watchAll(Product product),
+    Result getCurrentReviews(),
     Result reviewReceived(Either<ReviewFailure, List<Review>> failureOrReviews),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result watchAll(_WatchAll value),
+    @required Result getCurrentReviews(_GetCurrentReviews value),
     @required Result reviewReceived(_ReviewReceived value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result watchAll(_WatchAll value),
+    Result getCurrentReviews(_GetCurrentReviews value),
     Result reviewReceived(_ReviewReceived value),
     @required Result orElse(),
   });
@@ -139,11 +147,13 @@ class _$_WatchAll implements _WatchAll {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result watchAll(Product product),
+    @required Result getCurrentReviews(),
     @required
         Result reviewReceived(
             Either<ReviewFailure, List<Review>> failureOrReviews),
   }) {
     assert(watchAll != null);
+    assert(getCurrentReviews != null);
     assert(reviewReceived != null);
     return watchAll(product);
   }
@@ -152,6 +162,7 @@ class _$_WatchAll implements _WatchAll {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result watchAll(Product product),
+    Result getCurrentReviews(),
     Result reviewReceived(Either<ReviewFailure, List<Review>> failureOrReviews),
     @required Result orElse(),
   }) {
@@ -166,9 +177,11 @@ class _$_WatchAll implements _WatchAll {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result watchAll(_WatchAll value),
+    @required Result getCurrentReviews(_GetCurrentReviews value),
     @required Result reviewReceived(_ReviewReceived value),
   }) {
     assert(watchAll != null);
+    assert(getCurrentReviews != null);
     assert(reviewReceived != null);
     return watchAll(this);
   }
@@ -177,6 +190,7 @@ class _$_WatchAll implements _WatchAll {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result watchAll(_WatchAll value),
+    Result getCurrentReviews(_GetCurrentReviews value),
     Result reviewReceived(_ReviewReceived value),
     @required Result orElse(),
   }) {
@@ -193,6 +207,102 @@ abstract class _WatchAll implements ReviewWatcherEvent {
 
   Product get product;
   _$WatchAllCopyWith<_WatchAll> get copyWith;
+}
+
+abstract class _$GetCurrentReviewsCopyWith<$Res> {
+  factory _$GetCurrentReviewsCopyWith(
+          _GetCurrentReviews value, $Res Function(_GetCurrentReviews) then) =
+      __$GetCurrentReviewsCopyWithImpl<$Res>;
+}
+
+class __$GetCurrentReviewsCopyWithImpl<$Res>
+    extends _$ReviewWatcherEventCopyWithImpl<$Res>
+    implements _$GetCurrentReviewsCopyWith<$Res> {
+  __$GetCurrentReviewsCopyWithImpl(
+      _GetCurrentReviews _value, $Res Function(_GetCurrentReviews) _then)
+      : super(_value, (v) => _then(v as _GetCurrentReviews));
+
+  @override
+  _GetCurrentReviews get _value => super._value as _GetCurrentReviews;
+}
+
+class _$_GetCurrentReviews implements _GetCurrentReviews {
+  const _$_GetCurrentReviews();
+
+  @override
+  String toString() {
+    return 'ReviewWatcherEvent.getCurrentReviews()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetCurrentReviews);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result watchAll(Product product),
+    @required Result getCurrentReviews(),
+    @required
+        Result reviewReceived(
+            Either<ReviewFailure, List<Review>> failureOrReviews),
+  }) {
+    assert(watchAll != null);
+    assert(getCurrentReviews != null);
+    assert(reviewReceived != null);
+    return getCurrentReviews();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result watchAll(Product product),
+    Result getCurrentReviews(),
+    Result reviewReceived(Either<ReviewFailure, List<Review>> failureOrReviews),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (getCurrentReviews != null) {
+      return getCurrentReviews();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result watchAll(_WatchAll value),
+    @required Result getCurrentReviews(_GetCurrentReviews value),
+    @required Result reviewReceived(_ReviewReceived value),
+  }) {
+    assert(watchAll != null);
+    assert(getCurrentReviews != null);
+    assert(reviewReceived != null);
+    return getCurrentReviews(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result watchAll(_WatchAll value),
+    Result getCurrentReviews(_GetCurrentReviews value),
+    Result reviewReceived(_ReviewReceived value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (getCurrentReviews != null) {
+      return getCurrentReviews(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetCurrentReviews implements ReviewWatcherEvent {
+  const factory _GetCurrentReviews() = _$_GetCurrentReviews;
 }
 
 abstract class _$ReviewReceivedCopyWith<$Res> {
@@ -258,11 +368,13 @@ class _$_ReviewReceived implements _ReviewReceived {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result watchAll(Product product),
+    @required Result getCurrentReviews(),
     @required
         Result reviewReceived(
             Either<ReviewFailure, List<Review>> failureOrReviews),
   }) {
     assert(watchAll != null);
+    assert(getCurrentReviews != null);
     assert(reviewReceived != null);
     return reviewReceived(failureOrReviews);
   }
@@ -271,6 +383,7 @@ class _$_ReviewReceived implements _ReviewReceived {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result watchAll(Product product),
+    Result getCurrentReviews(),
     Result reviewReceived(Either<ReviewFailure, List<Review>> failureOrReviews),
     @required Result orElse(),
   }) {
@@ -285,9 +398,11 @@ class _$_ReviewReceived implements _ReviewReceived {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result watchAll(_WatchAll value),
+    @required Result getCurrentReviews(_GetCurrentReviews value),
     @required Result reviewReceived(_ReviewReceived value),
   }) {
     assert(watchAll != null);
+    assert(getCurrentReviews != null);
     assert(reviewReceived != null);
     return reviewReceived(this);
   }
@@ -296,6 +411,7 @@ class _$_ReviewReceived implements _ReviewReceived {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result watchAll(_WatchAll value),
+    Result getCurrentReviews(_GetCurrentReviews value),
     Result reviewReceived(_ReviewReceived value),
     @required Result orElse(),
   }) {
@@ -326,10 +442,10 @@ class _$ReviewWatcherStateTearOff {
     return const DataTransferInProgress();
   }
 
-  LoadSuccess loadSuccess(List<Review> reviews, bool possibleComment) {
+  LoadSuccess loadSuccess(List<Review> reviews, @nullable Review userReview) {
     return LoadSuccess(
       reviews,
-      possibleComment,
+      userReview,
     );
   }
 
@@ -348,14 +464,15 @@ mixin _$ReviewWatcherState {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loadInProgress(),
-    @required Result loadSuccess(List<Review> reviews, bool possibleComment),
+    @required
+        Result loadSuccess(List<Review> reviews, @nullable Review userReview),
     @required Result loadFailure(ReviewFailure reviewFailure),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loadInProgress(),
-    Result loadSuccess(List<Review> reviews, bool possibleComment),
+    Result loadSuccess(List<Review> reviews, @nullable Review userReview),
     Result loadFailure(ReviewFailure reviewFailure),
     @required Result orElse(),
   });
@@ -426,7 +543,8 @@ class _$Initial implements Initial {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loadInProgress(),
-    @required Result loadSuccess(List<Review> reviews, bool possibleComment),
+    @required
+        Result loadSuccess(List<Review> reviews, @nullable Review userReview),
     @required Result loadFailure(ReviewFailure reviewFailure),
   }) {
     assert(initial != null);
@@ -441,7 +559,7 @@ class _$Initial implements Initial {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loadInProgress(),
-    Result loadSuccess(List<Review> reviews, bool possibleComment),
+    Result loadSuccess(List<Review> reviews, @nullable Review userReview),
     Result loadFailure(ReviewFailure reviewFailure),
     @required Result orElse(),
   }) {
@@ -526,7 +644,8 @@ class _$DataTransferInProgress implements DataTransferInProgress {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loadInProgress(),
-    @required Result loadSuccess(List<Review> reviews, bool possibleComment),
+    @required
+        Result loadSuccess(List<Review> reviews, @nullable Review userReview),
     @required Result loadFailure(ReviewFailure reviewFailure),
   }) {
     assert(initial != null);
@@ -541,7 +660,7 @@ class _$DataTransferInProgress implements DataTransferInProgress {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loadInProgress(),
-    Result loadSuccess(List<Review> reviews, bool possibleComment),
+    Result loadSuccess(List<Review> reviews, @nullable Review userReview),
     Result loadFailure(ReviewFailure reviewFailure),
     @required Result orElse(),
   }) {
@@ -592,7 +711,9 @@ abstract class $LoadSuccessCopyWith<$Res> {
   factory $LoadSuccessCopyWith(
           LoadSuccess value, $Res Function(LoadSuccess) then) =
       _$LoadSuccessCopyWithImpl<$Res>;
-  $Res call({List<Review> reviews, bool possibleComment});
+  $Res call({List<Review> reviews, @nullable Review userReview});
+
+  $ReviewCopyWith<$Res> get userReview;
 }
 
 class _$LoadSuccessCopyWithImpl<$Res>
@@ -608,30 +729,38 @@ class _$LoadSuccessCopyWithImpl<$Res>
   @override
   $Res call({
     Object reviews = freezed,
-    Object possibleComment = freezed,
+    Object userReview = freezed,
   }) {
     return _then(LoadSuccess(
       reviews == freezed ? _value.reviews : reviews as List<Review>,
-      possibleComment == freezed
-          ? _value.possibleComment
-          : possibleComment as bool,
+      userReview == freezed ? _value.userReview : userReview as Review,
     ));
+  }
+
+  @override
+  $ReviewCopyWith<$Res> get userReview {
+    if (_value.userReview == null) {
+      return null;
+    }
+    return $ReviewCopyWith<$Res>(_value.userReview, (value) {
+      return _then(_value.copyWith(userReview: value));
+    });
   }
 }
 
 class _$LoadSuccess implements LoadSuccess {
-  const _$LoadSuccess(this.reviews, this.possibleComment)
-      : assert(reviews != null),
-        assert(possibleComment != null);
+  const _$LoadSuccess(this.reviews, @nullable this.userReview)
+      : assert(reviews != null);
 
   @override
   final List<Review> reviews;
   @override
-  final bool possibleComment;
+  @nullable
+  final Review userReview;
 
   @override
   String toString() {
-    return 'ReviewWatcherState.loadSuccess(reviews: $reviews, possibleComment: $possibleComment)';
+    return 'ReviewWatcherState.loadSuccess(reviews: $reviews, userReview: $userReview)';
   }
 
   @override
@@ -641,16 +770,16 @@ class _$LoadSuccess implements LoadSuccess {
             (identical(other.reviews, reviews) ||
                 const DeepCollectionEquality()
                     .equals(other.reviews, reviews)) &&
-            (identical(other.possibleComment, possibleComment) ||
+            (identical(other.userReview, userReview) ||
                 const DeepCollectionEquality()
-                    .equals(other.possibleComment, possibleComment)));
+                    .equals(other.userReview, userReview)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(reviews) ^
-      const DeepCollectionEquality().hash(possibleComment);
+      const DeepCollectionEquality().hash(userReview);
 
   @override
   $LoadSuccessCopyWith<LoadSuccess> get copyWith =>
@@ -661,14 +790,15 @@ class _$LoadSuccess implements LoadSuccess {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loadInProgress(),
-    @required Result loadSuccess(List<Review> reviews, bool possibleComment),
+    @required
+        Result loadSuccess(List<Review> reviews, @nullable Review userReview),
     @required Result loadFailure(ReviewFailure reviewFailure),
   }) {
     assert(initial != null);
     assert(loadInProgress != null);
     assert(loadSuccess != null);
     assert(loadFailure != null);
-    return loadSuccess(reviews, possibleComment);
+    return loadSuccess(reviews, userReview);
   }
 
   @override
@@ -676,13 +806,13 @@ class _$LoadSuccess implements LoadSuccess {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loadInProgress(),
-    Result loadSuccess(List<Review> reviews, bool possibleComment),
+    Result loadSuccess(List<Review> reviews, @nullable Review userReview),
     Result loadFailure(ReviewFailure reviewFailure),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (loadSuccess != null) {
-      return loadSuccess(reviews, possibleComment);
+      return loadSuccess(reviews, userReview);
     }
     return orElse();
   }
@@ -720,11 +850,12 @@ class _$LoadSuccess implements LoadSuccess {
 }
 
 abstract class LoadSuccess implements ReviewWatcherState {
-  const factory LoadSuccess(List<Review> reviews, bool possibleComment) =
+  const factory LoadSuccess(List<Review> reviews, @nullable Review userReview) =
       _$LoadSuccess;
 
   List<Review> get reviews;
-  bool get possibleComment;
+  @nullable
+  Review get userReview;
   $LoadSuccessCopyWith<LoadSuccess> get copyWith;
 }
 
@@ -802,7 +933,8 @@ class _$LoadFailure implements LoadFailure {
   Result when<Result extends Object>({
     @required Result initial(),
     @required Result loadInProgress(),
-    @required Result loadSuccess(List<Review> reviews, bool possibleComment),
+    @required
+        Result loadSuccess(List<Review> reviews, @nullable Review userReview),
     @required Result loadFailure(ReviewFailure reviewFailure),
   }) {
     assert(initial != null);
@@ -817,7 +949,7 @@ class _$LoadFailure implements LoadFailure {
   Result maybeWhen<Result extends Object>({
     Result initial(),
     Result loadInProgress(),
-    Result loadSuccess(List<Review> reviews, bool possibleComment),
+    Result loadSuccess(List<Review> reviews, @nullable Review userReview),
     Result loadFailure(ReviewFailure reviewFailure),
     @required Result orElse(),
   }) {
