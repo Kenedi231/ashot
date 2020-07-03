@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../application/review_watcher/review_watcher_bloc.dart';
-import '../../../routes/router.gr.dart';
 import 'comment_block.dart';
+import 'review_actions.dart';
 
 class ProductReviewers extends StatelessWidget {
 
@@ -18,6 +18,7 @@ class ProductReviewers extends StatelessWidget {
           loadFailure: (_) => Container(),
           loadSuccess: (state) {
             final dateFormat = DateFormat('dd MMMM yyyy', 'ru');
+            final existReview = state.userReview == null;
 
             return Padding(
               padding: const EdgeInsets.all(8.0),
@@ -34,12 +35,16 @@ class ProductReviewers extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      if (state.existComment) InkWell(
-                        onTap: () {
-                          Router.navigator.pushNamed(Router.productNewReview);
-                        },
-                        child: const Text('Написать отзыв'),
-                      ) else const Text('Редактировать отзыв'),
+                      ReviewActions(
+                        showButton: true,
+                        existReview: existReview,
+                        review: state.userReview,
+                        update: () {
+                          context
+                          .bloc<ReviewWatcherBloc>()
+                          .add(const ReviewWatcherEvent.getCurrentReviews());
+                        }
+                      ),
                     ],
                   ),
                   if (state.reviews.isEmpty) const Text('На этот товар нет обзоров. Станьте первыми!')

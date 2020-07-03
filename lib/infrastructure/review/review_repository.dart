@@ -24,6 +24,8 @@ class ReviewRepository implements IReviewRepository {
   List<Review> reviews;
   Product currentProduct;
 
+  
+
   @override
   Stream<Either<ReviewFailure, List<Review>>> watchAll(Product product) async* {
     currentProduct = product;
@@ -68,16 +70,8 @@ class ReviewRepository implements IReviewRepository {
       date: Timestamp.now(),
     );
 
-    final countReviews = reviews.length + 1;
-    final double commonRate = reviews.fold(
-      newReview.rate.getOrElse(0.0),
-      (previousValue, element) => previousValue + element.rate.getOrElse(0.0),
-    );
-    
-    final updatedProduct = currentProduct.copyWith(
-      countReviews: Count(countReviews),
-      rate: Rate(commonRate / countReviews),
-    );
+    final updatedProduct = getUpdatedProduct(newReview.rate.getOrElse(0.0));
+    reviews.add(review);
 
     try {
       final Map<String, dynamic> json = ReviewDTO.fromDomain(review).toJson();  
@@ -89,9 +83,49 @@ class ReviewRepository implements IReviewRepository {
         .setData(ProductDto.fromDomain(updatedProduct).toJson());
 
       return right(unit);
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       return left(const ReviewFailure.unexpected());
     }
+  }
+
+  @override
+  Future<Either<ReviewFailure, Unit>> removeReview(Review review) async {
+    final productsCollection = await _firestore.products();
+    final reviewsCollection = await _firestore.reviews();
+
+    try {
+      reviews.removeWhere((element) => element.id.getOrCrash() == review.id.getOrCrash());
+      final updatedProduct = getUpdatedProduct(0.0);
+      await reviewsCollection.document(review.id.getOrCrash()).delete();
+
+      await productsCollection
+        .document(updatedProduct.id.getOrCrash())
+        .setData(ProductDto.fromDomain(updatedProduct).toJson());
+
+      return right(unit);
+    } on PlatformException catch (_) {
+      return left(const ReviewFailure.unexpected());
+    }
+  }
+
+  Product getUpdatedProduct(double initRate) {
+    final countReviews = reviews.length + (initRate != 0.0 ? 1 : 0);
+    final double commonRate = reviews.fold(
+      initRate,
+      (previousValue, element) => previousValue + element.rate.getOrElse(0.0),
+    );
+    
+    final updatedProduct = currentProduct.copyWith(
+      countReviews: Count(countReviews),
+      rate: Rate(commonRate / countReviews),
+    ); 
+
+    return updatedProduct;
+  }
+
+  @override
+  Either<ReviewFailure, List<Review>> getCurrentReviews() {
+    return right(reviews);
   }
 
 }

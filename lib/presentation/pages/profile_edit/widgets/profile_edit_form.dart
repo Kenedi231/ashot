@@ -4,22 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../application/profile/profile_form/profile_form_bloc.dart';
+import '../../../shared/update_text.dart';
 
 class ProfileEditForm extends HookWidget {
   void _fieldFocusChange(
       BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
-  }
-
-  void updateText(TextEditingController controller, String text) {
-    controller.value = controller.value.copyWith(
-      text: text,
-      selection: TextSelection(
-        baseOffset: text.length,
-        extentOffset: text.length,
-      ),
-    );
   }
 
   @override

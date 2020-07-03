@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:ashot/domain/review/i_review_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -8,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/core/value_objects.dart';
+import '../../domain/review/i_review_repository.dart';
 import '../../domain/review/review.dart';
 
 part 'review_bloc.freezed.dart';
@@ -49,8 +49,16 @@ class ReviewBloc extends Bloc<ReviewEvent, ReviewState> {
         );
       },
       saved: (e) async* {
-        // TODO: validate review
-        _reviewRepository.addNewReview(state.review);
+        await _reviewRepository.addNewReview(state.review);
+        yield state.copyWith(
+          isSubmitting: true,
+        );
+      },
+      removeReview: (e) async* {
+        await _reviewRepository.removeReview(e.review);
+        yield state.copyWith(
+          isSubmitting: true,
+        );
       },
     );
   }

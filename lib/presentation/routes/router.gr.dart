@@ -13,6 +13,7 @@ import 'package:ashot/presentation/pages/home/home_page.dart';
 import 'package:ashot/presentation/pages/product_page/product_page.dart';
 import 'package:ashot/domain/catalog/product.dart';
 import 'package:ashot/presentation/pages/product_new_review.dart/product_new_review.dart';
+import 'package:ashot/domain/review/review.dart';
 import 'package:ashot/presentation/pages/profile/profile_page.dart';
 import 'package:ashot/presentation/pages/profile_edit/profile_edit_page.dart';
 import 'package:ashot/domain/profile/profile.dart';
@@ -58,8 +59,14 @@ class Router {
           settings: settings,
         );
       case Router.productNewReview:
+        if (hasInvalidArgs<ProductNewReviewArguments>(args)) {
+          return misTypedArgsRoute<ProductNewReviewArguments>(args);
+        }
+        final typedArgs =
+            args as ProductNewReviewArguments ?? ProductNewReviewArguments();
         return MaterialPageRoute<dynamic>(
-          builder: (_) => ProductNewReview(),
+          builder: (_) =>
+              ProductNewReview(key: typedArgs.key, review: typedArgs.review),
           settings: settings,
         );
       case Router.profilePage:
@@ -94,6 +101,13 @@ class ProductPageArguments {
   final Key key;
   final Product product;
   ProductPageArguments({this.key, this.product});
+}
+
+//ProductNewReview arguments holder class
+class ProductNewReviewArguments {
+  final Key key;
+  final Review review;
+  ProductNewReviewArguments({this.key, this.review});
 }
 
 //ProfileEditPage arguments holder class

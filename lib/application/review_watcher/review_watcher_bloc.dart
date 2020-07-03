@@ -25,11 +25,8 @@ class ReviewWatcherBloc
   StreamSubscription<Either<ReviewFailure, List<Review>>>
       _reviewStreamSubscription;
 
-  bool _checkExistComment(List<Review> reviews, String userId) {
-    for (final review in reviews) {
-      if (review.user.id.getOrCrash() == userId) return false;
-    }
-    return true;
+  Review _checkExistComment(List<Review> reviews, String userId) {
+    return reviews.firstWhere((element) => element.user.id.getOrCrash() == userId, orElse: () => null);
   }
 
   @override
@@ -45,6 +42,9 @@ class ReviewWatcherBloc
         await _reviewStreamSubscription?.cancel();
         _reviewRepository.watchAll(e.product).listen(
             (reviews) => add(ReviewWatcherEvent.reviewReceived(reviews)));
+      },
+      getCurrentReviews: (e) async* {
+        add(ReviewWatcherEvent.reviewReceived(_reviewRepository.getCurrentReviews()));
       },
       reviewReceived: (e) async* {
         final User user = await _reviewRepository.getUser();
