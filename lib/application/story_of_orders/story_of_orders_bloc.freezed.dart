@@ -17,9 +17,9 @@ class _$StoryOfOrdersEventTearOff {
   }
 
   _CatalogReceived catalogReceived(
-      Either<CartFailure, List<Cart>> failureOrProducts) {
+      Either<CartFailure, List<Cart>> failureOrOrders) {
     return _CatalogReceived(
-      failureOrProducts,
+      failureOrOrders,
     );
   }
 }
@@ -32,13 +32,12 @@ mixin _$StoryOfOrdersEvent {
   Result when<Result extends Object>({
     @required Result watchAll(),
     @required
-        Result catalogReceived(
-            Either<CartFailure, List<Cart>> failureOrProducts),
+        Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result watchAll(),
-    Result catalogReceived(Either<CartFailure, List<Cart>> failureOrProducts),
+    Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -105,8 +104,7 @@ class _$_WatchAll implements _WatchAll {
   Result when<Result extends Object>({
     @required Result watchAll(),
     @required
-        Result catalogReceived(
-            Either<CartFailure, List<Cart>> failureOrProducts),
+        Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
   }) {
     assert(watchAll != null);
     assert(catalogReceived != null);
@@ -117,7 +115,7 @@ class _$_WatchAll implements _WatchAll {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result watchAll(),
-    Result catalogReceived(Either<CartFailure, List<Cart>> failureOrProducts),
+    Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -161,7 +159,7 @@ abstract class _$CatalogReceivedCopyWith<$Res> {
   factory _$CatalogReceivedCopyWith(
           _CatalogReceived value, $Res Function(_CatalogReceived) then) =
       __$CatalogReceivedCopyWithImpl<$Res>;
-  $Res call({Either<CartFailure, List<Cart>> failureOrProducts});
+  $Res call({Either<CartFailure, List<Cart>> failureOrOrders});
 }
 
 class __$CatalogReceivedCopyWithImpl<$Res>
@@ -176,41 +174,41 @@ class __$CatalogReceivedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object failureOrProducts = freezed,
+    Object failureOrOrders = freezed,
   }) {
     return _then(_CatalogReceived(
-      failureOrProducts == freezed
-          ? _value.failureOrProducts
-          : failureOrProducts as Either<CartFailure, List<Cart>>,
+      failureOrOrders == freezed
+          ? _value.failureOrOrders
+          : failureOrOrders as Either<CartFailure, List<Cart>>,
     ));
   }
 }
 
 class _$_CatalogReceived implements _CatalogReceived {
-  const _$_CatalogReceived(this.failureOrProducts)
-      : assert(failureOrProducts != null);
+  const _$_CatalogReceived(this.failureOrOrders)
+      : assert(failureOrOrders != null);
 
   @override
-  final Either<CartFailure, List<Cart>> failureOrProducts;
+  final Either<CartFailure, List<Cart>> failureOrOrders;
 
   @override
   String toString() {
-    return 'StoryOfOrdersEvent.catalogReceived(failureOrProducts: $failureOrProducts)';
+    return 'StoryOfOrdersEvent.catalogReceived(failureOrOrders: $failureOrOrders)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _CatalogReceived &&
-            (identical(other.failureOrProducts, failureOrProducts) ||
+            (identical(other.failureOrOrders, failureOrOrders) ||
                 const DeepCollectionEquality()
-                    .equals(other.failureOrProducts, failureOrProducts)));
+                    .equals(other.failureOrOrders, failureOrOrders)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(failureOrProducts);
+      const DeepCollectionEquality().hash(failureOrOrders);
 
   @override
   _$CatalogReceivedCopyWith<_CatalogReceived> get copyWith =>
@@ -221,24 +219,23 @@ class _$_CatalogReceived implements _CatalogReceived {
   Result when<Result extends Object>({
     @required Result watchAll(),
     @required
-        Result catalogReceived(
-            Either<CartFailure, List<Cart>> failureOrProducts),
+        Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
   }) {
     assert(watchAll != null);
     assert(catalogReceived != null);
-    return catalogReceived(failureOrProducts);
+    return catalogReceived(failureOrOrders);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result watchAll(),
-    Result catalogReceived(Either<CartFailure, List<Cart>> failureOrProducts),
+    Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (catalogReceived != null) {
-      return catalogReceived(failureOrProducts);
+      return catalogReceived(failureOrOrders);
     }
     return orElse();
   }
@@ -271,9 +268,9 @@ class _$_CatalogReceived implements _CatalogReceived {
 
 abstract class _CatalogReceived implements StoryOfOrdersEvent {
   const factory _CatalogReceived(
-      Either<CartFailure, List<Cart>> failureOrProducts) = _$_CatalogReceived;
+      Either<CartFailure, List<Cart>> failureOrOrders) = _$_CatalogReceived;
 
-  Either<CartFailure, List<Cart>> get failureOrProducts;
+  Either<CartFailure, List<Cart>> get failureOrOrders;
   _$CatalogReceivedCopyWith<_CatalogReceived> get copyWith;
 }
 

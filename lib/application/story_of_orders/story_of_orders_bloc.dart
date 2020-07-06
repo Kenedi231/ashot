@@ -38,7 +38,7 @@ class StoryOfOrdersBloc
             (orders) => add(StoryOfOrdersEvent.catalogReceived(orders)));
       },
       catalogReceived: (e) async* {
-        yield e.failureOrProducts.fold(
+        yield e.failureOrOrders.fold(
           (f) => StoryOfOrdersState.loadFailure(f),
           (orders) => StoryOfOrdersState.loadSuccess(orders),
         );
