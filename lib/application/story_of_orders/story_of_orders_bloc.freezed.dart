@@ -16,7 +16,7 @@ class _$StoryOfOrdersEventTearOff {
     return const _WatchAll();
   }
 
-  _CatalogReceived catalogReceived(
+  _CatalogReceived ordersReceived(
       Either<CartFailure, List<Cart>> failureOrOrders) {
     return _CatalogReceived(
       failureOrOrders,
@@ -32,23 +32,23 @@ mixin _$StoryOfOrdersEvent {
   Result when<Result extends Object>({
     @required Result watchAll(),
     @required
-        Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
+        Result ordersReceived(Either<CartFailure, List<Cart>> failureOrOrders),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result watchAll(),
-    Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
+    Result ordersReceived(Either<CartFailure, List<Cart>> failureOrOrders),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result watchAll(_WatchAll value),
-    @required Result catalogReceived(_CatalogReceived value),
+    @required Result ordersReceived(_CatalogReceived value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result watchAll(_WatchAll value),
-    Result catalogReceived(_CatalogReceived value),
+    Result ordersReceived(_CatalogReceived value),
     @required Result orElse(),
   });
 }
@@ -104,10 +104,10 @@ class _$_WatchAll implements _WatchAll {
   Result when<Result extends Object>({
     @required Result watchAll(),
     @required
-        Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
+        Result ordersReceived(Either<CartFailure, List<Cart>> failureOrOrders),
   }) {
     assert(watchAll != null);
-    assert(catalogReceived != null);
+    assert(ordersReceived != null);
     return watchAll();
   }
 
@@ -115,7 +115,7 @@ class _$_WatchAll implements _WatchAll {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result watchAll(),
-    Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
+    Result ordersReceived(Either<CartFailure, List<Cart>> failureOrOrders),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -129,10 +129,10 @@ class _$_WatchAll implements _WatchAll {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result watchAll(_WatchAll value),
-    @required Result catalogReceived(_CatalogReceived value),
+    @required Result ordersReceived(_CatalogReceived value),
   }) {
     assert(watchAll != null);
-    assert(catalogReceived != null);
+    assert(ordersReceived != null);
     return watchAll(this);
   }
 
@@ -140,7 +140,7 @@ class _$_WatchAll implements _WatchAll {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result watchAll(_WatchAll value),
-    Result catalogReceived(_CatalogReceived value),
+    Result ordersReceived(_CatalogReceived value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -193,7 +193,7 @@ class _$_CatalogReceived implements _CatalogReceived {
 
   @override
   String toString() {
-    return 'StoryOfOrdersEvent.catalogReceived(failureOrOrders: $failureOrOrders)';
+    return 'StoryOfOrdersEvent.ordersReceived(failureOrOrders: $failureOrOrders)';
   }
 
   @override
@@ -219,23 +219,23 @@ class _$_CatalogReceived implements _CatalogReceived {
   Result when<Result extends Object>({
     @required Result watchAll(),
     @required
-        Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
+        Result ordersReceived(Either<CartFailure, List<Cart>> failureOrOrders),
   }) {
     assert(watchAll != null);
-    assert(catalogReceived != null);
-    return catalogReceived(failureOrOrders);
+    assert(ordersReceived != null);
+    return ordersReceived(failureOrOrders);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result watchAll(),
-    Result catalogReceived(Either<CartFailure, List<Cart>> failureOrOrders),
+    Result ordersReceived(Either<CartFailure, List<Cart>> failureOrOrders),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (catalogReceived != null) {
-      return catalogReceived(failureOrOrders);
+    if (ordersReceived != null) {
+      return ordersReceived(failureOrOrders);
     }
     return orElse();
   }
@@ -244,23 +244,23 @@ class _$_CatalogReceived implements _CatalogReceived {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result watchAll(_WatchAll value),
-    @required Result catalogReceived(_CatalogReceived value),
+    @required Result ordersReceived(_CatalogReceived value),
   }) {
     assert(watchAll != null);
-    assert(catalogReceived != null);
-    return catalogReceived(this);
+    assert(ordersReceived != null);
+    return ordersReceived(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result watchAll(_WatchAll value),
-    Result catalogReceived(_CatalogReceived value),
+    Result ordersReceived(_CatalogReceived value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (catalogReceived != null) {
-      return catalogReceived(this);
+    if (ordersReceived != null) {
+      return ordersReceived(this);
     }
     return orElse();
   }

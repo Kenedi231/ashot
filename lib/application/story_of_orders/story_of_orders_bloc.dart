@@ -35,9 +35,9 @@ class StoryOfOrdersBloc
         yield const StoryOfOrdersState.loadInProgress();
         await _ordersStreamSubscription?.cancel();
         _cartRepository.getStoryOfOrders().listen(
-            (orders) => add(StoryOfOrdersEvent.catalogReceived(orders)));
+            (orders) => add(StoryOfOrdersEvent.ordersReceived(orders)));
       },
-      catalogReceived: (e) async* {
+      ordersReceived: (e) async* {
         yield e.failureOrOrders.fold(
           (f) => StoryOfOrdersState.loadFailure(f),
           (orders) => StoryOfOrdersState.loadSuccess(orders),
