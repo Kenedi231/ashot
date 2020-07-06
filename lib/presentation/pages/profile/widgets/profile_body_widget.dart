@@ -7,6 +7,7 @@ import '../../../routes/router.gr.dart';
 import 'profile_header_widget.dart';
 import 'profile_header_widget_bar.dart';
 import 'profile_info_widget.dart';
+import 'profile_orders_widget.dart';
 
 class ProfileBody extends StatefulWidget {
   @override
@@ -87,6 +88,7 @@ class _ProfileBodyState extends State<ProfileBody> {
                                   ProfileEditPageArguments(profile: store.profile)),
                         ),
                       ),
+                      ProfileOrders(),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ProfileInfo(
