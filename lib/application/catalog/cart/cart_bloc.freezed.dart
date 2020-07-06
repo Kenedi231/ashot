@@ -38,6 +38,10 @@ class _$CartEventTearOff {
   _ClearCart clearCart() {
     return const _ClearCart();
   }
+
+  _ToPay toPay() {
+    return const _ToPay();
+  }
 }
 
 // ignore: unused_element
@@ -51,6 +55,7 @@ mixin _$CartEvent {
     @required Result updateCart(CartItem item, int deltaCount),
     @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
+    @required Result toPay(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
@@ -59,6 +64,7 @@ mixin _$CartEvent {
     Result updateCart(CartItem item, int deltaCount),
     Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
+    Result toPay(),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -68,6 +74,7 @@ mixin _$CartEvent {
     @required Result updateCart(_UpdateCart value),
     @required Result deleteFromCart(_DeleteFromCart value),
     @required Result clearCart(_ClearCart value),
+    @required Result toPay(_ToPay value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
@@ -76,6 +83,7 @@ mixin _$CartEvent {
     Result updateCart(_UpdateCart value),
     Result deleteFromCart(_DeleteFromCart value),
     Result clearCart(_ClearCart value),
+    Result toPay(_ToPay value),
     @required Result orElse(),
   });
 }
@@ -133,12 +141,14 @@ class _$_CartReceived implements _CartReceived {
     @required Result updateCart(CartItem item, int deltaCount),
     @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
+    @required Result toPay(),
   }) {
     assert(cartReceived != null);
     assert(addToCart != null);
     assert(updateCart != null);
     assert(deleteFromCart != null);
     assert(clearCart != null);
+    assert(toPay != null);
     return cartReceived();
   }
 
@@ -150,6 +160,7 @@ class _$_CartReceived implements _CartReceived {
     Result updateCart(CartItem item, int deltaCount),
     Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
+    Result toPay(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -167,12 +178,14 @@ class _$_CartReceived implements _CartReceived {
     @required Result updateCart(_UpdateCart value),
     @required Result deleteFromCart(_DeleteFromCart value),
     @required Result clearCart(_ClearCart value),
+    @required Result toPay(_ToPay value),
   }) {
     assert(cartReceived != null);
     assert(addToCart != null);
     assert(updateCart != null);
     assert(deleteFromCart != null);
     assert(clearCart != null);
+    assert(toPay != null);
     return cartReceived(this);
   }
 
@@ -184,6 +197,7 @@ class _$_CartReceived implements _CartReceived {
     Result updateCart(_UpdateCart value),
     Result deleteFromCart(_DeleteFromCart value),
     Result clearCart(_ClearCart value),
+    Result toPay(_ToPay value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -271,12 +285,14 @@ class _$_AddToCart implements _AddToCart {
     @required Result updateCart(CartItem item, int deltaCount),
     @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
+    @required Result toPay(),
   }) {
     assert(cartReceived != null);
     assert(addToCart != null);
     assert(updateCart != null);
     assert(deleteFromCart != null);
     assert(clearCart != null);
+    assert(toPay != null);
     return addToCart(addProduct);
   }
 
@@ -288,6 +304,7 @@ class _$_AddToCart implements _AddToCart {
     Result updateCart(CartItem item, int deltaCount),
     Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
+    Result toPay(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -305,12 +322,14 @@ class _$_AddToCart implements _AddToCart {
     @required Result updateCart(_UpdateCart value),
     @required Result deleteFromCart(_DeleteFromCart value),
     @required Result clearCart(_ClearCart value),
+    @required Result toPay(_ToPay value),
   }) {
     assert(cartReceived != null);
     assert(addToCart != null);
     assert(updateCart != null);
     assert(deleteFromCart != null);
     assert(clearCart != null);
+    assert(toPay != null);
     return addToCart(this);
   }
 
@@ -322,6 +341,7 @@ class _$_AddToCart implements _AddToCart {
     Result updateCart(_UpdateCart value),
     Result deleteFromCart(_DeleteFromCart value),
     Result clearCart(_ClearCart value),
+    Result toPay(_ToPay value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -423,12 +443,14 @@ class _$_UpdateCart implements _UpdateCart {
     @required Result updateCart(CartItem item, int deltaCount),
     @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
+    @required Result toPay(),
   }) {
     assert(cartReceived != null);
     assert(addToCart != null);
     assert(updateCart != null);
     assert(deleteFromCart != null);
     assert(clearCart != null);
+    assert(toPay != null);
     return updateCart(item, deltaCount);
   }
 
@@ -440,6 +462,7 @@ class _$_UpdateCart implements _UpdateCart {
     Result updateCart(CartItem item, int deltaCount),
     Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
+    Result toPay(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -457,12 +480,14 @@ class _$_UpdateCart implements _UpdateCart {
     @required Result updateCart(_UpdateCart value),
     @required Result deleteFromCart(_DeleteFromCart value),
     @required Result clearCart(_ClearCart value),
+    @required Result toPay(_ToPay value),
   }) {
     assert(cartReceived != null);
     assert(addToCart != null);
     assert(updateCart != null);
     assert(deleteFromCart != null);
     assert(clearCart != null);
+    assert(toPay != null);
     return updateCart(this);
   }
 
@@ -474,6 +499,7 @@ class _$_UpdateCart implements _UpdateCart {
     Result updateCart(_UpdateCart value),
     Result deleteFromCart(_DeleteFromCart value),
     Result clearCart(_ClearCart value),
+    Result toPay(_ToPay value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -569,12 +595,14 @@ class _$_DeleteFromCart implements _DeleteFromCart {
     @required Result updateCart(CartItem item, int deltaCount),
     @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
+    @required Result toPay(),
   }) {
     assert(cartReceived != null);
     assert(addToCart != null);
     assert(updateCart != null);
     assert(deleteFromCart != null);
     assert(clearCart != null);
+    assert(toPay != null);
     return deleteFromCart(deletedProduct);
   }
 
@@ -586,6 +614,7 @@ class _$_DeleteFromCart implements _DeleteFromCart {
     Result updateCart(CartItem item, int deltaCount),
     Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
+    Result toPay(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -603,12 +632,14 @@ class _$_DeleteFromCart implements _DeleteFromCart {
     @required Result updateCart(_UpdateCart value),
     @required Result deleteFromCart(_DeleteFromCart value),
     @required Result clearCart(_ClearCart value),
+    @required Result toPay(_ToPay value),
   }) {
     assert(cartReceived != null);
     assert(addToCart != null);
     assert(updateCart != null);
     assert(deleteFromCart != null);
     assert(clearCart != null);
+    assert(toPay != null);
     return deleteFromCart(this);
   }
 
@@ -620,6 +651,7 @@ class _$_DeleteFromCart implements _DeleteFromCart {
     Result updateCart(_UpdateCart value),
     Result deleteFromCart(_DeleteFromCart value),
     Result clearCart(_ClearCart value),
+    Result toPay(_ToPay value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -676,12 +708,14 @@ class _$_ClearCart implements _ClearCart {
     @required Result updateCart(CartItem item, int deltaCount),
     @required Result deleteFromCart(CartItem deletedProduct),
     @required Result clearCart(),
+    @required Result toPay(),
   }) {
     assert(cartReceived != null);
     assert(addToCart != null);
     assert(updateCart != null);
     assert(deleteFromCart != null);
     assert(clearCart != null);
+    assert(toPay != null);
     return clearCart();
   }
 
@@ -693,6 +727,7 @@ class _$_ClearCart implements _ClearCart {
     Result updateCart(CartItem item, int deltaCount),
     Result deleteFromCart(CartItem deletedProduct),
     Result clearCart(),
+    Result toPay(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -710,12 +745,14 @@ class _$_ClearCart implements _ClearCart {
     @required Result updateCart(_UpdateCart value),
     @required Result deleteFromCart(_DeleteFromCart value),
     @required Result clearCart(_ClearCart value),
+    @required Result toPay(_ToPay value),
   }) {
     assert(cartReceived != null);
     assert(addToCart != null);
     assert(updateCart != null);
     assert(deleteFromCart != null);
     assert(clearCart != null);
+    assert(toPay != null);
     return clearCart(this);
   }
 
@@ -727,6 +764,7 @@ class _$_ClearCart implements _ClearCart {
     Result updateCart(_UpdateCart value),
     Result deleteFromCart(_DeleteFromCart value),
     Result clearCart(_ClearCart value),
+    Result toPay(_ToPay value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -739,6 +777,115 @@ class _$_ClearCart implements _ClearCart {
 
 abstract class _ClearCart implements CartEvent {
   const factory _ClearCart() = _$_ClearCart;
+}
+
+abstract class _$ToPayCopyWith<$Res> {
+  factory _$ToPayCopyWith(_ToPay value, $Res Function(_ToPay) then) =
+      __$ToPayCopyWithImpl<$Res>;
+}
+
+class __$ToPayCopyWithImpl<$Res> extends _$CartEventCopyWithImpl<$Res>
+    implements _$ToPayCopyWith<$Res> {
+  __$ToPayCopyWithImpl(_ToPay _value, $Res Function(_ToPay) _then)
+      : super(_value, (v) => _then(v as _ToPay));
+
+  @override
+  _ToPay get _value => super._value as _ToPay;
+}
+
+class _$_ToPay implements _ToPay {
+  const _$_ToPay();
+
+  @override
+  String toString() {
+    return 'CartEvent.toPay()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _ToPay);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result cartReceived(),
+    @required Result addToCart(Product addProduct),
+    @required Result updateCart(CartItem item, int deltaCount),
+    @required Result deleteFromCart(CartItem deletedProduct),
+    @required Result clearCart(),
+    @required Result toPay(),
+  }) {
+    assert(cartReceived != null);
+    assert(addToCart != null);
+    assert(updateCart != null);
+    assert(deleteFromCart != null);
+    assert(clearCart != null);
+    assert(toPay != null);
+    return toPay();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result cartReceived(),
+    Result addToCart(Product addProduct),
+    Result updateCart(CartItem item, int deltaCount),
+    Result deleteFromCart(CartItem deletedProduct),
+    Result clearCart(),
+    Result toPay(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (toPay != null) {
+      return toPay();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result cartReceived(_CartReceived value),
+    @required Result addToCart(_AddToCart value),
+    @required Result updateCart(_UpdateCart value),
+    @required Result deleteFromCart(_DeleteFromCart value),
+    @required Result clearCart(_ClearCart value),
+    @required Result toPay(_ToPay value),
+  }) {
+    assert(cartReceived != null);
+    assert(addToCart != null);
+    assert(updateCart != null);
+    assert(deleteFromCart != null);
+    assert(clearCart != null);
+    assert(toPay != null);
+    return toPay(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result cartReceived(_CartReceived value),
+    Result addToCart(_AddToCart value),
+    Result updateCart(_UpdateCart value),
+    Result deleteFromCart(_DeleteFromCart value),
+    Result clearCart(_ClearCart value),
+    Result toPay(_ToPay value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (toPay != null) {
+      return toPay(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ToPay implements CartEvent {
+  const factory _ToPay() = _$_ToPay;
 }
 
 class _$CartStateTearOff {

@@ -16,5 +16,11 @@ abstract class Cart with _$Cart implements IEntity {
     UniqueId id,
     @required KtList<CartItem> items,
     @required Price total,
+    UniqueId userId,
   }) = _Cart;
+
+  factory Cart.empty() => Cart(
+    items: KtList.empty(),
+    total: Price(0),
+  );
 }

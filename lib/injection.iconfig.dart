@@ -58,7 +58,8 @@ void $initGetIt(GetIt g, {String environment}) {
           g<FirebaseUserMapper>(),
           g<Firestore>(),
         ));
-    g.registerLazySingleton<ICartRepository>(() => CartRepository());
+    g.registerLazySingleton<ICartRepository>(
+        () => CartRepository(g<Firestore>()));
     g.registerLazySingleton<ICatalogRepository>(
         () => CatalogRepository(g<Firestore>()));
     g.registerLazySingleton<IProfileRepository>(
