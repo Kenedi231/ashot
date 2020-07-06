@@ -50,10 +50,10 @@ class CarouselWidget extends StatelessWidget {
                     ),
                   ),
                   Row(
-                    children: <Widget>[
+                    children: const <Widget>[
                       StarsWidget(size: 20),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                        padding: EdgeInsets.only(left: 8.0),
                         child: Text('5.0 (16 Обзоров)'),
                       )
                     ],

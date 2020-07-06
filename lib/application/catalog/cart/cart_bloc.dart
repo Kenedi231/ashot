@@ -24,7 +24,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   Stream<CartState> mapEventToState(
     CartEvent event,
   ) async* {
-    Cart cart;
+    Cart cart = Cart.empty();
     yield* event.map(
       cartReceived: (e) async* {
         cart = cartRepository.watchAll();
@@ -40,6 +40,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       },
       updateCart: (e) async* {
         cart = cartRepository.update(e.item, e.deltaCount);
+      },
+      toPay: (e) async* {
+        await cartRepository.toPay();
+        add(const CartEvent.clearCart());
       },
     );
     yield CartState.received(cart);

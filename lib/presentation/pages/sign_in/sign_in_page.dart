@@ -15,6 +15,7 @@ class SignInPage extends StatelessWidget {
           'Вход в Ашот',
           style: TextStyle(color: Colors.black),
         ),
+        centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
       ),

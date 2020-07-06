@@ -60,7 +60,10 @@ class CartWidget extends StatelessWidget {
                         ),
                         CartTotalWidget(total: state.cart.total.getOrCrash()),
                         RoundedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.bloc<CartBloc>()
+                            .add(const CartEvent.toPay());
+                          },
                           text: 'Оплатить',
                         ),
                       ],

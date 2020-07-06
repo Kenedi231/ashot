@@ -12,11 +12,12 @@ import 'package:ashot/presentation/pages/sign_in/sign_in_page.dart';
 import 'package:ashot/presentation/pages/home/home_page.dart';
 import 'package:ashot/presentation/pages/product_page/product_page.dart';
 import 'package:ashot/domain/catalog/product.dart';
-import 'package:ashot/presentation/pages/product_new_review.dart/product_new_review.dart';
+import 'package:ashot/presentation/pages/product_new_review/product_new_review.dart';
 import 'package:ashot/domain/review/review.dart';
 import 'package:ashot/presentation/pages/profile/profile_page.dart';
 import 'package:ashot/presentation/pages/profile_edit/profile_edit_page.dart';
 import 'package:ashot/domain/profile/profile.dart';
+import 'package:ashot/presentation/pages/story_of_orders/story_of_orders_page.dart';
 
 class Router {
   static const splashPage = '/';
@@ -26,6 +27,7 @@ class Router {
   static const productNewReview = '/product-new-review';
   static const profilePage = '/profile-page';
   static const profileEditPage = '/profile-edit-page';
+  static const storyOfOrdersPage = '/story-of-orders-page';
   static final navigator = ExtendedNavigator();
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -84,6 +86,11 @@ class Router {
           builder: (_) =>
               ProfileEditPage(key: typedArgs.key, profile: typedArgs.profile)
                   .wrappedRoute,
+          settings: settings,
+        );
+      case Router.storyOfOrdersPage:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => StoryOfOrdersPage().wrappedRoute,
           settings: settings,
         );
       default:

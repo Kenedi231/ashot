@@ -29,6 +29,10 @@ extension FirestoreX on Firestore {
   Future<CollectionReference> reviews() async {
     return Firestore.instance.collection('reviews');
   }
+
+  Future<CollectionReference> story() async {
+    return Firestore.instance.collection('story');
+  }
 }
 
 extension DocumentReferenceX on DocumentReference {

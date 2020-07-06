@@ -1,20 +1,28 @@
+import 'package:dartz/dartz.dart';
+import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/collection.dart';
 
+import '../../domain/auth/user.dart';
 import '../../domain/cart/cart.dart';
+import '../../domain/cart/cart_failure.dart';
 import '../../domain/cart/cart_item.dart';
 import '../../domain/cart/i_cart_repository.dart';
 import '../../domain/catalog/product.dart';
 import '../../domain/core/value_objects.dart';
+import '../core/firestore_helpers.dart';
+import 'cart_dto.dart';
 
 @prod
 @lazySingleton
 @RegisterAs(ICartRepository)
 class CartRepository implements ICartRepository {
-  Cart cart = Cart(
-    items: KtList.empty(),
-    total: Price(0),
-  );
+  final Firestore _firestore;
+
+  CartRepository(this._firestore);
+
+
+  Cart cart = Cart.empty();
   
   @override
   Cart add(Product item) {
@@ -82,5 +90,41 @@ class CartRepository implements ICartRepository {
     final int total = items.sumBy((item) => item.count.getOrElse(1) * item.dish.price.getOrCrash());
 
     return Price(total);
+  }
+
+  @override
+  Future<Either<CartFailure, Unit>> toPay() async {
+    final storyCollection = await _firestore.story();
+    final User user = await _firestore.authentificatedUser();
+
+    try {
+      cart = cart.copyWith(
+        userId: UniqueId.fromFirebaseId(user.id.getOrCrash()),
+      );
+
+      await storyCollection
+        .add(CartDto.fromDomain(cart).toJson());
+
+      return right(unit);
+    } on PlatformException catch (_) {
+      return left(const CartFailure.unexpected());
+    }
+  }
+
+  @override
+  Stream<Either<CartFailure, List<Cart>>> getStoryOfOrders() async* {
+    final storyCollection = await _firestore.story();
+    final User user = await _firestore.authentificatedUser();
+    
+    yield* storyCollection.where('userId', isEqualTo: user.id.getOrCrash())
+      .snapshots()
+      .map<Either<CartFailure, List<Cart>>>((snapshot) {
+        return right<CartFailure, List<Cart>>(
+          List.from(
+            snapshot.documents
+              .map((doc) => CartDto.fromFirestore(doc).toDomain()),
+          ),
+        );
+      });
   }
 }
