@@ -12,4 +12,5 @@ abstract class ICartRepository {
   Cart update(CartItem item, int deltaCount);
   Cart delete(CartItem item);
   Future<Either<CartFailure, Unit>> toPay();
+  Stream<Either<CartFailure, List<Cart>>> getStoryOfOrders();
 }

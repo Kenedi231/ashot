@@ -90,7 +90,7 @@ class Router {
         );
       case Router.storyOfOrdersPage:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => StoryOfOrdersPage(),
+          builder: (_) => StoryOfOrdersPage().wrappedRoute,
           settings: settings,
         );
       default:

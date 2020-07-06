@@ -9,4 +9,8 @@ class CommonStyles {
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
+  static const TextStyle nameItemStyle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
 }

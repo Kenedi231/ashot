@@ -35,7 +35,7 @@ abstract class CartItemDto with _$CartItemDto {
 extension CartItemDtoX on CartItemDto {
   CartItem toDomain() {
     return CartItem(
-      id: UniqueId.fromUniqueString(id),
+      id: UniqueId.fromUniqueString(id ?? 'items'),
       dish: dish.toDomain(),
       count: Count(count),
     );

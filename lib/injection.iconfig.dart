@@ -24,6 +24,7 @@ import 'package:ashot/application/profile/profile_form/profile_form_bloc.dart';
 import 'package:ashot/application/review/review_bloc.dart';
 import 'package:ashot/application/review_watcher/review_watcher_bloc.dart';
 import 'package:ashot/application/auth/sign_in_form/sign_in_form_bloc.dart';
+import 'package:ashot/application/story_of_orders/story_of_orders_bloc.dart';
 import 'package:ashot/application/auth/auth_bloc.dart';
 import 'package:ashot/application/catalog/cart/cart_bloc.dart';
 import 'package:ashot/application/catalog/catalog_watcher/catalog_watcher_bloc.dart';
@@ -44,6 +45,8 @@ void $initGetIt(GetIt g, {String environment}) {
   g.registerFactory<ReviewWatcherBloc>(
       () => ReviewWatcherBloc(g<IReviewRepository>()));
   g.registerFactory<SignInFormBloc>(() => SignInFormBloc(g<IAuthFacade>()));
+  g.registerFactory<StoryOfOrdersBloc>(
+      () => StoryOfOrdersBloc(g<ICartRepository>()));
   g.registerFactory<AuthBloc>(() => AuthBloc(g<IAuthFacade>()));
   g.registerFactory<CartBloc>(
       () => CartBloc(cartRepository: g<ICartRepository>()));

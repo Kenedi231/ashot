@@ -32,6 +32,7 @@ class CatalogPageWidget extends StatelessWidget {
             'Ашот',
             style: TextStyle(color: Colors.black),
           ),
+          centerTitle: true,
           actions: <Widget>[
             IconButton(
               icon: Icon(

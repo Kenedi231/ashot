@@ -1,18 +1,17 @@
-import 'package:ashot/domain/auth/user.dart';
-import 'package:ashot/infrastructure/cart/cart_dto.dart';
-
-import '../core/firestore_helpers.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/collection.dart';
 
+import '../../domain/auth/user.dart';
 import '../../domain/cart/cart.dart';
 import '../../domain/cart/cart_failure.dart';
 import '../../domain/cart/cart_item.dart';
 import '../../domain/cart/i_cart_repository.dart';
 import '../../domain/catalog/product.dart';
 import '../../domain/core/value_objects.dart';
+import '../core/firestore_helpers.dart';
+import 'cart_dto.dart';
 
 @prod
 @lazySingleton
@@ -107,8 +106,25 @@ class CartRepository implements ICartRepository {
         .add(CartDto.fromDomain(cart).toJson());
 
       return right(unit);
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       return left(const CartFailure.unexpected());
     }
+  }
+
+  @override
+  Stream<Either<CartFailure, List<Cart>>> getStoryOfOrders() async* {
+    final storyCollection = await _firestore.story();
+    final User user = await _firestore.authentificatedUser();
+    
+    yield* storyCollection.where('userId', isEqualTo: user.id.getOrCrash())
+      .snapshots()
+      .map<Either<CartFailure, List<Cart>>>((snapshot) {
+        return right<CartFailure, List<Cart>>(
+          List.from(
+            snapshot.documents
+              .map((doc) => CartDto.fromFirestore(doc).toDomain()),
+          ),
+        );
+      });
   }
 }

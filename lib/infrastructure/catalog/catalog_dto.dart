@@ -42,7 +42,7 @@ abstract class ProductDto with _$ProductDto {
 extension ProductDtoX on ProductDto {
   Product toDomain() {
     return Product(
-      id: UniqueId.fromFirebaseId(id),
+      id: UniqueId.fromFirebaseId(id ?? 'dish'),
       name: StringSingleLine(name),
       description: StringMultLine(description),
       price: Price(price),
