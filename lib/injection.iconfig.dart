@@ -19,6 +19,8 @@ import 'package:ashot/infrastructure/profile/profile_repository.dart';
 import 'package:ashot/domain/profile/i_profile_repository.dart';
 import 'package:ashot/infrastructure/review/review_repository.dart';
 import 'package:ashot/domain/review/i_review_repository.dart';
+import 'package:ashot/infrastructure/stripe_payment/stripe_payment_repository.dart';
+import 'package:ashot/domain/stripe_payment/i_stripe_payment_repository.dart';
 import 'package:ashot/application/profile/profile_watcher/profile_bloc.dart';
 import 'package:ashot/application/profile/profile_form/profile_form_bloc.dart';
 import 'package:ashot/application/review/review_bloc.dart';
@@ -48,8 +50,9 @@ void $initGetIt(GetIt g, {String environment}) {
   g.registerFactory<StoryOfOrdersBloc>(
       () => StoryOfOrdersBloc(g<ICartRepository>()));
   g.registerFactory<AuthBloc>(() => AuthBloc(g<IAuthFacade>()));
-  g.registerFactory<CartBloc>(
-      () => CartBloc(cartRepository: g<ICartRepository>()));
+  g.registerFactory<CartBloc>(() => CartBloc(
+      cartRepository: g<ICartRepository>(),
+      stripePaymentRepository: g<IStripePaymentRepository>()));
   g.registerFactory<CatalogWatcherBloc>(
       () => CatalogWatcherBloc(g<ICatalogRepository>()));
 
@@ -69,6 +72,8 @@ void $initGetIt(GetIt g, {String environment}) {
         () => ProfileRepository(g<Firestore>()));
     g.registerLazySingleton<IReviewRepository>(
         () => ReviewRepository(g<Firestore>()));
+    g.registerLazySingleton<IStripePaymentRepository>(
+        () => StripePaymentRepository());
   }
 }
 

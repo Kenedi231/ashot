@@ -1,3 +1,4 @@
+import 'package:ashot/domain/stripe_payment/i_stripe_payment_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -14,8 +15,9 @@ part 'cart_state.dart';
 @injectable
 class CartBloc extends Bloc<CartEvent, CartState> {
   final ICartRepository cartRepository;
+  final IStripePaymentRepository stripePaymentRepository;
 
-  CartBloc({@required this.cartRepository});
+  CartBloc({@required this.cartRepository, @required this.stripePaymentRepository});
 
   @override
   CartState get initialState => const CartState.initial();
@@ -42,8 +44,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         cart = cartRepository.update(e.item, e.deltaCount);
       },
       toPay: (e) async* {
-        await cartRepository.toPay();
-        add(const CartEvent.clearCart());
+        await stripePaymentRepository.stripePayment();
+        // await cartRepository.toPay();
+        // add(const CartEvent.clearCart());
       },
     );
     yield CartState.received(cart);
