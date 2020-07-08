@@ -41,6 +41,16 @@ class StripePaymentRepository implements IStripePaymentRepository {
     //   ),
     // ).then((Source value) => _source = value).catchError(setError);
 
+    // Create token from Card
+    StripePayment.createTokenWithCard(testCard)
+      .then((value) {
+        // Create payment method from token
+        StripePayment.createPaymentMethod(
+          PaymentMethodRequest(token: value)
+        ).then((value) => print(value)).catchError(setError);
+      })
+      .catchError(setError);
+
     // Call card form
     //
     // StripePayment.paymentRequestWithCardForm(CardFormPaymentRequest())
@@ -50,25 +60,28 @@ class StripePaymentRepository implements IStripePaymentRepository {
     // }).catchError(setError);
 
     // Create PaymentMethod from Card
-    await StripePayment.createPaymentMethod(
-      PaymentMethodRequest(
-        card: testCard,
-      ),
-    ).then((paymentMethod) {
-      _paymentMethod = paymentMethod;
-    }).catchError(setError);
-    print(_paymentMethod);
-    if (_paymentMethod != null) {
-      StripePayment.confirmPaymentIntent(
-        PaymentIntent(
-          clientSecret: _currentSecret,
-          paymentMethodId: _paymentMethod.id,
-        ),
-      ).then((value) {
-        _paymentIntent = value;
-        print(value.paymentIntentId);
-      }).catchError(setError);
-    }
+    // await StripePayment.createPaymentMethod(
+    //   PaymentMethodRequest(
+    //     card: testCard,
+    //   ),
+    // ).then((paymentMethod) {
+    //   _paymentMethod = paymentMethod;
+    // }).catchError(setError);
+    // print(_paymentMethod);
+    // if (_paymentMethod != null) {
+    //   StripePayment.confirmPaymentIntent(
+    //     PaymentIntent(
+    //       clientSecret: _currentSecret,
+    //       paymentMethodId: _paymentMethod.id,
+    //     ),
+    //   ).then((value) {
+    //     _paymentIntent = value;
+    //     print(value.paymentIntentId);
+    //   }).catchError(setError);
+    // }
+
+    // HZ WHAT IS IT
+    // StripePayment.authenticatePaymentIntent(clientSecret: _currentSecret).then((value) => print(value));
 
     // Native pay
     //

@@ -44,9 +44,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         cart = cartRepository.update(e.item, e.deltaCount);
       },
       toPay: (e) async* {
-        await stripePaymentRepository.stripePayment();
-        // await cartRepository.toPay();
-        // add(const CartEvent.clearCart());
+        // Payment
+        // await stripePaymentRepository.stripePayment();
+        await cartRepository.toPay();
+        add(const CartEvent.clearCart());
       },
     );
     yield CartState.received(cart);
